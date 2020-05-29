@@ -1,0 +1,200 @@
+.top-outer{
+  font-size: 0rpx;
+  position: relative;
+}
+.top-outer image{
+  width: 100%;
+  height: auto;
+}
+.inside-text-outer{
+  position: absolute;
+  width: 514rpx;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-65%) translateX(-50%);
+  text-align: center;
+  background-color: rgba(0,0,0,0.5);
+  padding: 20rpx 0rpx;
+}
+.inside-text-one{
+  font-size: 50rpx;
+  color: #FF6600;
+  font-weight: bold;
+}
+.inside-text-two{
+  font-size: 40rpx;
+  color: white;
+  font-weight: bold;
+}
+.inside-address{
+  width: calc(100% - 40rpx);
+  position: absolute;
+  left: 20rpx;
+  top: 320rpx;
+  background-color: white;
+  font-size: 30rpx;
+  color: #1678FF;
+  line-height: 98rpx;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0rpx 0rpx 10rpx rgba(0,0,0,0.3);
+  border-radius: 10rpx;
+}
+.text-center{
+  width: calc(100% - 40rpx);
+  margin-left: 20rpx;
+  margin-top: 68rpx;
+  box-shadow: 0rpx 0rpx 20rpx rgba(0,0,0,0.2);
+  border-radius: 10rpx;
+  padding: 24rpx;
+  box-sizing: border-box;
+  font-size: 24rpx;
+}
+.six-dian{
+ padding: 0rpx 101rpx;
+ box-sizing: border-box;
+}
+/* 亮点详情 */
+.target-outer,.zhize-outer{
+  padding: 0rpx 20rpx;
+  box-sizing: border-box;
+}
+.target-one-outer,.zhize-one-outer{
+  margin-bottom: 36rpx;
+}
+.zhize-one-outer{
+  display: flex;
+  align-items: center;
+}
+.target-one-top{
+  font-size: 30rpx;
+  color: #FF6600;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+  display: flex;
+  align-items: center;
+}
+.target-dian,.zhize-hui{
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 10rpx;
+  background: #FF6600;
+  margin-right: 10rpx;
+}
+.zhize-hui{
+  background: #666666;
+}
+.target-text-all,.zhize-text{
+  font-size: 26rpx;
+  color: #666666;
+}
+.target-text-all text,.zhize-blue-text{
+  color: #1678FF;
+}
+/* 复选框 */
+.yesInow{
+  font-size: 30rpx;
+  color: #1678FF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0rpx 20rpx 25rpx;
+}
+.btn{
+  width: calc(100% - 40rpx);
+  margin-left: 20rpx;
+  margin-bottom: 28rpx;
+  text-align: center;
+  font-size: 34rpx;
+  line-height: 98rpx;
+  border-radius: 98rpx;
+  background: #999999;
+  color: #FFFFFF;
+}
+.btn-yes{
+  background: #1F7DFF;
+  color: white;
+}
+/* 注册成为小哥 */
+.info-outer{
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+  bottom: 0rpx;
+  background: rgba(0,0,0,0.5);
+}
+.info-inside-outer{
+  width: calc(100% - 120rpx);
+  margin-left: 60rpx;
+  background: white;
+  padding: 0rpx 20rpx 20rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx; 
+  position: relative;
+  margin-top: 288rpx;
+}
+.info-top-title{
+  font-size: 32rpx;
+  color: #232323;
+  text-align: center;
+  line-height: 88rpx;
+  font-weight: bold;
+}
+.info-name,.info-code-bottom{
+  width: 100%;
+  height: 78rpx;
+  background: #EDEDED;
+  border-radius: 5rpx;
+  font-size: 28rpx;
+  padding-left: 14rpx;
+  box-sizing: border-box;
+  margin-bottom: 30rpx;
+}
+.info-code-outer{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 78rpx;
+  background: #EDEDED;
+  border-radius: 5rpx;
+  font-size: 28rpx;
+  margin-bottom: 30rpx;
+}
+.info-phone{
+  height: 78rpx;
+  width: calc(100% - 200rpx);
+  padding-left: 14rpx;
+  box-sizing: border-box;
+}
+.info-get-code{
+  font-size: 22rpx;
+  color: #FF6600;
+  line-height: 78rpx;
+  margin-right: 14rpx;
+}
+.yes-btn{
+  width: calc(100% - 30rpx);
+  line-height: 80rpx;
+  margin-left: 15rpx;
+  font-size: 32rpx;
+  color: white;
+  text-align: center;
+  background: #1F7DFF;
+  border-radius: 90rpx;
+}
+.quxiao-bottom{
+  border: 6rpx solid white;
+  font-size: 60rpx;
+  line-height: 60rpx;
+  font-weight: bold;
+  color: white;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 60rpx;
+  text-align: center;
+  position: absolute;
+  bottom: -100rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}

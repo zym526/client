@@ -1,0 +1,5 @@
+<template name="showToast">
+  <block wx:if="{{showToast.isShow? showToast.isShow: false}}">
+    <view class="tipMessage">{{showToast.title}}</view>
+  </block>
+</template>

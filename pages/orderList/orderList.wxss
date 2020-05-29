@@ -1,0 +1,159 @@
+/* pages/orderList/orderList.wxss */
+page { background: #f5f5f5 ; }
+.swiper-tab { width: 100% ; overflow: hidden ; background: #fff ; position: fixed ; top : 0 ; z-index: 100 ;}
+.swiper-tab-list { width: 20% ; height: 142rpx; float:  left ; text-align: center ; font-size: 26rpx ; margin : 0 2.5% ;}
+.swiper-tab-list .tabImg { width: 60rpx ; height: 60rpx ; margin-bottom : 35rpx ; margin : 15rpx auto ;}
+.swiper-tab-list .tabImg image { width: 60rpx ; height : auto ; display: block ; }
+.active { border-bottom : 4rpx solid #1678FF ;}
+
+.zwf { height :  162rpx ; width: 100% ;z-index: 999;}
+/* .shadowLine { width: 100% ; height : 20rpx ;  background: #f5f5f5 ; } */
+
+
+.order { width: calc(100% - 60rpx) ;margin-left: 30rpx; background: #fff ;margin-bottom: 20rpx;border-radius: 10rpx;}
+.orderTop { padding : 20rpx ; overflow: hidden; border-bottom : 1rpx solid #dddddd ; color : #666666 ;font-size: 28rpx;}
+.orderNumber { float: left ; }
+.orderStatus { float: right ;color : #1678FF ;font-size: 20rpx; display: flex;align-items: center;line-height: 38rpx!important;}
+.title {font-size: 30rpx ;}
+.time , .address{ color : #666666 ; font-size: 22rpx ; }
+.orderBox{margin: 0rpx 20rpx; padding: 20rpx 0rpx;border-bottom: 1rpx solid #E1E1E1;display: flex;}
+.order-box-left{width: 100rpx;margin-right: 9rpx;}
+.order-box-left image{width: 100%;height: auto;border-radius: 10rpx;}
+.order-box-right{width: calc(100% - 120rpx);}
+.orderBottom {overflow: hidden ;font-size: 22rpx ; width: 100% ;padding: 20rpx;box-sizing: border-box;display: flex;align-items: center;justify-content: space-between;}
+.btn view { display: inline-block ; padding : 10rpx 20rpx ; border : 1rpx solid #dddddd ; border-radius: 37rpx ;} 
+.btn view:nth-child(2){margin-left: 17rpx;}
+.btn .payNow { border : 1rpx solid #1678FF ; color : #1678FF ;}
+/* .block { width: 261rpx ; height : 261rpx ; margin : 390rpx auto 0; display: block ; }
+.block image { width: 100% ; height : 100% ; } */
+.block{
+  text-align: center;
+  color: rgba(0,0,0,0.1);
+}
+.block .iconfont{
+  margin-left: -20rpx;
+}
+.isShow{display: block ; }
+.isHide {display: none ;}
+.blockText{font-size: 26rpx ; margin : 0 auto ; text-align: center ; color : #666 ;}
+
+/* 顶部圆点 */
+.yuan-dian{
+  display: inline-block;
+  width: 6rpx;
+  height: 6rpx;
+  border-radius: 6rpx;
+  background-color: red;
+  margin-right: 7rpx;
+}
+.red-text{
+  color: #FF0000;
+}
+.red-bg{
+  background-color: #FF0000;
+  color: white!important;
+  border: 0rpx!important;
+}
+.origin-text{
+  color: #FF6600;
+}
+.origin-bg{
+  background-color: #FF6600;
+  color: white!important;
+  border: 0rpx!important;
+}
+.blue-text{
+  color: #187AFF;
+}
+.blue-bg{
+  background-color: #187AFF;
+  color: white!important;
+  border: 0rpx!important;
+}
+.hui-text{
+  color: #666666;
+}
+.hui-bg{
+  background-color: #666666!important;
+  border: 0rpx!important;
+}
+/* 支付弹窗 */
+.tip{
+  text-align: center;
+  font-size: 30rpx;
+  color: #232323;
+  line-height: 88rpx;
+  border-bottom: 1rpx solid #E1E1E1;
+  position: relative;
+}
+.tip .iconfont{
+  position: absolute;
+  top: 0rpx;
+  right: 20rpx;
+}
+.password-money{
+  text-align: center;
+  color: #1678FF;
+  font-weight: bold;
+  font-size: 50rpx;
+  line-height: 117rpx;
+}
+.btn-bottom{
+  width: calc(100% - 40rpx);
+  margin-left: 20rpx;
+  font-size: 32rpx;
+  color: white;
+  line-height: 88rpx;
+  background-color: #1678FF;
+  text-align: center;
+  border-radius: 88rpx;
+  margin-bottom: 40rpx;
+}
+/* 支付方式 */
+.show-titile{
+  font-size: 30rpx;
+  line-height: 80rpx;
+  text-align: center;
+  position: relative;
+  border-bottom: 1rpx solid #E1E1E1;
+}
+.show-titile .iconfont{
+  position: absolute;
+  right: 20rpx;
+  top: 0rpx;
+}
+.weixin-outer,.yue-outer{
+  font-size: 28rpx;
+  line-height: 80rpx;
+  margin: 0rpx 20rpx;
+  display: flex;
+  position: relative;
+}
+.weixin-outer{
+  border-bottom: 1rpx solid #E1E1E1;
+}
+.icon-weixin1{
+  font-size: 40rpx;
+  color: #1afa29;
+}
+.icon-yue{
+  font-size: 40rpx;
+  color: #187AFF;
+}
+.huise{
+  color: #999999;
+}
+.icon-you{
+  position: absolute;
+  right: 0rpx;
+  top: 0rpx;
+}
+.yue-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 40rpx;
+}
+.weixin-text,.yue-text{
+  margin-left: 20rpx;
+}

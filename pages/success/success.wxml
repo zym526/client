@@ -1,0 +1,10 @@
+<view class="img">
+  <image src="../../img/success.png"></image>
+</view>
+
+<view class="tip">下单成功</view>
+<view class="text">可在我的订单里查看详情</view>
+<view class='goBackBox'>
+  <view class="goBack" bindtap='goBack'>返回首页</view>
+  <view class="goBack" bindtap='goOrder'>查看订单</view>
+</view>

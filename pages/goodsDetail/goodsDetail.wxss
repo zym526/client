@@ -1,0 +1,360 @@
+/* pages/goodsDetail/goodsDetail.wxss */
+ page {background: #f5f5f5 ;} 
+/* image { width: 100% ; height : 100% ;display: block ; }
+.banner { width: 100% ; height : 414rpx ; overflow: hidden;}
+.contentTitle { font-size: 34rpx ;height: 48rpx ; line-height: 48rpx ; padding: 20rpx 0rpx 5rpx 23rpx; background-color: white;}
+.allMoney { background-color: white;padding: 15rpx 23rpx 0rpx;}
+.allMoney .money{font-size: 30rpx;background-color: white;border-bottom: 3rpx solid #EDEDED; padding-bottom: 20rpx;}
+.allMoney .moneyNum{color: #1678FF;}
+.allMoney .city_price{font-size: 24rpx;color: #666666;}
+.allMoney .desc_text{padding: 20rpx 0rpx;font-size: 24rpx;color: #666666;}
+.addressLine { width: 100% ;min-height: 84rpx;  border-bottom : 1px solid #f5f5f5 ;box-sizing: border-box;display: flex;justify-content: space-between;padding: 0rpx 22rpx;align-items: center;background-color: white;}
+.addressLine .addressTitle { width: 170rpx;font-size: 30rpx ;line-height: 50rpx; color : #666666 ; float: left ;}
+.address { width: calc(100% - 170rpx);font-size: 27rpx ;line-height: 50rpx; text-align: right ; color : #232323 ;display: flex;align-items: center;}
+.left_text_one,.right_arrow{display: inline-block;}
+.right_arrow{width: 40rpx;box-sizing: border-box;}
+.left_text_one{width: calc(100% - 40rpx);box-sizing: border-box;} */
+/* 备注 */
+/* .time { width: 100% ;min-height: 84rpx; border-bottom: 1px solid #f5f5f5;box-sizing: border-box;display: flex;justify-content: space-between;padding: 0rpx 22rpx;align-items: center;background-color: white;}
+.time input {width: 100% ;min-height: 50rpx; font-size: 27rpx;line-height: 50rpx; text-align: right ;color:#232323 ;}
+.time  .timeTitle { width: 170rpx;font-size: 30rpx;line-height: 50rpx; color : #666666 ; float: left }
+.time  .timeText { width:calc(100% - 170rpx) ;font-size: 27rpx ;line-height: 50rpx; color : #232323 ; text-align: right;} 
+.timees { width: 100% ;min-height: 84rpx;  border-bottom : 1px solid #f5f5f5 ;box-sizing: border-box;display: flex;justify-content: space-between;padding: 0rpx 22rpx;align-items: center;background-color: white;}
+.timees  .timeTitle { width: 170rpx;font-size: 30rpx ;line-height: 50rpx; color : #666666 ; float: left ;}
+.timees  .timeText { width: calc(100% - 170rpx);font-size: 27rpx ;line-height: 50rpx; text-align: right ; color : #232323 ;}
+.timeText view{display: inline-block;}
+.timeText view:first{width: calc(100% - 40rpx);box-sizing: border-box;}
+.timeText view:last-child{width: 40rpx;box-sizing: border-box;}  */
+
+/* .intTitle { width: 100% ; border-bottom : 1px solid #dddddd ; }
+.intTitle .title { font-size: 30rpx ;color : #666666 ;margin : 17rpx 0rpx 17rpx 23rpx ;  }
+.intTitle .text { font-size: 26rpx ; color : #666666 ; margin : 0 18rpx 21rpx 18rpx ; }
+.liucheng .title { font-size: 30rpx ; color : #666666 ; margin : 21rpx 0 13rpx 27rpx ; }
+.liucheng .text { font-size: 26rpx ; margin : 0 0 24rpx 30rpx ; color : #666666 ;} */
+/* .btn { height : 98rpx ; width: 100% ; line-height: 98rpx ; position: fixed ; bottom : 0 ;} 
+.btn view { width: 50% ; display: inline-block ; text-align: center ; font-size: 32rpx ; }
+.btn .other { background: #f5f5f5 ;color : #666666 ; }
+.btn .mySelf { background: #ec6b64 ; color : #fff ;}   */
+/* .input1 { width : 180rpx ; margin-right : 20rpx ;}
+.content {margin-bottom: 100rpx;background-color: #F0F0F0;}
+.content .timees  .tutk {height:42rpx;margin:17rpx 0rpx 17rpx 70rpx;font-size:30rpx;color:#666666;float:left;} 
+.userList input { float: left ;margin:17rpx 0 17rpx 0;font-size: 30rpx ; color : #999999 ; width: 200rpx ;}
+.btn { height : 98rpx ; width: 100% ; line-height: 98rpx ; display: flex;justify-content: center;margin-bottom:20rpx} 
+.btn view { width: 80% ; display: inline-block ; text-align: center ; font-size: 32rpx ; background: #1678FF; border-radius: 98rpx; } 
+.btn .other { background: #f5f5f5 ;color : #666666 ; } 
+.btn .mySelf { background: #1678FF ; color : #fff ;}   
+.btn .mySelfHui {background: #999999}
+.introduce { border-bottom : 21rpx solid #f5f5f5 ; }
+.vul { overflow: hidden ; width: 100% ; }
+.vul  .timeTitle { height : 42rpx; margin : 17rpx 0rpx 17rpx 23rpx ; font-size: 30rpx ; color : #666666 ; float: left }
+.vul  .timeText { font-size: 24rpx ; color : #999999 ; float: right ; margin : 17rpx 25rpx 17rpx 0 ;}  */
+/* .vulLien { overflow: hidden; padding-bottom: 98rpx;}
+.vulLien .img { width: 60rpx ; height : 60rpx ; float: left ; margin : 27rpx 13rpx 0 20rpx ; }
+.vulLien .img image { border-radius: 100% ;  }
+.vulLien .name { font-size: 24rpx; color : #333333 ; float: left ; margin-top : 42rpx ;}
+.vulLien .times { float: right ; font-size: 24rpx; margin : 42rpx 38rpx 0 0; color : #666666 ;} 
+.vulLien .vulTop { overflow: hidden ; }
+.vulLien .text { margin : 0 38rpx 0 87rpx ; font-size: 24rpx ; } 
+.zhanweiline { height : 120rpx ; line-height: 120rpx ;  width: 100% ;}
+.hide{display: none;}
+.show{  display: block;}
+ */
+ .outer-picker{
+   position: fixed;
+   bottom: 0rpx;
+   top: 0rpx;
+   left: 0rpx;
+   right: 0rpx;
+   background-color: rgba(0,0,0,0.5);
+ }
+.picker { 
+  border-top : 1rpx solid #ddd ;
+  border-top-left-radius: 15rpx ;
+  border-top-right-radius: 15rpx ; 
+  width: 100% ; 
+  z-index: 999 ; 
+  position: fixed ;
+  bottom : 0rpx ; 
+  background: #fff ;
+}
+.picker_top_outer{
+  border: 1px solid red;
+  display: flex;
+  justify-content: space-between;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  border: 1rpx solid #E4E4E4;
+  background-color: white;
+  padding: 0rpx 20rpx;
+}
+.picker_left_text{
+  color: #FF6600;
+}
+.picker_right_text{
+  color: #1678FF;
+}
+picker-view-column {
+  font-size: 32rpx ; 
+  overflow: hidden ; 
+}
+picker-view-column  view{  
+  font-size: 32rpx ;
+}
+.picker .chooseTrue{ 
+  background: #1678FF ; 
+  position: fixed ; bottom : 0 ; 
+  width: 100% ; height : 120rpx ; 
+  text-align: center ; 
+  line-height: 120rpx ; 
+  color : #fff ; 
+  font-size: 30rpx ;
+}
+/* 
+.month { width: 25% ; text-align: center ; }
+.month view {font-size: 32rpx ;}
+.cover { background: #000 ; opacity: 0.15 ; position: fixed ; top : 0 ; width: 100% ; z-index: 50 ; height : 100% ;}
+
+
+.imgBox { margin : 29rpx 31rpx 40rpx 95rpx ; overflow: hidden ; }
+.imgBox .item{ width: 190rpx ; height : 190rpx ; float: left ; margin-right : 10.5rpx }
+textarea{ height: 144rpx ; } */
+
+/* 顶部信息 */
+.top_outer{
+  width: 100%;
+  background-color: white;
+  display: flex;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.left_image{
+  width: 158rpx;
+  height: 158rpx;
+  margin-right: 20rpx;
+}
+.left_image image{
+  border-radius: 10rpx;
+  width: 100%;
+  height: auto;
+}
+.right_text{
+  width: calc(100% - 288rpx);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.one_text{
+  font-size: 28rpx;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.two_text{
+  font-size: 18rpx;
+  line-height: 30rpx;
+  color: #666666;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.three_text{
+  font-size: 30rpx;
+  color: #1678FF;
+}
+/* 车辆信息，服务站点，服务时间，备注 */
+.content{
+  padding: 0rpx 31rpx 0rpx;
+  margin-top: 20rpx;
+  background-color: white;
+}
+.addressLine,.timees,.time{
+  border-bottom: 1rpx solid #EDEDED;
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx 0rpx;
+}
+.timees{
+  border-bottom: 0rpx;
+}
+.addressTitle,.timeTitle{
+  width: 170rpx;
+  font-size: 30rpx;
+  color: #666666;
+}
+.address,.timees .timeText{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: calc(100% - 170rpx);
+  font-size: 24rpx;
+  color: #232323;
+}
+.time{
+  padding: 30rpx 31rpx;
+  background-color: white;
+  margin-top: 10rpx;
+}
+.time .timeText{
+  width: calc(100% - 170rpx);
+}
+.timeText input{
+  text-align: right;
+  font-size: 24rpx;
+  color: #999999;
+}
+/* 优惠券服务卡 */
+.card_two{
+  width: 100%;
+  background-color: white;
+  margin-top: 10rpx;
+  padding: 0rpx 20rpx;
+  box-sizing: border-box;
+}
+.youhuiquan,.fuwuka{
+  padding: 20rpx 0rpx;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.fuwuka{
+  border-top: 3rpx solid #E4E4E4;
+}
+.yhq_left_text text{
+  font-size: 18rpx;
+  color: white;
+  background-color: #FF6600;
+  line-height: 30rpx;
+  display: inline-block;
+  width: 78rpx;
+  text-align: center;
+  vertical-align: 2rpx;
+}
+.yhq_right_text{
+  line-height: 45rpx;
+}
+/* 下付款 */
+.bottom_bar{
+  width: 100%;
+  height: 98rpx;
+  background-color: white;
+  box-shadow: 0rpx 0rpx 20rpx rgba(0,0,0,0.1);
+  position: fixed;
+  bottom: 0rpx;
+  right: 0rpx;
+  left: 0rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.bottom_left_text{
+  font-size: 34rpx;
+  color: #1678FF;
+  font-weight: bold;
+  width: 471rpx;
+  text-align: right;
+  padding-right: 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.bottom_left_text view:last-child{
+  font-size: 22rpx;
+  color: #666666;
+}
+.bottom_right_text{
+  font-size: 34rpx;
+  color: white;
+  width: calc(100% - 471rpx);
+  background-color: #1678FF;
+  text-align: center;
+  line-height: 98rpx;
+}
+.priceColor{
+  color: #1678FF;
+}
+.priceGry{
+  color: #999999;
+}
+/* 支付方式 */
+.show-titile{
+  font-size: 30rpx;
+  line-height: 80rpx;
+  text-align: center;
+  position: relative;
+  border-bottom: 1rpx solid #E1E1E1;
+}
+.show-titile .iconfont{
+  position: absolute;
+  right: 20rpx;
+  top: 0rpx;
+}
+.weixin-outer,.yue-outer{
+  font-size: 28rpx;
+  line-height: 80rpx;
+  /* padding: 0rpx 20rpx; */
+  margin: 0rpx 20rpx;
+  display: flex;
+  position: relative;
+}
+.weixin-outer{
+  border-bottom: 1rpx solid #E1E1E1;
+}
+.icon-weixin1{
+  font-size: 40rpx;
+  color: #1afa29;
+}
+.icon-yue{
+  font-size: 40rpx;
+  color: #187AFF;
+}
+.huise{
+  color: #999999;
+}
+.icon-you{
+  position: absolute;
+  right: 0rpx;
+  top: 0rpx;
+}
+.yue-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 40rpx;
+}
+.weixin-text,.yue-text{
+  margin-left: 20rpx;
+}
+/* 支付弹窗 */
+.tip{
+  text-align: center;
+  font-size: 30rpx;
+  color: #232323;
+  line-height: 88rpx;
+  border-bottom: 1rpx solid #E1E1E1;
+  position: relative;
+}
+.tip .iconfont{
+  position: absolute;
+  top: 0rpx;
+  right: 20rpx;
+}
+.password-money{
+  text-align: center;
+  color: #1678FF;
+  font-weight: bold;
+  font-size: 50rpx;
+  line-height: 117rpx;
+}
+.btn-bottom{
+  width: calc(100% - 40rpx);
+  margin-left: 20rpx;
+  font-size: 32rpx;
+  color: white;
+  line-height: 88rpx;
+  background-color: #1678FF;
+  text-align: center;
+  border-radius: 88rpx;
+  margin-bottom: 40rpx;
+}

@@ -1,0 +1,13 @@
+<view class="outer">
+  <view class="title_text">选择会员套餐</view>
+  <view class="three_change">
+    <view class="one_outer {{vipId===item.id?'':'one_outer_hui'}}" wx:for="{{allData}}" wx:key="index" bindtap="thisVipId" data-id="{{item.id}}">
+      <view class="yue_text {{vipId===item.id?'':'yue_text_hui'}}">{{item.name==='月度会员'?'1':item.name==='季度会员'?'3':'12'}}个月</view>
+      <view class="money_text {{vipId===item.id?'':'money_text_hui'}}">
+        <text>￥</text>{{item.pirce}}
+      </view>
+      <view class="bottom_text {{vipId===item.id?'':'bottom_text_hui'}}">{{item.name}}</view>
+    </view>
+  </view>
+  <button class="btn_bottom" bindtap="buyVip">立即开通</button>
+</view>

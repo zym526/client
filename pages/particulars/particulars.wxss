@@ -1,0 +1,48 @@
+.par_one_outer{
+  border-bottom: 1rpx solid #E1E1E1;
+  width: calc(100% - 42rpx);
+  margin-left: 21rpx;
+  padding: 28rpx 0rpx;
+}
+.par_one_top{
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #232323;
+  font-weight: bold;
+  margin-bottom: 15rpx;
+}
+.par_one_top_blue{
+  color: #187AFF;
+}
+.par_one_top_ora{
+  color: #FF6600;
+}
+.par_one_bottom{
+  display: flex;
+  justify-content: space-between;
+  font-size: 22rpx;
+  color: #999999;
+}
+.par_one_top_title,.par_one_bottom_time{
+  width: 70%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* 空白页面 */
+.bottom-no-page{
+  width: 100%;
+  text-align: center;
+  margin-top: 97rpx;
+}
+.bottom-no-page image{
+  width: 35%;
+  height: auto;
+}
+.bottom-no-page-text{
+  font-size: 30rpx;
+  color: #D5CDC1;
+  line-height: 60rpx;
+  font-weight: bold;
+}

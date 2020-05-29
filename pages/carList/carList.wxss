@@ -1,0 +1,27 @@
+/* image { width: 100% ; height : 100% ; display: block  ;}
+page { font-size: 26rpx ; width : 100% ; overflow: hidden ;}
+.carList {  border-bottom : 1px solid #dddddd ;  position: relative ; width: 100% ; overflow: hidden ;}
+.carList:nth-child(1){border-top : 1px solid #dddddd ;}
+ .title { margin : 23rpx 37rpx ;}  
+.type {  margin : 23rpx 53rpx 23rpx 0;} 
+.img { float: right ; width: 11rpx ; height : 22rpx ; margin : 30rpx 46rpx ; position: absolute ; display: flex; justify-content: center; align-items: center; right : 20rpx ; top : 0 ;}
+.addCar { background: #ec6b64 ; color : #fff ; height : 98rpx ; width: 100% ; text-align: center ; font-size: 32rpx ; line-height: 98rpx ; position: fixed ; bottom : 0 ; }
+.carList .title {display: inline-block ;}
+.carList .type {display: inline-block ;}
+.carList .touch { position: absolute ;   right : -240rpx ; top : 0 ; width : 240rpx ; display: flex; justify-content: center; align-items: center;height: 100%;}
+.carList .edit {background: #666 ; color : #fff ; width : 120rpx ;display: flex; justify-content: center; align-items: center; height: 100%; }
+.carList .del {background: #ec6b64 ; color : #fff ; width : 120rpx ;display: flex;justify-content: center; align-items: center; height: 100%; } */
+.container .edit {background: #999 ; color : #fff ; width : 120rpx ; height: 100%; display: flex;  float: left ;justify-content: center; align-items: center;}
+.container .dels {background: #ec6b64 ; color : #fff ; width : 120rpx ; height: 100%;display: flex;  float: right ;justify-content: center; align-items: center;} 
+.container {position: fixed ; top : 0 ; overflow:  scroll ; width :100% ; height : 100% ; }
+image { width: 100% ; height : 100% ; display: block  ;} 
+page { font-size: 26rpx ; width : 100% ; overflow: hidden ; height : 100% ; }
+.img { float: right ; width: 11rpx ; height : 22rpx ; margin : 30rpx 46rpx ; position: absolute ; display: flex; justify-content: center; align-items: center; right : 20rpx ; top : 0 ;}
+.touch-item .title {display: inline-block ; margin : 23rpx 37rpx ;}
+.touch-item .type {display: inline-block ;  width: 430rpx; margin : 23rpx 53rpx 23rpx 0;}
+.touch-item {display: flex;justify-content: space-between;border-bottom:1rpx solid #dddddd;width: 100%;overflow: hidden}
+.content {width: 100%;margin-right:0;-webkit-transition: all 0.4s;transition: all 0.4s;-webkit-transform: translateX(240rpx);transform: translateX(240rpx);margin-left: -240rpx}
+.del {width: 240rpx;display: flex; flex-direction: row; align-items: center;  justify-content: center; color: #fff;-webkit-transform: translateX(240rpx); transform: translateX(240rpx); -webkit-transition: all 0.4s;transition: all 0.4s;}
+.touch-move-active .content,
+.touch-move-active .del {-webkit-transform: translateX(0);transform: translateX(0);}
+.addCar { background: #1678FF ; color : #fff ; height : 98rpx ; width: calc(100% - 40rpx) ; text-align: center ; font-size: 32rpx ; line-height: 98rpx ; position: fixed ; bottom : 20rpx ;left:20rpx;border-radius: 98rpx;}

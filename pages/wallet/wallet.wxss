@@ -1,0 +1,164 @@
+page{
+  background-color: #F0F0F0;
+}
+.wallet_top{
+  width: 100%;
+  /* background:-moz-linear-gradient(bottom,#1678FF 25%,#5DA1FF);
+  background:-webkit-linear-gradient(bottom,#1678FF 25%,#5DA1FF);
+  background:-o-linear-gradient(bottom,#1678FF 25%,#5DA1FF);
+  background:-ms-linear-gradient(bottom,#1678FF 25%,#5DA1FF);
+  background:linear-gradient(bottom,#1678FF 25%,#5DA1FF); */
+  background-color: #1678FF;
+  color: white;
+  box-sizing: border-box;
+  position: relative;
+}
+.wallet_top_left{
+  text-align: center;
+  height: 220rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.wallet_top_left_text{
+  font-size: 24rpx;
+  line-height: 50rpx;
+}
+.wallet_top_left_money{
+  font-size: 70rpx;
+  line-height: 90rpx;
+}
+.wallet_top_right{
+  position: absolute;
+  top: 0rpx;
+  right: 50rpx;
+  line-height: 220rpx;
+}
+.wallet_top_right .icon-youjiantou{
+  font-size: 35rpx;
+}
+/* 充值中心 */
+.wallet_center{
+  width: calc(100% - 40rpx);
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+}
+.wallet_center_title{
+  color: #999999;
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+}
+.wallet_center_outer{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 0rpx 10rpx rgba(0,0,0,0.15);
+}
+.wallet_center_border{
+  display: flex;
+  align-items: center;
+  width: calc(100% - 80rpx);
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.wallet_center_money{
+  width: 30%;
+  box-sizing: border-box;
+  color: #FF6600;
+  font-weight: bold;
+}
+.wallet_center_mon_left{
+  font-size: 30rpx;
+}
+.wallet_center_mon_right{
+  font-size: 50rpx;
+}
+.wallet_border_center{
+  height: 122rpx;
+  width: 6rpx;
+  border-radius: 50%;
+  background: rgba(255, 102, 0, 1);
+}
+.wallet_center_bottom_text{
+  width: 70%;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+  color: #666666;
+  font-size: 28rpx;
+}
+.wallet_right_text{
+  position: absolute;
+  right: 0rpx;
+  top: 0rpx;
+  bottom: 0rpx;
+  width: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  writing-mode: tb-rl;
+  color: white;
+  background: #FF6600;
+  border-radius: 10rpx;
+}
+/* 充值 */
+.wallent_bottom_outer{
+  position: fixed;
+  bottom: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+}
+.wallent_bottom_outer .wallent_btn{
+  padding: 0rpx;
+  width: 100%;
+  background-color: #1678FF;
+  color: white;
+  font-size: 34rpx;
+  line-height: 97rpx;
+  border-radius: 0rpx;
+}
+
+/* 密码样式 */
+.set-password {
+  height: 100%;
+  padding-top: 70rpx;
+  box-sizing: border-box;
+}
+.set-password .tip {
+  text-align: center;
+  font-size: 25rpx;
+  color: #666;
+  width: calc(100% - 60rpx);
+  margin-left: 30rpx;
+}
+.set-password .password-wrapper {
+  margin-top: 40rpx;
+}
+.set-password .toggle-tip {
+  /* margin-top: 18rpx; */
+  text-align: center;
+}
+.set-password .toggle-tip .tip {
+  font-size: 22rpx;
+  line-height: 22rpx;
+  color: #999;
+}
+.set-password .toggle-tip .active {
+  color: #1678FF;
+}
+.set-password .btn-next {
+  margin: 50rpx auto;
+  width: 334rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 40rpx;
+  text-align: center;
+  border-radius: 6rpx;
+  color: #fff;
+  background: #9e9e9e;
+}
+.set-password .btn-next-active {
+  background: #1678FF;
+}

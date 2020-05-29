@@ -1,0 +1,175 @@
+<view class="top-outer">
+  <view class="inside-text-outer">
+    <view class="inside-text-one">加入芯意洗</view>
+    <view class="inside-text-two">高收入 超稳定 更自由</view>
+  </view>
+  <view class="inside-address">杭州市西湖区</view>
+  <image src="https://imgxypvipcn.oss-cn-hangzhou.aliyuncs.com/7cad66a8145cfeb9daf9296a7e2b6b4c-C%3A%5CUsers%5C22659%5CAppData%5CLocal%5CTemp%5Cphp498A.tmp.png" mode="widthFix"></image>
+</view>
+<!-- 文字 -->
+<view class="text-center">
+  2020年，互联网大数据时代迎来了又一波风潮，将“移动蒸汽洗车”推向了行业的风口！传统冷水洗车浪费水资源，伤车漆等一系列弊端，已经不能满足市场的需要！“芯意洗移动洗车”节能环保、高效省事，并提供发动机、内饰、空调等软性清洗服务。打造线上下单、在线预约、洗车服务、家政服务、消毒服务等全方位多领域的生活服务平台，未来的发展趋势可谓一片蓝海！
+</view>
+<!-- 六大亮点 -->
+<view class="six-dian">
+  <van-divider contentPosition="center" customStyle="color: #232323; border-color: #999999; font-size: 32rpx;">“芯意洗”6大亮点</van-divider>
+</view>
+<!-- 亮点详情 -->
+<view class="target-outer">
+  <view class="target-one-outer">
+    <view class="target-one-top">
+      <view class="target-dian"></view>
+      <view>中科院品牌</view>
+    </view>
+    <view class="target-text-all">
+      提供“芯意洗”商标品牌使用权。总部专业运营团队、技术团队、售后团队给予您全方位360度的保驾护航。微信扫描车身小程序，<text class="target-text-only">一键下单，快捷方便！</text>
+    </view>
+  </view>
+  <view class="target-one-outer">
+    <view class="target-one-top">
+      <view class="target-dian"></view>
+      <view>精细管理</view>
+    </view>
+    <view class="target-text-all">
+      设备由总部统一供应并统一培训，安排技术人员下市场指导做好前期营销工作。
+    </view>
+  </view>
+  <view class="target-one-outer">
+    <view class="target-one-top">
+      <view class="target-dian"></view>
+      <view>技术培训</view>
+    </view>
+    <view class="target-text-all">
+      总部提供完整<text class="target-text-only">系统培训，亲自上手，实战操作，学会为止，</text>培训部经理全程跟随。
+    </view>
+  </view>
+  <view class="target-one-outer">
+    <view class="target-one-top">
+      <view class="target-dian"></view>
+      <view>高新技术</view>
+    </view>
+    <view class="target-text-all">
+      芯意洗蒸汽洗车采用<text class="target-text-only">高压蒸汽原理</text>、配合节水高压蒸汽喷枪，全程视频监控，洗车机和护车原料均是中科院产品，干湿度自由调换，设备调试、保养等技术由<text class="target-text-only">总部一并传授</text>
+    </view>
+  </view>
+  <view class="target-one-outer">
+    <view class="target-one-top">
+      <view class="target-dian"></view>
+      <view>创业无忧</view>
+    </view>
+    <view class="target-text-all">
+      总部将会派出推广经理对每一个市场进行跟踪服务，保证每个市场顺利落地运营。
+    </view>
+  </view>
+  <view class="target-one-outer">
+    <view class="target-one-top">
+      <view class="target-dian"></view>
+      <view>安心售后</view>
+    </view>
+    <view class="target-text-all">
+      总部24小时售后服务电话，第一时间为您解答问题，不管是市场运营还是设备使用都会有<text class="target-text-only">专业的技术团队为您保驾护航</text>!
+    </view>
+  </view>
+</view>
+<!-- 职责 -->
+<view class="six-dian">
+  <van-divider contentPosition="center" customStyle="color: #232323; border-color: #999999; font-size: 32rpx;">洗车小哥岗位职责</van-divider>
+</view>
+<!-- 职责详情 -->
+<view class="zhize-outer">
+  <view class="zhize-one-outer">
+    <view class="zhize-hui"></view>
+    <view class="zhize-text">
+      重点工作：车辆线上接单，按要求完成车辆的内外清洁工作等其它保养服务。
+    </view>
+  </view>
+  <view class="zhize-one-outer">
+    <view class="zhize-hui"></view>
+    <view class="zhize-text">
+      会基本的<text class="zhize-blue-text">汽车美容技能</text>例如：抛光、打蜡、镀膜等。
+    </view>
+  </view>
+  <view class="zhize-one-outer">
+    <view class="zhize-hui"></view>
+    <view class="zhize-text">
+      负责工作区域内车辆的卫生和洗护设备管理。
+    </view>
+  </view>
+  <view class="zhize-one-outer">
+    <view class="zhize-hui"></view>
+    <view class="zhize-text">
+      熟练使用智能手机，良好的同客户线上交流。
+    </view>
+  </view>
+  <view class="zhize-one-outer">
+    <view class="zhize-hui"></view>
+    <view class="zhize-text">
+      前期培训后可熟练使用移动蒸汽汽车设备，做好洗车及保养服务。
+    </view>
+  </view>
+</view>
+<!-- 任职要求 -->
+<view class="six-dian">
+  <van-divider contentPosition="center" customStyle="color: #232323; border-color: #999999; font-size: 32rpx;">任职要求</van-divider>
+</view>
+<view class="zhize-outer">
+  <view class="zhize-one-outer">
+    <view class="zhize-hui"></view>
+    <view class="zhize-text">
+      有洗车经验者优先；熟练驾车者优先。
+    </view>
+  </view>
+  <view class="zhize-one-outer">
+    <view class="zhize-hui"></view>
+    <view class="zhize-text">
+      身体健康，工作细致，踏实能干，认真勤快。
+    </view>
+  </view>
+  <view class="zhize-one-outer">
+    <view class="zhize-hui"></view>
+    <view class="zhize-text">
+      为人诚实可靠，无不良嗜好。
+    </view>
+  </view>
+  <view class="zhize-one-outer">
+    <view class="zhize-hui"></view>
+    <view class="zhize-text">
+      处理好客户关系，避免发生争执。
+    </view>
+  </view>
+</view>
+<!-- 任职要求 -->
+<view class="six-dian">
+  <van-divider contentPosition="center" customStyle="color: #232323; border-color: #999999; font-size: 32rpx;">热线咨询</van-divider>
+</view>
+<view class="zhize-outer">
+  <view class="zhize-one-outer">
+    <view class="zhize-hui"></view>
+    <view class="zhize-text">
+      咨询电话：400-006-0808
+    </view>
+  </view>
+</view>
+<!-- 同意书 -->
+<view class="yesInow">
+  <van-checkbox value="{{ checked }}" bind:change="onChange" icon-size="30rpx">同意《加入芯意洗的条件说明和承诺》</van-checkbox>
+</view>
+<!-- 同意 -->
+<view class="btn {{checked?'btn-yes':''}}" bindtap="zhuce">立即注册 成为芯意洗车员</view>
+
+<!-- 填写信息 -->
+<view class="info-outer" hidden="{{isMy}}">
+  <view class="info-inside-outer">
+    <view class="info-top-title">填写信息</view>
+    <input class="info-name" type="text" placeholder="请输入您的姓名" bindinput="getName"/>
+    <view class="info-code-outer">
+      <input class="info-phone" type="number" placeholder="请输入手机号" maxlength="11" bindinput="getPhone"/>
+      <view class="info-get-code" bindtap="toCode">{{text}}</view>
+    </view>
+    <input class="info-code-bottom" type="text" placeholder="请输入验证码" bindinput="getCode"/>
+    <view class="yes-btn" bindtap="subFinish">确认提交</view>
+    <view class="quxiao-bottom" bindtap="onClose">
+      <view class="iconfont icon-quxiao"></view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,50 @@
+<form bindsubmit='finish'>
+  <view>
+    <view class="getStar">
+      <text class="starTitle">总体</text>
+      <view class="starBox">
+        <view class="star" bindtap='changeStar' data-num="1">
+          <image src="{{starType ? '../../img/star.png' : '../../img/nullStar.png'}}"></image>
+        </view>
+        <view class="star" bindtap='changeStar' data-num="2">
+          <image src="{{starTypeF ? '../../img/star.png' : '../../img/nullStar.png'}}"></image>
+        </view>
+        <view class="star" bindtap='changeStar' data-num="3">
+          <image src="{{starTypeS ? '../../img/star.png' : '../../img/nullStar.png'}}"></image>
+        </view>
+        <view class="star" bindtap='changeStar' data-num="4">
+          <image src="{{starTypeT ? '../../img/star.png' : '../../img/nullStar.png'}}"></image>
+        </view>
+        <view class="star" bindtap='changeStar' data-num="5">
+          <image src="{{starTypeFi ? '../../img/star.png' : '../../img/nullStar.png'}}"></image>
+        </view>
+      </view>
+      <text class="starType">{{starText}}</text>
+    </view>
+    <view class="addEval">
+      <view class="changeEval">
+        <view class="change {{item.image_url==1 ? 'active' : ''}}" bindtap='bindType' data-content="{{item.tag}}" data-key='{{index}}' wx:for-index="index" wx:for="{{typeActiveList}}" wx:for-item="item" wx:key="i">{{item.tag}}</view>
+      </view>
+
+      <input name='tag' value='{{tag}}' class="myInput" />
+      <input name='tag1' value='{{tag1}}' class="myInput" />
+      <view class="ref">
+        <textarea placeholder='亲，效果如何，服务满意，有哪些不足呢？' name="textarea" />
+      </view>
+    </view>
+    <view class="getImgBox">
+      <view class="getPng" bindtap='chooseImg'>
+        <view class="img">
+          <!-- <image src="../../img/camera.png"></image> -->
+          <view class="iconfont icon-ICONS_-"></view>
+        </view>
+        <view class="getPngBtn">上传照片</view>
+      </view>
+      <view class="getImg" wx:for="{{imgList}}" wx:key="i" wx:for-item="item" bindtap='openBig' data-url='{{item}}'>
+        <image src="{{item}}"></image>
+      </view>
+    </view>
+    <view class="tip">亲爱的，只能晒3张图哦</view>
+  </view>
+  <button class="submit" form-type='submit'>发表</button>
+</form>

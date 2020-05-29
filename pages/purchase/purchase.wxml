@@ -1,0 +1,133 @@
+<!-- 上箭头 -->
+<view class="bottom-top-to" style="opacity:{{bottom==='19rpx'?'0':'1'}};transition: opacity 1s" hidden="{{isShow}}" bindtap="cartoon">
+  <view class="iconfont icon-shuangshangjiantou-" style="font-size:40rpx"></view>
+</view>
+<!-- 服务卡 -->
+<view class="clip_outer" style="position: fixed;top: {{bottom}};transition: top 1s;" hidden="{{isShow}}">
+  <!-- 单张次卡 -->
+  <view class="clip_only_outer" wx:for="{{clip}}" wx:key="index" style="background:{{item.color}};{{index===top?'position:fixed;top:90rpx':''}};" bindtap="cartoon" data-index="{{index}}" data-rules="{{item.rules}}">
+    <!-- 顶部 -->
+    <view class="clip_only_top">
+      <!-- 顶部左侧 -->
+      <view class="clip_only_left">
+        <!-- 图标 -->
+        <view class="iconfont icon-ziyuan7" style="color:white"></view>
+        <!-- 文字 -->
+        <view class="clip_only_left_text">
+          <view class="clip_left_text_top">{{item.name}}</view>
+          <view class="clip_left_text_bottom">{{item.service_names}}</view>
+        </view>
+      </view>
+      <!-- 顶部右侧 -->
+      <view class="clip_only_right">
+        <view class="clip_only_right_mon">{{item.count}}次/￥{{item.price}}</view>
+        <view class="clip_only_right_time">1年有效期</view><!-- 有限期现固定1年 -->
+      </view>
+    </view>
+    <!-- 底部 -->
+    <view class="clip_only_bottom">
+      <view class="clip_only_bottom_desc">说明：只限本地区使用且与其他优惠不可叠加</view>
+      <view class="clip_only_bottom_buy" style="color:{{item.color}}" catchtap="getPayWay" data-item="{{item}}">购卡</view>
+    </view>
+    <image src="/img/{{item.bg}}" mode="widthFix" class="bg_image"></image>
+  </view>
+</view>
+<!-- 规则 -->
+<view class="guize" style="opacity:{{bottom==='19rpx'?'0':'1'}};transition: opacity 1s" hidden="{{isShow}}">
+  <view wx:for="{{desc}}" wx:key="index">{{item}}</view>
+</view>
+
+<!-- 不在服务区 -->
+<view hidden="{{!isShow}}" class="no-only">
+  <image src="/img/no-center.png" mode="widthFix" class="no-image"></image>
+  <view class="no-title">该地区暂未提供购卡服务</view>
+</view>
+
+<!-- 是否添加新车辆信息 -->
+<van-popup 
+  round
+  show="{{ addCarShow }}"
+  custom-style="width:624rpx;border-radius:10rpx"
+  z-index="100"
+  bind:close="onClose"
+>
+  <view class="add-car-title">
+    <view class="add-car-title-text">填写车辆信息</view>
+    <view class="iconfont icon-quxiao1" style="font-size:32rpx" bindtap="onClose"></view>
+  </view>
+  <view class="add-car-text">
+    <view class="iconfont icon-jinggao"></view>
+    <text>{{item.service_names}}服务次卡不能使用于您的{{car1!=""?'/'+car1:''}}{{car2!=""?'/'+car2:''}}{{car3!=""?'/'+car3:''}}</text>
+  </view>
+  <view class="add-car-btn-one">
+    <view class="add-car-btn" bindtap="addCar">添加车辆信息</view>
+    <!-- <view class="add-car-btn-right" bindtap="onClose">确定</view> -->
+  </view>
+</van-popup>
+
+<!-- 添加车辆信息 -->
+<van-popup 
+  round
+  show="{{ isAddCarShow }}"
+  custom-style="width:624rpx;border-radius:10rpx"
+  z-index="100"
+  bind:close="onClose"
+>
+  <add-car-popup id="addCarPopup" province="{{province}}" city="{{city}}" bind:carView="openCarNumber" bind:showView="openCarNumber" bind:changeType="changeType"></add-car-popup>
+  <view class="add-car-submit" bindtap="finish">提交</view>
+</van-popup>
+
+<!-- 购买支付方式 -->
+<van-popup
+  show="{{ show }}"
+  position="bottom"
+  custom-style="height: 414rpx;"
+  z-index="100"
+  bind:close="onClose"
+>
+  <view class="buy-popup-title">
+    <view class="buy-popup-title-text">购买洗车次卡</view>
+    <view class="iconfont icon-quxiao1" style="font-size:32rpx" bindtap="onClose"></view>
+  </view>
+  <view class="buy-popup-text-outer">
+    <view>{{item.name}}</view>
+    <view>服务内容：{{item.service_names}}</view>
+    <view>服务次数：{{item.count}}次</view>
+    <view>支付金额：￥{{item.price}}（已为您节省{{(item.oneprice*item.count)-item.price}}元）</view>
+  </view>
+  <view class="buy-popup-btn">
+    <view class="{{payYE?'buy-popup-btn-left':'buy-popup-btn-left-typ'}}" bindtap="payYEleft">{{payYE?'余额支付':'余额('+price+')'}}</view>
+    <view class="buy-popup-btn-right" bindtap="payWX">微信支付</view>
+  </view>
+</van-popup>
+
+
+<!-- 车牌键盘 -->
+<view class="openCarNumber hide{{carView?'show':''}}">
+  <view class="cityItem" bindtap='chooseCar' data-id='{{item}}' wx:key="i" wx:for='{{carNumber}}' wx:for-item='item'>{{item}}</view>
+  <view class="cityItem del" bindtap='delCar' >删除</view>
+  <view class="cityItem del" bindtap='btnCar' >确认</view>
+</view>
+
+<!-- 城市选择 -->
+<view class="city hide{{showView?'show':''}}">
+  <view class="cityItem" bindtap='changeCar' data-id='{{item.name}}' wx:key="i" wx:for='{{cityList}}' wx:for-item='item'>{{item.name}}</view>
+</view>
+
+<!-- 余额支付弹框 -->
+<van-popup show="{{ yuePay }}" bind:close="onClose" custom-style="width: 80%;border-radius:10rpx">
+  <view class="set-password">
+    <view class="tip">
+      <view>余额支付</view>
+      <view class="iconfont icon-quxiao1" bindtap="onClose"></view>
+    </view>
+    <view class="password-money">￥{{item.price}}</view>
+    <!-- 密码框 -->
+    <view class="password-wrapper">
+      <!-- 使用自定义组件。绑定一个事件，接收组件传递的值 -->
+      <password-writing id="passwordWriting" bind:change="inputChange"></password-writing>
+    </view>
+    <!-- 下一步操作按钮 -->
+    <view class="btn-bottom" bindtap="checkPassword">确定支付</view>
+  </view>
+</van-popup>

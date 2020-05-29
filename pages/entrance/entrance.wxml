@@ -1,0 +1,181 @@
+<view class="all_outer">
+  <!-- 顶部信息/登录状态 --> 
+  <view class="header_outer" hidden="{{isHeaderShow}}">
+    <!-- 头像 -->
+    <view class="header_top_image">  
+      <image src="{{item.avatarUrl}}" mode="widthFix"></image>
+      <text class="header_top_tishi">{{item.chooseUser_phone}}</text>
+
+      <view class="iconfont icon-huangguan" style="font-size:40rpx;color:#f4ea29;margin-left:10rpx" hidden="{{isVip}}"></view>
+    </view>
+    <!-- 余额/积分/卡券 -->
+    <view class="header_top_three">
+      <view class="header_top_only" bindtap="toWallet">
+        <view class="header_top_num">{{getuserdate.bala?getuserdate.bala:'0'}}</view>
+        <view class="header_top_bottom_text">余额</view>
+      </view>
+      <view class="header_border"></view>
+      <view class="header_top_only" bindtap="toLookJF">
+        <view class="header_top_num">{{getuserdate.integral?getuserdate.integral:'0'}}</view>
+        <view class="header_top_bottom_text">积分</view>
+      </view>
+      <view class="header_border"></view>
+      <view class="header_top_only" bindtap="toLookYhq">
+        <view class="header_top_num">{{getuserdate.coupon_count?getuserdate.coupon_count:'0'}}</view>
+        <view class="header_top_bottom_text">卡券</view>
+      </view>
+    </view>
+  </view>
+  <!-- 顶部信息/未登录状态 -->
+  <view class="info_outer" hidden="{{!isHeaderShow}}">
+    <!-- 头像 -->
+    <view class="info_top_image" bindtap="toLogin"> 
+      <view class="iconfont icon-ziyuan7" style="font-size:100rpx;color:white"></view>
+      <text class="info_top_tishi">点击头像登录</text>
+    </view>
+    <!-- 欢迎文字 -->
+    <view class="info_top_text">
+      HI,欢迎使用芯意洗！
+    </view>
+  </view>
+  <!-- 汽车精选/汽车保养 -->
+  <view class="car_two_outer">
+    <view class="car_left" bindtap="toWashList" data-index="23">
+      <view class="right_text_car">
+        <view class="text_car_one">汽车清洗</view>
+        <view class="text_car_two">行业的领军者</view>
+        <view class="iconfont icon-youjiantou-tianchong" style="color:#1678FF"></view>
+      </view>
+      <!-- <view class="left_img_car"> -->
+        <image src="/img/blueCar.png" mode="widthFix"></image>
+      <!-- </view> -->
+    </view>
+    <view class="car_right" bindtap="toWashList" data-index="24">
+      <view class="right_right_text_car">
+        <view class="text_car_one">汽车保养</view>
+        <view class="text_car_two">服务的先驱者</view>
+        <view class="iconfont icon-youjiantou-tianchong" style="color:#FF6600"></view>
+      </view>
+      <!-- <view class="right_img_car"> -->
+        <image src="/img/redCar.png" mode="widthFix"></image>
+      <!-- </view> -->
+    </view>
+  </view>
+  <!-- 现在预约 -->
+  <view class="subscribe_outer">
+    <view class="subscribe_top">
+      <view class="left_subscribe_top">
+        <view class="iconfont icon-icon-" style="font-size:40rpx;margin-right:10rpx;color:#99999;display:inline-block"></view>
+        <view class="subscribe_top_weather">
+          <view class="weather_top">{{tianqi.night_air_temperature}}℃~{{tianqi.day_air_temperature}}℃~{{tianqi.weather}}</view>
+          <!-- <view style="color:{{tianqi.color}}" class="right_weather_text"><view class="yuanCheng" style="background:{{tianqi.color}}"></view>{{tianqi.weatherText}}</view> -->
+        </view>
+      </view>
+      <view class="subscribe_top_right_add">
+        <view class="subscribe_top_right_out"><view class="yuanCheng" style="background:#FF6600"></view>{{addressText}}</view>
+      </view>
+    </view>
+    <view class="subscribe_center" bindtap="changeAddress">
+      <view class="iconfont icon-dizhi" style="font-size:80rpx;margin-right:52rpx;color:#FF6600"></view>
+      <view class="subscribe_center_right">
+        <view>{{addressText2}}</view>
+      </view>
+    </view>
+    <!-- 订单/洗车/现在预约 -->
+    <view class="subscribe_bottom">
+      <view class="subscribe_bottom_two" bindtap="toGoodsDetail">预约上门洗车</view>
+    </view>
+  </view>
+  <!-- 服务 -->
+  <view class="serve_outer">
+    <view class="serve_inside_only" bindtap="toRecruit">
+      <view class="serve_inside_top">
+        <view class="iconfont icon-yaoqing" style="color:#232323;font-size:50rpx;"></view>
+      </view>
+      <text>服务招募</text>
+    </view>
+    <view class="serve_inside_only" bindtap="toPurchase">
+      <view class="serve_inside_top">
+        <view class="iconfont icon-owngouqia" style="color:#232323;font-size:50rpx;"></view>
+      </view>
+      <text class="inside_text_black">购卡中心</text>
+    </view>
+    <!-- <view class="serve_inside_only">
+      <view class="serve_inside_top">
+        <view class="iconfont icon-qiaquan1" style="color:#cdcdcd;font-size:50rpx;"></view>
+      </view>
+      <text>套餐</text>
+    </view> -->
+    <view class="serve_inside_only" bindtap="to_store">
+      <view class="serve_inside_top">
+        <view class="iconfont icon-shangcheng1" style="color:#232323;font-size:60rpx;"></view>
+      </view>
+      <text>积分商城</text>
+    </view>
+  </view>
+  <!-- 优惠券banner -->
+  <swiper autoplay="true" interval="5000" duration="1000" class="outer_swiper">
+    <block wx:for="{{banner}}" wx:for-index="index" wx:key="i">
+      <swiper-item  bindtap="getQuan" data-cid="{{item.id}}">
+        <!-- <view class="inside_swiper_item {{item.type==='免洗'?'inside_swiper_bg':'inside_swiper_bg1'}}">
+          <view class="swiper_left_text {{item.type==='免洗'?'swiper_text_color':'swiper_text_color1'}}}">
+            <view class="swiper_top_text">{{item.text}}</view> -->
+            <!-- <view class="swiper_bottom_text">{{item.start_time}}-{{item.end_time}}</view> -->
+          <!-- </view>
+          <view class="swiper_right_image">
+            <image src="../../img/{{item.type==='免洗'?'lan-car':'zi-car'}}.png" mode="widthFix"></image>
+          </view>
+        </view> -->
+        <image src="{{item.imgurl}}" mode="widthFix" style="width:100%;height:auto"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 优惠券 -->
+  <view class="discounts_outer" hidden="{{ discountShow }}">
+    <view class="outer_bian">
+      <view class="discounts_inside">
+        <view class="discounts_inside_title">领取成功</view>
+        <view class="discounts_inside_look">已放入卡券，<text bindtap="toLookYhq2">查看>></text></view>
+        <image src="../../img/discounts.svg" mode="widthFix"></image>
+        <button bindtap="toWashList" data-index="23">立即使用</button>
+      </view>
+      <view class="cross_outer" bindtap="closeYhq">
+        <van-icon name="cross" size="50rpx" color="white"/>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 添加车辆信息 -->
+<van-popup 
+  round
+  show="{{ isAddCarShow }}"
+  custom-style="width:624rpx;border-radius:10rpx"
+  z-index="100"
+  bind:close="onClose"
+>
+  <add-car-popup id="addCarPopup" province="{{province}}" city="{{city}}" bind:carView="openCarNumber" bind:showView="openCarNumber" bind:changeType="changeType"></add-car-popup>
+  <view class="add-car-submit" bindtap="finish">提交</view>
+</van-popup>
+
+<!-- 车牌键盘 -->
+<view class="openCarNumber hide{{carView?'show':''}}">
+  <view class="cityItem" bindtap='chooseCar' data-id='{{item}}' wx:key="i" wx:for='{{carNumber}}' wx:for-item='item'>{{item}}</view>
+  <view class="cityItem del" bindtap='delCar' >删除</view>
+  <view class="cityItem del" bindtap='btnCar' >确认</view>
+</view>
+
+<!-- 城市选择 -->
+<view class="city hide{{showView?'show':''}}">
+  <view class="cityItem" bindtap='changeCar' data-id='{{item.name}}' wx:key="i" wx:for='{{cityList}}' wx:for-item='item'>{{item.name}}</view>
+</view>
+
+<!-- 区域优惠券弹窗 -->
+<view class="youhui-only" hidden="{{onlyTC}}">
+  <view class="youhui-inside">
+    <image src="{{yhqCity.imageurl}}" mode="widthFix" bindtap="lingquPD" data-cid="{{yhqCity.id}}"></image>
+    <view class="close-bottom" bindtap="onClose">
+      <van-icon name="cross" size="50rpx" color="white"/>
+    </view>
+  </view>
+</view>

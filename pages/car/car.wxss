@@ -1,0 +1,40 @@
+.userName , .userPhone , .userAddress ,.userCar , .userTime ,.userText{ font-size: 26rpx ; color : #666666 ; padding : 17rpx 0 17rpx 20rpx ; border-bottom : 1px solid #dddddd ; }
+.userName { border-top : 1px solid #dddddd ; }
+.userName view , .userPhone view, .userAddress view , .userCar view , .userTime view{ display: inline-block ; }
+.userName .img , .userPhone .img, .userAddress .img ,.userTime .img , .userCar .img{ width: 11rpx ; height : 21rpx ; float: right ; margin-right : 47rpx ;}
+/* .car { padding : 17rpx 0 17rpx 20rpx ; } */
+input { float: left ; }
+.name { float: left ; }
+.userTime { overflow: hidden ; }
+.text { width : 130rpx ; }
+
+.carModul { display: block; position: fixed ; top : 0 ; height : 100% ; width: 100% ; background: #fff ; z-index: 50 ; bottom :0 ; overflow: scroll ;}
+.carModul .zimu {font-size: 14px ; text-align: left ; width: 100% ; border-bottom : 1px solid #dddddd ; padding : 0.3733rem 0.3rem 0.2844rem ;}
+.carModul .carList view{font-size: 14px ; text-align: left ; width: 85% ; margin: 0 5% ; border-bottom : 1px solid #dddddd ; padding : 0.3733rem 0.3rem 0.2844rem ;}
+.btn { position: fixed ;bottom : 0 ; height : 100rpx ; font-size: 36rpx ; background : #1678FF ; width: 100% ; line-height: 100rpx ; text-align: center ; color: #fff ;}
+
+.city,.openCarNumber { background: #eeeeee ; overflow: hidden ; position: fixed ; bottom: 0 ; z-index: 20 ; display: block ; padding : 20rpx 0 10rpx 0 ;left: 0rpx;right: 0rpx}
+.cityItem { width: 10% ; height : 70rpx ; line-height: 70rpx ; background: #fff ; margin : 15rpx 1.25% ; float: left; box-shadow:0 2px 4px 0 rgba(123,123,123,0.50); border-radius: 6px ; font-size: 36rpx ; text-align: center ;} 
+#getCity { float: left ;  margin-right : 5rpx; font-size: 30rpx ; border : 1px solid #1678FF ;padding : 2rpx ; color : #1678FF ; border-radius: 3px ;}
+/* { background: #eeeeee ; overflow: hidden ; position: fixed ; bottom: 0 ; z-index: 20 ; display: block ;} */
+.carColor .cityItem{ font-size: 28rpx ; width: 14% ;}
+.del {font-size: 28rpx ; background: #1678FF ; color : #fff ; width : 15% ;}  
+.hide{display: none;}
+.show{  display: block;}
+/* 选择器 */
+.top-class{
+  height: 90rpx!important;
+}
+.top-class view{
+  font-size: 30rpx;
+  line-height: 90rpx;
+}
+.top-class view:first-child{
+  color: #FF6600;
+}
+.top-class view:last-child{
+  color: #1678FF;
+} 
+.van-ellipsis{
+  font-size: 32rpx!important;
+}

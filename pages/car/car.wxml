@@ -1,0 +1,69 @@
+<form bindsubmit='finish'>
+    <view>
+        <view class="userTime userName">
+            <input class="text" value='车牌号：' readonly="readonly" disabled/>
+            <view id="getCity" bindtap='openCar'>{{city}}</view>
+            <input placeholder='输入您的车牌号' value='{{carH}}' name="carH" disabled='disabled' bindtap='openCarNumber'/>
+        </view>
+
+        <view class="userTime">
+            <input class="text" value='车身颜色：' readonly="readonly" disabled/>
+            <input placeholder='点击选择车身颜色' bindtap='openCarColor' value='{{carColor}}' name="carColor" disabled />
+        </view>
+
+        <view class="userTime">
+            <input class="text" value='车型：' readonly="readonly" disabled/>
+            <input placeholder='点击选择车型' bindtap='openCarType' value='{{carType2}}' name="carType" disabled />
+        </view>
+
+    </view>
+    <!-- 城市选择 -->
+    <view class="city hide{{showView?'show':''}}">
+        <view class="cityItem" bindtap='changeCar' data-id='{{item.name}}' wx:key="i" wx:for='{{cityList}}' wx:for-item='item'>{{item.name}}</view>
+    </view>
+    <!-- 号码选择 -->
+    <view class="openCarNumber hide{{carView?'show':''}}">
+        <view class="cityItem" bindtap='chooseCar' data-id='{{item}}' wx:key="i" wx:for='{{carNumber}}' wx:for-item='item'>{{item}}</view>
+        <view class="cityItem del" bindtap='delCar' >删除</view>
+        <view class="cityItem del" bindtap='btnCar' >确认</view>
+    </view>
+    <!-- 车辆颜色选择 -->
+    <!-- <view class="openCarNumber carColor hide{{colorView?'show':''}}">
+        <view class="cityItem" bindtap='chooseColor' data-id='{{item}}' wx:key="i" wx:for='{{chooseColor}}' wx:for-item='item'>{{item}}</view>
+    </view> -->
+    <van-popup
+        show="{{ popupShow }}"
+        position="bottom"
+        custom-style="height: calc(90rpx + 240px);"
+        bind:close="onClose"
+    >
+        <van-picker show-toolbar
+            title="选择颜色"
+            columns="{{ chooseColor }}"
+            bind:cancel="onClose"
+            bind:confirm="onConfirm" 
+            toolbar-class="top-class"
+            item-height="60"
+            visible-item-count="4"
+        />
+    </van-popup>
+
+    <van-popup
+        show="{{ popupShow2 }}"
+        position="bottom"
+        custom-style="height: calc(90rpx + 180px);"
+        bind:close="onClose"
+    >
+        <van-picker show-toolbar
+            title="选择车型"
+            columns="{{ chooseType }}"
+            bind:cancel="onClose"
+            bind:confirm="onConfirm2" 
+            toolbar-class="top-class"
+            item-height="60"
+            visible-item-count="3"
+        />
+    </van-popup>
+    <button class="btn" form-type='submit' wx:if='{{carType != 1}}'>添加并使用</button>
+    <button class="btn" form-type='submit' wx:if='{{carType == 1}}'>修改</button>
+</form>

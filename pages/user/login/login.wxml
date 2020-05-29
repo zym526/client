@@ -1,0 +1,17 @@
+<!--pages/user/login.wxml-->
+<view style="display: flex; flex-direction:column; justify-content: center; align-items: center; ">
+    <image src="https://imgxypvipcn.oss-cn-hangzhou.aliyuncs.com/5eba48bb0ef322726ba46d9771ec24c7-C%3A%5CUsers%5C22659%5CAppData%5CLocal%5CTemp%5Cphp250C.tmp.svg" mode="widthFix" style="width: 80%;height:auto;margin-top: 120rpx;margin-bottom:20rpx;margin-left:5%"></image>
+    <text style="margin-top: 12rpx; font-size: 26rpx;">申请获取你的公开信息（昵称、头像等）</text>
+    <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"
+            style="font-size: 32rpx; background: {{color}};color:white; height: 80rpx;width: calc(100% - 60rpx); text-align: center; line-height: 80rpx;border-radius: 80rpx;margin-top: 66rpx;" wx-if="{{textBtn===1}}">
+            微信授权登录
+    </button>
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"
+            style="font-size: 32rpx; background: {{color}};color:white; height: 80rpx;width: calc(100% - 60rpx); text-align: center; line-height: 80rpx;border-radius: 80rpx;margin-top: 66rpx;" wx-if="{{textBtn!==1}}">
+        获取手机号
+    </button>
+    <!-- 授权 -->
+    <view class="bottomXieyi">
+        <van-checkbox  icon-size="26rpx" value="{{ checked }}" bind:change="onChange" checked-color="#1678FF">已阅读并同意<text style="color:#1678FF">《法律声明及隐私政策》</text></van-checkbox>
+    </view>
+</view>

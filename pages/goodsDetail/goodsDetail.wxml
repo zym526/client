@@ -1,0 +1,143 @@
+<!-- <import src="../imageText/imageText.wxml" />   -->
+<view>
+    <!-- 顶部信息 -->
+    <view class="top_outer">
+        <view class="left_image">
+        <image src="{{allAfter.imgae_url}}" mode="widthFix"></image>
+        </view>
+        <view class="right_text">
+        <view class="one_text">{{allAfter.name}}</view>
+        <view class="two_text"></view>
+        <view class="three_text">￥{{allAfter.city_price}}/次</view>
+        </view>
+    </view>
+    <view class="content">
+        <view class="addressLine" bindtap='selectCar'>
+            <view class="addressTitle">车辆信息</view>
+            <view class="address">
+                <view class="left_text_one">{{carType ? carType : '请选择车辆信息'}}</view>
+                <view class="iconfont icon-youjiantou right_arrow" style="font-size:25rpx"></view>
+            </view>
+        </view>
+        <view  wx:if="{{category==1}}" class="addressLine">
+            <view class="addressTitle">服务地点</view>
+            <view class="address" bindtap="onChangeShowState">
+                <view class="left_text_one">
+                    <view>{{addressText ? addressText : '请选择您的服务地点'}}</view>
+                    <view>{{addressText1}}</view>
+                </view>
+                <view class="iconfont icon-youjiantou right_arrow" style="font-size:25rpx"></view>
+            </view>
+        </view>
+
+        <view  wx:if="{{category==6}}" class="addressLine">
+            <view class="addressTitle">最近的店</view>
+            <view class="address" bindtap="">{{linerStore ? linerStore : '请选择您要去的店'}}</view>
+        </view>
+
+
+        <view class="timees" bindtap='openDate'>
+            <view class="timeTitle">服务时间</view>
+            <view class="timeText">
+                <view>{{userChooseTime ? userChooseTime : "请选择预约时间"}}</view>
+                <view class="iconfont icon-youjiantou right_arrow" style="font-size:25rpx"></view>
+            </view>
+        </view>
+    </view>
+    <view class="time">
+        <view class="timeTitle">备注</view>
+        <view class="timeText">
+            <input bindinput='getInputValue' placeholder='请输入您的车辆及详细停靠地点' value="{{getInputValue}}"/>
+        </view>
+    </view>
+
+    <view class="card_two">
+        <!-- 优惠券 -->
+        <view class="youhuiquan" bindtap="toDiscounts" data-type="2">
+        <view class="yhq_left_text">
+            优惠券
+            <text>{{count}}张可用</text>
+        </view>
+        <view class="yhq_right_text {{price=='未使用'?'priceColor':price2=='无可用'?'priceGry':''}}">{{price}}</view>
+        </view>
+        <!-- 服务卡 -->
+        <view class="fuwuka" bindtap="toDiscounts" data-type="1">
+        <view class="yhq_left_text">
+            服务卡
+            <text>{{count2}}张可用</text>
+        </view>
+        <view class="yhq_right_text {{price2=='未使用'?'priceColor':price2=='无可用'?'priceGry':''}}">{{price2}}</view>
+        </view>
+    </view>
+    <view class="bottom_bar">
+        <view class="bottom_left_text">
+            <view>实付款：￥{{dealWith}}</view>
+            <view>已优惠：￥{{dealWith2}}</view>
+        </view>
+        <view class="bottom_right_text" bindtap="fukuan">立即下单</view>
+    </view> 
+</view>
+<view class="outer-picker {{date ? 'showTrue' : 'showFalse'}}">
+    <view class="picker">
+        <view class="picker_top_outer">
+            <view class="picker_left_text" bindtap="closeDates">取消</view>
+            <view class="picker_center_text">服务时间</view>
+            <view class="picker_right_text" bindtap='getDates'>确定</view>
+        </view>
+        <picker-view indicator-style="height: 50px;" style="width: 100%; height: 500rpx;" value="{{value}}" bindchange="bindChange">
+            <picker-view-column class="month">
+                <view wx:for="{{begin_month}}" wx:key="i" style="line-height: 50px;text-align:center">{{item}}</view>
+            </picker-view-column>
+            <picker-view-column style="width:500rpx ;">
+                <view wx:for="{{begin_Hour}}" wx:key="i" style="line-height: 50px;text-align:center">{{item}}</view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+</view>
+<view class="cover {{date ? 'showTrue' : 'showFalse'}}"></view>
+
+<!-- 支付方式 -->
+<van-popup 
+  show="{{ show }}" 
+  bind:close="onClose"
+  position="bottom"
+  custom-style="height: 297rpx;"
+  >
+  <view class="show-titile">
+    <view class="title-text">请选择支付方式</view>
+    <view class="iconfont icon-quxiao1" bindtap="onClose"></view>
+  </view>
+  <view class="weixin-outer" bindtap="weixinPay" data-type="1">
+    <view class="iconfont icon-weixin1"></view>
+    <view class="weixin-text">微信支付</view>
+    <view class="iconfont icon-you"></view>
+  </view>
+  <view class="yue-outer" bindtap="yuePay" data-type="2">
+    <view class="iconfont icon-yue {{!payYE?'huise':''}}"></view>
+    <view class="yue-text {{!payYE?'huise':''}}">
+      <view>余额({{priceYE}})</view>
+      <view hidden="{{payYE}}">余额不足</view>
+    </view>
+    <view class="iconfont icon-you"></view>
+  </view>
+</van-popup>
+
+<!-- 余额支付弹框 -->
+<van-popup show="{{ yuePay }}" bind:close="onClose2" custom-style="width: 80%;border-radius:10rpx">
+  <view class="set-password">
+    <view class="tip">
+      <view>余额支付</view>
+      <view class="iconfont icon-quxiao1" bindtap="onClose2"></view>
+    </view>
+    <view class="password-money">￥{{dealWith}}</view>
+    <!-- 密码框 -->
+    <view class="password-wrapper">
+      <!-- 使用自定义组件。绑定一个事件，接收组件传递的值 -->
+      <password-writing id="passwordWriting" bind:change="inputChange"></password-writing>
+    </view>
+    <!-- 下一步操作按钮 -->
+    <view class="btn-bottom" bindtap="checkPassword">确定支付</view>
+  </view>
+</van-popup>
+
+<van-dialog id="van-dialog" />

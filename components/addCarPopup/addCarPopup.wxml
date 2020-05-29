@@ -1,0 +1,17 @@
+<view class="outer-com">
+  <view class="com-title">填写车辆信息</view>
+  <view class="com-text">
+    <view class="iconfont icon-jinggao"></view>
+    <text>为了给您提供更好的服务，请如实填写车辆信息</text>
+  </view>
+  <view class="com-car-title">车牌号</view>
+  <view class="com-car-outer">
+    <view class="com-car-city" bindtap='openCar'>{{province}}</view>
+    <!-- <view class="com-car-qu">{{city}}</view> -->
+    <input class="com-car-number" placeholder="请输入您的车牌号"  value='{{city}}' name="city" disabled='disabled' bindtap='openCarNumber'/>
+  </view>
+  <view class="com-car-type">车辆类型</view>
+  <view class="com-car-three">
+    <view class="com-car-text {{id===item.id?'com-car-text-bg':'com-car-text-gry'}}" wx:for="{{carType}}" wx:key="index" bindtap="changeType" data-id="{{item.id}}">{{item.type}}</view>
+  </view>
+</view>

@@ -1,0 +1,30 @@
+<view class="par_outer">
+  <!-- 积分 -->
+  <view class="par_one_outer" wx:for="{{integral}}" wx:key="index" hidden="{{title!=='1'}}">
+    <view class="par_one_top">
+      <view class="par_one_top_title">{{item.result}}</view>
+      <view class="{{item.wash_integral<0?'par_one_top_ora':'par_one_top_blue'}}">{{item.wash_integral>=0?'+'+item.wash_integral:item.wash_integral}}</view>
+    </view>
+    <view class="par_one_bottom">
+      <view class="par_one_bottom_time">{{item.addtime}}</view>
+      <view class="par_one_bottom_mon">{{item.nowintegral}}</view>
+    </view>
+  </view>
+  <!-- 钱包 -->
+  <view class="par_one_outer" wx:for="{{wallet}}" wx:key="index" hidden="{{title==='1'}}">
+    <view class="par_one_top">
+      <view class="par_one_top_title">{{item.msg}}</view>
+      <view class="{{item.price<0?'par_one_top_ora':'par_one_top_blue'}}">{{item.price>=0?'+'+item.price:item.price}}</view>
+    </view>
+    <view class="par_one_bottom">
+      <view class="par_one_bottom_time">{{item.addtime}}</view>
+      <view class="par_one_bottom_mon">{{item.nowprice}}</view>
+    </view>
+  </view>
+</view>
+
+<!-- 无数据 -->
+<view hidden="{{noPage}}" class="bottom-no-page">
+  <image src="../../img/noPage.png" mode="widthFix"></image>
+  <view class="bottom-no-page-text">没有记录</view>
+</view>

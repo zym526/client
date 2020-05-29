@@ -1,0 +1,138 @@
+<import src="../tip/tip.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />
+<view>
+  <view class="header {{obj.order_state == 0?'header-bg-red':obj.order_state == 1||obj.order_state == 10||obj.order_state == 11?'header-bg-org':obj.order_state == 2?'header-bg-blue':'header-bg-gry'}}">
+    <view class="header-left {{obj.order_state == 0?'headerType-red':obj.order_state == 1||obj.order_state == 10||obj.order_state == 11?'headerType-org':obj.order_state == 2?'headerType-blue':'headerType-gry'}}">
+      <view class="iconfont icon-time"></view>
+    </view>
+    <view class="header-right">
+    <!-- 10开始接单，11服务中，2订单完成 -->
+      <view class="headerType headerType-gry" wx:if="{{obj.order_state == -1}}">已取消</view>
+      <view class="headerType headerType-gry" wx:if="{{obj.order_state == -2}}">已取消</view>
+      <view class="headerType headerType-gry" wx:if="{{obj.order_state == -3}}">已取消</view>
+      <view class="headerType headerType-red" wx:if="{{obj.order_state == 0}}">等待您的付款  剩余{{nowTime}}自动取消</view>
+      <view class="headerType headerType-org" wx:if="{{obj.order_state == 1}}">待服务</view>
+      <view class="headerType headerType-org" wx:if="{{obj.order_state == 10}}">已接单</view>
+      <view class="headerType headerType-org" wx:if="{{obj.order_state == 11}}">等待您的确认 剩余{{nowTime}}自动完成</view>
+      <!-- <view class="headerType headerType-gry" wx:if="{{obj.order_state == 2}}">待评价</view> -->
+      <view class="headerType headerType-blue" wx:if="{{obj.order_state == 2}}">已完成</view>
+      <view class="headerNumber">订单编号：{{obj.order_number}}</view>
+    </view>
+  </view>
+  <view class="box">
+    <view class="box-left">交易时间</view>
+    <view class="box-right">{{obj.jiaoyi}}</view>
+  </view>
+  <view class="box" style="border-bottom:0rpx">
+    <view class="box-left">服务项目</view>
+    <view class="box-right">{{obj.service_name}}</view>
+  </view>
+  <view class="line"></view>
+  <view class="box">
+    <view class="box-left">姓名</view>
+    <view class="box-right">{{obj.username}}</view>
+  </view>
+  <view class="box">
+    <view class="box-left">服务地点</view>
+    <view class="box-right">{{obj.address}}</view>
+  </view>
+  <view class="box">
+    <view class="box-left">服务时间</view>
+    <view class="box-right">{{obj.bespeak_time}}</view>
+  </view>
+  <view class="box">
+    <view class="box-left">车辆信息</view>
+    <view class="box-right">{{obj.service_car}}</view>
+  </view>
+  <view class="box">
+    <view class="box-left">联系电话</view>
+    <view class="box-right">{{obj.user_phone}}</view>
+  </view>
+  <view class="box borderNone">
+    <view class="box-left">备注</view>
+    <view class="box-right">{{obj.remark}}</view>
+  </view>
+  <view class="line"></view>
+  <view class="box">
+    <view class="box-left">服务人</view>
+    <view class="box-right">{{obj.workman_name}}</view>
+  </view>
+  <view class="box borderNone">
+    <view class="box-left">服务电话</view>
+    <view class="box-right">{{obj.workman_phone}}</view>
+  </view>
+  <view class="line"></view>
+  <!-- <view class="box">
+    <view class="box-left">下单服务</view>
+    <view class="box-right">{{obj.category_name}}</view>
+  </view> -->
+  <view class="box">
+    <view class="box-left">支付金额</view>
+    <view class="box-right {{obj.order_state == 0?'headerType-red':obj.order_state == 1||obj.order_state == 10||obj.order_state == 11?'headerType-org':obj.order_state == 2?'headerType-blue':'headerType-gry'}}"><text>￥{{obj.price}}</text> </view>
+  </view>
+  <view class="box" hidden="{{!obj.coupon_price}}">
+    <view class="box-left">优惠券</view>
+    <view class="box-right {{obj.order_state == 0?'headerType-red':obj.order_state == 1||obj.order_state == 10||obj.order_state == 11?'headerType-org':obj.order_state == 2?'headerType-blue':'headerType-gry'}}"><text>-￥{{obj.coupon_price}}</text></view>
+  </view>
+  <view class="box" hidden="{{!obj.times_card_name}}">
+    <view class="box-left">服务卡</view>
+    <view class="box-right {{obj.order_state == 0?'headerType-red':obj.order_state == 1||obj.order_state == 10||obj.order_state == 11?'headerType-org':obj.order_state == 2?'headerType-blue':'headerType-gry'}}"><text>-￥{{obj.times_card_name}}</text></view>
+  </view>
+  <view class="box">
+    <view class="box-left" wx:if="{{obj.order_state != 3}}">待付金额</view>
+    <view class="box-left" wx:if="{{obj.order_state == 3}}">已付金额</view>
+    <view class="box-right {{obj.order_state == 0?'headerType-red':obj.order_state == 1||obj.order_state == 10||obj.order_state == 11?'headerType-org':obj.order_state == 2?'headerType-blue':'headerType-gry'}}"><text>￥{{obj.real_price}}</text></view>
+  </view>
+  <view class="tipMessage {{showView ? 'showTrue' : 'showFalse'}}"></view>
+  <view class="zwf"></view>
+  <view class="btn btn-red" wx:if="{{obj.order_state == 0}}" data-order="{{obj.order_number}}" bindtap='payNow'>立即支付</view>
+  <view class="btn btn-org" wx:if="{{obj.order_state == 10}}" data-order="{{obj.order_number}}" bindtap='begin'>开始服务</view>
+  <view class="btn btn-org" wx:if="{{obj.order_state == 11}}" data-order="{{obj.order_number}}" bindtap='endFw'>确认完成</view>
+  <view class="btn btn-org" wx:if="{{obj.order_state == 1}}" data-order="{{obj.order_number}}" bindtap='cen'>联系客服</view>
+  <!-- <view class="btn" wx:if="{{obj.order_state == 2}}" data-order="{{obj.order_number}}" bindtap='evaNow'>立即评价</view> -->
+
+</view>
+
+<!-- 支付方式 -->
+<van-popup 
+  show="{{ show }}" 
+  bind:close="onClose"
+  position="bottom"
+  custom-style="height: 297rpx;"
+  >
+  <view class="show-titile">
+    <view class="title-text">请选择支付方式</view>
+    <view class="iconfont icon-quxiao1" bindtap="onClose"></view>
+  </view>
+  <view class="weixin-outer" bindtap="weixinPay" data-type="1">
+    <view class="iconfont icon-weixin1"></view>
+    <view class="weixin-text">微信支付</view>
+    <view class="iconfont icon-you"></view>
+  </view>
+  <view class="yue-outer" bindtap="yuePay" data-type="2">
+    <view class="iconfont icon-yue {{!payYE?'huise':''}}"></view>
+    <view class="yue-text {{!payYE?'huise':''}}">
+      <view>余额({{priceYE}})</view>
+      <view hidden="{{payYE}}">余额不足</view>
+    </view>
+    <view class="iconfont icon-you"></view>
+  </view>
+</van-popup>
+
+<!-- 余额支付弹框 -->
+<van-popup show="{{ yuePay }}" bind:close="onClose2" custom-style="width: 80%;border-radius:10rpx">
+  <view class="set-password">
+    <view class="tip">
+      <view>余额支付</view>
+      <view class="iconfont icon-quxiao1" bindtap="onClose2"></view>
+    </view>
+    <view class="password-money">￥{{obj.real_price}}</view>
+    <!-- 密码框 -->
+    <view class="password-wrapper">
+      <!-- 使用自定义组件。绑定一个事件，接收组件传递的值 -->
+      <password-writing id="passwordWriting" bind:change="inputChange"></password-writing>
+    </view>
+    <!-- 下一步操作按钮 -->
+    <view class="btn-bottom" bindtap="checkPassword">确定支付</view>
+  </view>
+</van-popup>

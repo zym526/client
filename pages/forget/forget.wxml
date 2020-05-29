@@ -1,0 +1,18 @@
+<view class="forget_outer">
+  <!-- 信息输入 -->
+  <view class="forget_three_outer">
+     <view class="forget_old">
+      <input password placeholder="请输入旧密码" class="forget_old_input" type="number" maxlength="6" bindinput="passwordOld"/>
+    </view>
+    <view class="forget_new">
+      <input password placeholder="请输新密码" class="forget_new_input" type="number" maxlength="6" bindinput="passwordNew"/>
+    </view>
+    <view class="forget_new_two">
+      <input password placeholder="确认新密码" class="forget_new_two_input" type="number" maxlength="6" bindinput="passwordNewTwo"/>
+    </view>
+  </view>
+  <!-- 提示 -->
+  <view class="title_text">密码由6位数字组成</view>
+  <view class="forget_text" bindtap="toPassword">忘记密码？</view>
+  <button class="forget_btn" bindtap="toSubmit">确定</button>
+</view>

@@ -1,0 +1,106 @@
+/* pages/orderListDetail/orderListDetail.wxss */
+.header { position: relative ; padding: 30rpx;width: 100%;display: flex;align-items: center;box-sizing: border-box;}
+.header-bg-red{background-color: rgba(255, 0, 0, 0.1);}
+.header-bg-org{background-color: rgba(255, 102, 0, 0.1);}
+.header-bg-blue{background-color: rgba(22, 120, 255, 0.1);}
+.header-bg-gry{background-color: rgba(0, 0, 0, 0.1);}
+.header-left{font-size: 40rpx;font-weight: bold; color: #FF0000;}
+.header-right{margin-left: 13rpx;}
+image { width: 100% ; height : 100% ; display: block ; }
+.headerType,.headerNumber { color : #232323 ; font-size: 24rpx;}
+.headerType-red{color: #FF0000!important;}
+.headerType-org{color:#FF6600!important}
+.headerType-blue{color: #1678FF!important;}
+.headerType-gry{color: #999999!important;}
+.box { border-bottom : 1px solid #EDEDED ; font-size: 30rpx ; width: calc(100% - 54rpx); margin-left : 27rpx ; display: flex;justify-content: space-between;}
+.box view { padding : 30rpx 15rpx ; color : #666 ;box-sizing: border-box;}
+.box .box-right{font-size: 26rpx;color: #232323;}
+.box view text { float: right ;}
+.line { height : 10rpx ; width: 100% ; background: #f5f5f5 ; }
+.borderNone { border-bottom : none ; }
+.btn { width: 100% ; height : 120rpx ; line-height: 120rpx ; color : #fff ; position: fixed ; bottom: 0 ; text-align: center ; }
+.btn-red{background-color: #FF0000;}
+.btn-org{background-color: #FF6600;}
+.zwf { width: 100% ; height : 120rpx ; }
+
+/* 支付弹窗 */
+.tip{
+  text-align: center;
+  font-size: 30rpx;
+  color: #232323;
+  line-height: 88rpx;
+  border-bottom: 1rpx solid #E1E1E1;
+  position: relative;
+}
+.tip .iconfont{
+  position: absolute;
+  top: 0rpx;
+  right: 20rpx;
+}
+.password-money{
+  text-align: center;
+  color: #1678FF;
+  font-weight: bold;
+  font-size: 50rpx;
+  line-height: 117rpx;
+}
+.btn-bottom{
+  width: calc(100% - 40rpx);
+  margin-left: 20rpx;
+  font-size: 32rpx;
+  color: white;
+  line-height: 88rpx;
+  background-color: #1678FF;
+  text-align: center;
+  border-radius: 88rpx;
+  margin-bottom: 40rpx;
+}
+/* 支付方式 */
+.show-titile{
+  font-size: 30rpx;
+  line-height: 80rpx;
+  text-align: center;
+  position: relative;
+  border-bottom: 1rpx solid #E1E1E1;
+}
+.show-titile .iconfont{
+  position: absolute;
+  right: 20rpx;
+  top: 0rpx;
+}
+.weixin-outer,.yue-outer{
+  font-size: 28rpx;
+  line-height: 80rpx;
+  box-sizing: border-box;
+  margin: 0rpx 20rpx;
+  display: flex;
+  position: relative;
+}
+.weixin-outer{
+  border-bottom: 1rpx solid #E1E1E1;
+}
+.icon-weixin1{
+  font-size: 40rpx;
+  color: #1afa29;
+}
+.icon-yue{
+  font-size: 40rpx;
+  color: #187AFF;
+}
+.huise{
+  color: #999999;
+}
+.icon-you{
+  position: absolute;
+  right: 0rpx;
+  top: 0rpx;
+}
+.yue-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 40rpx;
+}
+.weixin-text,.yue-text{
+  margin-left: 20rpx;
+}

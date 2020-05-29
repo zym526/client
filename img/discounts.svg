@@ -1,0 +1,118 @@
+<svg id="_-s-组_9" data-name="-s-组 9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="521" height="285.19" viewBox="0 0 521 285.19">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ff9a16;
+      }
+
+      .cls-1, .cls-10, .cls-11, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9 {
+        fill-rule: evenodd;
+      }
+
+      .cls-1, .cls-4 {
+        opacity: 0.2;
+      }
+
+      .cls-2 {
+        fill: #ffd8a4;
+      }
+
+      .cls-3 {
+        fill: #fff0dc;
+        filter: url(#filter);
+      }
+
+      .cls-4, .cls-5 {
+        fill: none;
+        stroke: #ff9a16;
+      }
+
+      .cls-4 {
+        stroke-width: 1px;
+      }
+
+      .cls-5 {
+        stroke-width: 4px;
+      }
+
+      .cls-6 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-6, .cls-7 {
+        filter: url(#filter-2);
+      }
+
+      .cls-7 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-8 {
+        fill: url(#linear-gradient-3);
+        filter: url(#filter-4);
+      }
+
+      .cls-9 {
+        fill: #fdf9f0;
+      }
+
+      .cls-10 {
+        fill: #feefe1;
+      }
+
+      .cls-11 {
+        fill: #ffdab2;
+      }
+    </style>
+    <filter id="filter" x="3897" y="2648" width="260" height="163" filterUnits="userSpaceOnUse">
+      <feOffset result="offset" dy="-5" in="SourceAlpha"/>
+      <feGaussianBlur result="blur" stdDeviation="4.472"/>
+      <feFlood result="flood" flood-opacity="0.1"/>
+      <feComposite result="composite" operator="in" in2="blur"/>
+      <feBlend result="blend" in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="4028.13" y1="2889" x2="4028.13" y2="2717" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff9819"/>
+      <stop offset="1" stop-color="#ffbd67"/>
+    </linearGradient>
+    <filter id="filter-2" x="3861" y="2693" width="336" height="211" filterUnits="userSpaceOnUse">
+      <feOffset result="offset" dy="-5" in="SourceAlpha"/>
+      <feGaussianBlur result="blur" stdDeviation="4.472"/>
+      <feFlood result="flood" flood-opacity="0.47"/>
+      <feComposite result="composite" operator="in" in2="blur"/>
+      <feBlend result="blend" in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient-2" x1="4028.13" y1="2889" x2="4028.13" y2="2717" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff9a16"/>
+      <stop offset="0.013" stop-color="#ff9a16"/>
+      <stop offset="1" stop-color="#ffba63"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="4028.13" y1="2889" x2="4028.13" y2="2762" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff9819"/>
+      <stop offset="1" stop-color="#ffba62"/>
+    </linearGradient>
+    <filter id="filter-4" x="3861" y="2738" width="336" height="166" filterUnits="userSpaceOnUse">
+      <feOffset result="offset" dy="-5" in="SourceAlpha"/>
+      <feGaussianBlur result="blur" stdDeviation="4.472"/>
+      <feFlood result="flood" flood-opacity="0.1"/>
+      <feComposite result="composite" operator="in" in2="blur"/>
+      <feBlend result="blend" in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <path id="形状_2" data-name="形状 2" class="cls-1" d="M3765.12,2768l114,121h295l106-123Z" transform="translate(-3765.13 -2618.81)"/>
+  <path id="矩形_4" data-name="矩形 4" class="cls-2" d="M3880.12,2717l140-92,156,92v172h-296V2717Z" transform="translate(-3765.13 -2618.81)"/>
+  <g id="组_8" data-name="组 8">
+    <path id="圆角矩形_3" data-name="圆角矩形 3" class="cls-3" d="M3926.12,2672h200a10,10,0,0,1,10,10v104a10,10,0,0,1-10,10h-200a10,10,0,0,1-10-10V2682A10,10,0,0,1,3926.12,2672Zm-10,47a13,13,0,1,1-13,13A13,13,0,0,1,3916.12,2719Zm220,0a13,13,0,1,1-13,13A13,13,0,0,1,4136.12,2719Z" transform="translate(-3765.13 -2618.81)"/>
+    <path id="圆角矩形_3_拷贝" data-name="圆角矩形 3 拷贝" class="cls-4" d="M3936.12,2682h180v104h-180V2682Z" transform="translate(-3765.13 -2618.81)"/>
+    <path id="形状_1" data-name="形状 1" class="cls-5" d="M3987.12,2726l22,22,56-56" transform="translate(-3765.13 -2618.81)"/>
+  </g>
+  <path id="矩形_4_拷贝_2" data-name="矩形 4 拷贝 2" class="cls-6" d="M4176.12,2717l-296,172h296V2717Z" transform="translate(-3765.13 -2618.81)"/>
+  <path id="矩形_4_拷贝_4" data-name="矩形 4 拷贝 4" class="cls-7" d="M3880.12,2717l296,172h-296V2717Z" transform="translate(-3765.13 -2618.81)"/>
+  <path id="矩形_4_拷贝_3" data-name="矩形 4 拷贝 3" class="cls-8" d="M4023.12,2762l153,127h-296Z" transform="translate(-3765.13 -2618.81)"/>
+  <path id="形状_3" data-name="形状 3" class="cls-9" d="M4230.12,2671l-16,62,48-23Z" transform="translate(-3765.13 -2618.81)"/>
+  <path id="形状_3_拷贝" data-name="形状 3 拷贝" class="cls-10" d="M4229.12,2671l57,40-25-1Z" transform="translate(-3765.13 -2618.81)"/>
+  <path id="形状_3_拷贝_2" data-name="形状 3 拷贝 2" class="cls-11" d="M4215.12,2733l71-22-25-1Z" transform="translate(-3765.13 -2618.81)"/>
+  <path id="形状_3-2" data-name="形状 3" class="cls-9" d="M3895.9,2619.37l-49.46,7.12,26.91,21.59Z" transform="translate(-3765.13 -2618.81)"/>
+  <path id="形状_3_拷贝-2" data-name="形状 3 拷贝" class="cls-10" d="M3895.69,2618.8l-18.19,43.38-4.35-14.67Z" transform="translate(-3765.13 -2618.81)"/>
+  <path id="形状_3_拷贝_2-2" data-name="形状 3 拷贝 2" class="cls-11" d="M3846.64,2627.06l30.86,35.12-4.35-14.67Z" transform="translate(-3765.13 -2618.81)"/>
+</svg>

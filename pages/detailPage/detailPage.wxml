@@ -1,0 +1,34 @@
+<!-- <import src="../imageText/imageText.wxml" />   -->
+<view>
+    <!-- <swiper wx:if='{{bannerList.length > 0}}' class="swiper banner" indicator-dots="true" autoplay="true" interval="5000" duration="1000">
+        <block wx:for="{{bannerList}}" wx:for-index="index" wx:key="i">
+            <swiper-item>
+                <image src="{{item}}" class="slide-image" mode="aspectFill" />
+            </swiper-item>
+        </block>
+    </swiper> -->
+    <view class="banner">
+        <image src="{{allAfter.big_image_url}}" mode="widthFix"></image>
+    </view>
+    <view class="content">
+        <view class="contentTitle">{{allAfter.name}}</view>
+        <view class="allMoney">
+            <view class="money">
+                <!-- 原价 -->
+                <view class="moneyNum">￥{{allAfter.city_price}}/次</view>
+                <!-- 会员价 -->
+                <!-- <view class="city_price">(会员价：￥{{allAfter.vip_price}})</view> -->
+            </view>
+            <!-- 描述信息 -->
+            <view class="desc_text" hidden="{{allAfter.desc==' '||allAfter.desc==''}}">{{allAfter.desc}}</view>       
+        </view>
+    </view>
+    <view class="bottom-img">
+        <image src="{{allAfter.content_img}}" mode="widthFix"></image>
+    </view>
+    <view class="btn">
+        <view bindtap='postOrder' class="mySelf">
+            <view class="isBtn">一键下单</view>
+        </view>
+    </view>
+</view>

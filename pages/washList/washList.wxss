@@ -1,0 +1,106 @@
+/* pages/index/index.wxss */
+/* page{ font-size: 26rpx ; } */
+image { width: 100% ; height : 100% ; display: block ; }
+.swiper-tab { width: 100% ; font-size: 29rpx ;  height : 88rpx ; line-height: 88rpx ; border-bottom: 1px solid #dddddd ;  z-index: 2; position: fixed ; top : 0 ; background: #fff ;}
+.headerZwf { height : 88rpx ;width: 100% ; display: block ; }
+.swiper-tab view { width: 50% ; display: inline-block;  text-align: center ; z-index: 20 ;}
+.active { color : #1678FF ; border-bottom :4rpx solid #1678FF ; }
+
+.box{
+  padding: 31rpx 20rpx 0rpx;
+  box-sizing: border-box;
+}
+.item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 31rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #DEDEDE;
+}
+.left-item{
+  width: calc(100% - 160rpx);
+  display: flex;
+}
+.itemImg{
+  width: 200rpx;
+  height: 200rpx;
+  margin-right: 10rpx;
+}
+.itemImg image{
+  width: 200rpx;
+  height: auto;
+  border-radius: 10rpx;
+}
+.itemBox{
+  width: calc(100% - 210rpx);
+  height: 200rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.itemBoxTitle{
+  font-size: 32rpx;
+  color: #232323;
+}
+.itemBoxText{
+  font-size: 24rpx;
+  color: #666666;
+  display: -webkit-box;        
+  word-break: break-all;
+  text-overflow:ellipsis;  
+  overflow: hidden;    
+  -webkit-box-orient: vertical;    
+  -webkit-line-clamp: 2;
+}
+.itemBoxMoney{
+  display: flex;
+  font-size: 30rpx;
+  color: #1678FF;
+}
+.btn{
+  width: 153rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 32rpx;
+  border-radius: 60rpx;
+  background-color: #1678FF;
+  color: white;
+  text-align: center;
+}
+/* .box .item { overflow: hidden ; border-bottom: 1px solid #ddd; position: relative ;}
+.box .item .itemImg { width: 200rpx ; height : 200rpx ; border : 1px solid #dddddd ; margin : 31rpx 20rpx ; float: left ; }
+.itemBoxTitle { font-size: 31rpx ; }
+.itemBoxMoney {font-size: 30rpx ; }
+.itemBox { float: left ; margin : 38rpx 0 ; }
+.itemBox view view{ float: left ;}
+.itemBoxSize {font-size: 22rpx ; color : #666666 ;} */
+/* .itemBox .itemBoxText { 
+margin-bottom : 34rpx ; 
+font-size: 24rpx ;  
+width: 500rpx;
+display: -webkit-box;        
+word-break: break-all;
+text-overflow:ellipsis;  
+overflow: hidden;    
+-webkit-box-orient: vertical;    
+-webkit-line-clamp: 2; }
+.itemBox .itemBoxMoney { color : #1678FF ; } */
+/* .btn { float: left ; background: #1678FF ; color : #fff ; width: 188rpx ; height : 48rpx ; line-height: 48rpx ; text-align: center ;
+border-radius: 6px ; position: absolute ; top : 161rpx ; right: 25rpx ; font-size: 28rpx ;} */
+
+
+@media screen and (max-width: 375px){
+  .header { font-size: 12px ; }
+}
+.showImg {display: block ; }
+.hideImg { display: none ; }
+.nullCity {width: 80% ; height : 675rpx ; position: fixed ; top : 8% ; z-index: 0 ; left : 10% ;}
+
+
+.ustTipBox { position: fixed ; top : 40% ; height : 300rpx ; width : 80% ; margin-left : 10% ; background: #fff ; z-index: 9999 ; border-radius: 15rpx ;}
+.ustTipBox view{font-size: 30rpx  ; text-align: center ;}
+.ustTipBox button { width : 40% ; font-size: 30rpx ;  background: #fff ; margin-left : 30% ; margin-bottom : 35rpx ; border : 1rpx solid  #f2f2f2 ;}
+.userTip{font-size: 30rpx ; color : #666 ; margin : 35rpx 0 ;}
+.userText { padding-bottom :35rpx ;}
+.cover{position: fixed ; top : 0 ; height: 100% ; width: 100% ; z-index: 9998 ; background: #333 ; opacity: 0.25 ;}

@@ -1,0 +1,10 @@
+<!-- 顶部积分 -->
+<view class="integral_top" bindtap="toIntegral">
+  <view class="integral_top_left">
+    <view class="integral_top_left_money">{{integral}}分</view>
+    <view class="integral_top_left_text">积分余额(元)</view>
+  </view>
+  <view class="integral_top_right">
+    <view class="iconfont icon-youjiantou"></view>
+  </view>
+</view>

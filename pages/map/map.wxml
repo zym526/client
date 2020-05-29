@@ -1,0 +1,46 @@
+<import src="../tip/tip.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />
+
+<!-- 地图顶部搜索 -->
+<view class="input">
+  <input type="text" bindinput="bindKeyInput" value='{{address}}' bindtap="listenerPhoneInput" />
+  <view class="del {{del?'show':'hide'}}" bindtap='del'>
+    <view class="iconfont icon-quxiao" style="font-size:25rpx"></view>
+  </view>
+  <view class="img" bindtap='search'>
+    <view class="imgBox">
+      <view class="iconfont icon-sousuo" style="font-size:40rpx;position:absolute;top: -10rpx;left:15rpx"></view>
+    </view> 
+  </view>
+</view>
+<!-- 检索出来的 -->
+<view class="cityList {{showView?'show':'hide'}}">
+  <view wx:for="{{sugData}}" wx:key="i" wx:for-item="item" bindtap='getLon' data-lng="{{item.location.lng}}" data-lat="{{item.location.lat}}" data-name='{{item.name}}'>{{item.name}}</view>
+</view>
+<!-- <view class="" wx:for="{{list}}" wx:key="i">{{item.addr}}</view> -->
+<view class="myMap {{showMap?'show':'hide'}}">
+  <view class="map_container">
+    <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" show-location="true" markers="{{markers}}" bindmarkertap="makertap" bindregionchange="regionchange"></map>
+  </view>
+</view>
+
+<view class="boxesZwf"></view>
+<view class="boxes">
+  <view class="cover {{showView?'show':'hide'}}"></view>
+  <view class="station">{{offOn}}</view>
+  <view class="botmAddress">
+    <view class="addressImg">
+      <view class="iconfont icon-dizhi1" style="font-size:35rpx"></view>
+    </view>
+    <view class="addressText">{{address}}</view>
+  </view>
+  <view class="nig" bindtap='getLon' wx:for="{{pois}}" wx:key="u" bindtap='getLon' data-lng="{{item.point.x}}" data-lat="{{item.point.y}}" data-name='{{item.name}}'>
+    <view class="tit">附近</view>
+    <!-- <view class="adres">{{item.name}}</view>   -->
+    <view class="adres">{{item.name}}</view>
+  </view>
+</view>
+<view class="zfw"></view>
+<view class="btn" bindtap='trueAddress'>确认位置</view>
+
+<!--C2MtfEeUcDRo4qM6bk6XCLMGVFM4cCr1  -->

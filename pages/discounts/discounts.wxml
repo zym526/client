@@ -1,0 +1,153 @@
+<!-- 未使用/已使用/已过期 -->
+<view class="top_two">
+  <view class="top_outer {{item===text?'border_bottom':''}}" wx:for="{{top}}" wx:key="index" data-text="{{item}}" bindtap="changeTabbar">
+    <view>{{item}}</view>
+  </view>  
+</view>
+<view class="outer" hidden="{{text!='优惠券'}}">
+  <!-- 优惠券 -->
+  <view class="one_discount_outer" hidden="{{usableCoupon.length==0}}">
+    <view class="one_discount_title">可用优惠券</view>
+    <view class="one_discount" wx:for="{{usableCoupon}}" wx:key="index" bindtap="toWashList">
+      <view class="discount_left">
+        <image src="../../img/all-tou.png" class="discount_left_tou"></image>
+        <view class="discount_text">
+          <view class="discount_left_text {{item.coupon_price==0?'qitaColor2':'qitaColor'}}">
+            <view class="discount_left_text_top {{item.coupon_price==0?'discount_left_text_color':'discount_left_text_color1'}}">{{item.coupon_price==0?'体验券':'优惠券'}}</view>
+            <view class="discount_left_text_bottom">
+              <text>{{item.coupon_price==0?'体验':item.coupon_price}}</text>{{item.coupon_price==0?'':'元'}}
+            </view>
+          </view>
+          <view class="discount_right_text">
+            <view class="discount_right_text_one">{{item.title}}</view>
+            <view class="discount_right_text_two">{{item.coupon_price==0?'汽车外观清洗全部通用':'清洗保养系列全部通用'}}</view>
+            <view class="discount_right_text_three">{{item.creat_time}}至{{item.expire_time}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="discount_right_img">
+        <image src="../../img/{{item.coupon_price==0?'yishiyong-w':'shiyong-w'}}.png"></image>
+        <text>立即使用</text>
+      </view>
+    </view>
+  </view>
+  <!-- 不可用优惠券 -->
+  <view class="one_discount_outer" hidden="{{disabledCoupon.length==0}}">
+    <view class="one_discount_title">不可用优惠券</view>
+    <view class="one_discount" wx:for="{{disabledCoupon}}" wx:key="index">
+      <view class="discount_left">
+        <image src="../../img/all-tou.png" class="discount_left_tou"></image>
+        <image src="../../img/{{item.state==-1?'yiguoqi':'yishiyong'}}.png" mode="widthFix" class="discount_only_image"></image>
+        <view class="discount_text">
+          <view class="discount_left_text" style="color:#999999">
+            <view class="discount_left_text_top" style="border: 1rpx solid #999999;">{{item.coupon_price==0?'体验券':'优惠券'}}</view>
+            <view class="discount_left_text_bottom">
+              <text>{{item.coupon_price==0?'体验':item.coupon_price}}</text>{{item.coupon_price==0?'':'元'}}
+            </view>
+          </view>
+          <view class="discount_right_text">
+            <view class="discount_right_text_one">{{item.title}}</view>
+            <view class="discount_right_text_two">{{item.coupon_price==0?'汽车外观清洗全部通用':'清洗保养系列全部通用'}}</view>
+            <view class="discount_right_text_three">{{item.creat_time}}-{{item.expire_time}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="discount_right_img">
+        <image src="../../img/yiguoqi-w.png"></image>
+        <text>{{item.state==-1?'已过期':'已使用'}}</text>
+      </view>
+    </view>
+  </view>
+  <view hidden="{{!(usableCoupon.length==0&&disabledCoupon.length==0)}}">
+    <van-divider contentPosition="center">暂无数据</van-divider>
+  </view>
+</view>
+<!-- 服务卡 -->
+<view class="fuwuka" hidden="{{text!='服务卡'}}">
+  <view class="fuwuka-top" hidden="{{usableTimecard.length==0}}">
+    <view class="fuwuka-top-title">可用服务卡</view>
+    <view class="clip_only_outer" style="background:{{item.color}};" wx:for="{{usableTimecard}}" wx:key="index" bindtap="toGoods" data-services="{{item.services}}">
+      <!-- 顶部 -->
+      <view class="clip_only_top">
+        <!-- 顶部左侧 -->
+        <view class="clip_only_left">
+          <!-- 图标 -->
+          <view class="iconfont icon-ziyuan7" style="color:white"></view>
+          <!-- 文字 -->
+          <view class="clip_only_left_text">
+            <view class="clip_left_text_top">{{item.name}}</view>
+            <view class="clip_left_text_bottom">{{item.service_name}}</view>
+          </view>
+        </view>
+        <!-- 顶部右侧 -->
+        <view class="clip_only_right">
+          <view class="clip_only_right_mon">{{item.count}}次</view>
+          <view class="clip_only_right_time">有效期至：{{item.create_time}}</view><!-- 有限期现固定1年 -->
+        </view>
+      </view>
+      <!-- 底部 -->
+      <view class="clip_only_bottom">
+        <view class="clip_only_bottom_desc">说明：只限本地区使用且与其他优惠不可叠加</view>
+      </view>
+      <image src="/img/{{item.bg}}" mode="widthFix" class="bg_image"></image>
+    </view>
+  </view>
+  <!-- 不可用服务卡 -->
+  <view class="fuwuka-top" hidden="{{disabledTimecard.length==0}}">
+    <view class="fuwuka-top-title" style="color:#999999">不可用服务卡</view>
+    <view class="clip_only_outer" style="background:#999999" wx:for="{{disabledTimecard}}" wx:key="index">
+      <image src="../../img/{{item.state==-1?'guoqi':'shiyong'}}.png" mode="widthFix" class="img-is"></image>
+      <!-- 顶部 -->
+      <view class="clip_only_top">
+        <!-- 顶部左侧 -->
+        <view class="clip_only_left">
+          <!-- 图标 -->
+          <view class="iconfont icon-ziyuan7" style="color:white"></view>
+          <!-- 文字 -->
+          <view class="clip_only_left_text">
+            <view class="clip_left_text_top">{{item.name}}</view>
+            <view class="clip_left_text_bottom">{{item.service_name}}</view>
+          </view>
+        </view>
+        <!-- 顶部右侧 -->
+        <view class="clip_only_right">
+          <view class="clip_only_right_mon">{{item.count}}次</view>
+          <view class="clip_only_right_time">有效期至：{{item.create_time}}</view><!-- 有限期现固定1年 -->
+        </view>
+      </view>
+      <!-- 底部 -->
+      <view class="clip_only_bottom">
+        <view class="clip_only_bottom_desc">说明：只限本地区使用且与其他优惠不可叠加</view>
+      </view>
+      <image src="/img/{{item.bg}}" mode="widthFix" class="bg_image"></image>
+    </view>
+  </view>
+  <view hidden="{{!(usableTimecard.length==0&&disabledTimecard.length==0)}}">
+    <van-divider contentPosition="center">暂无数据</van-divider>
+  </view>
+</view>
+
+
+<!-- 可用优惠券 -->
+<!-- <view class="one_discount" wx:for="{{nowData}}" wx:key="index" hidden="{{!isShow}}" bindtap="getBack" data-all="{{item}}">
+    <view class="discount_left">
+      <image src="../../img/all-tou.png" class="discount_left_tou"></image>
+      <view class="discount_text">
+        <view class="discount_left_text">
+          <view class="discount_left_text_top">优惠券</view>
+          <view class="discount_left_text_bottom">
+            <text>{{item.price}}</text>元
+          </view>
+        </view>
+        <view class="discount_right_text">
+          <view class="discount_right_text_one">{{item.title}}</view>
+          <view class="discount_right_text_two">{{item.name}}</view>
+          <view class="discount_right_text_three">{{item.start_time}}-{{item.end_time}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="discount_right_img">
+      <image src="../../img/shiyong-w.png"></image>
+      <text>立即使用</text>
+    </view>
+  </view> -->

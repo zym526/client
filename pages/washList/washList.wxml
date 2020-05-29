@@ -1,0 +1,46 @@
+<!--pages/index/index.wxml-->
+<view id="index">
+  <view class="swiper-tab">
+    <view wx:for="{{titleList}}" wx:for-index="index" wx:for-item="item" wx:key="i" data-index="{{index}}" class="swiper-tab-list {{currentTab == index ? 'active' : ''}}" data-current="0" bindtap="swichNav" data-id="{{item.id}}">{{item.name}}</view>
+  </view>
+  <view class="headerZwf"></view>
+  <swiper current="{{currentTab}}" class="swiper-box " duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+    <swiper-item style="overflow: scroll;" wx:for='{{titleList}}' wx:key="j">
+      <view class="box" bindtap="toDetailAll" wx:for="{{list}}" wx:for-item="itemList" wx:key="j" data-all="{{itemList}}">
+        <view class="item">
+          <view class="left-item">
+            <view class="itemImg">
+              <image src="{{itemList.imgae_url}}" mode="widthFix"></image>
+            </view>
+            <view class="itemBox">
+              <view>
+                <view class="itemBoxTitle">{{itemList.name}}</view>
+                <view class="itemBoxText">{{itemList.desc}}</view>
+              </view>
+              <view class="itemBoxMoney">
+                <view>￥</view>
+                <view>{{itemList.city_price}}</view>/次
+              </view>
+              <!-- <view class="itemBoxSize">
+                <view>￥</view>
+                <view>{{itemList.vip_price}}</view>(会员专享价)
+              </view> -->
+            </view>
+          </view>
+          <view class="btn" catchtap='goDetail' data-all="{{itemList}}">预约</view>
+        </view>
+      </view>
+      <view class="nullCity {{showNull ? 'showImg' : 'hideImg'}}">
+        <image src="../../img/nullCity.png"></image>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>
+
+<!-- <view class="mmzwf"></view> -->
+<!-- <view class="footer">
+  <view class="active">首页</view>
+  <view bindtap='goOrderList'>我的订单</view>
+</view> -->
+
+   

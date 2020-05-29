@@ -1,0 +1,54 @@
+<!-- 顶部余额 -->
+<view class="wallet_top" bindtap="toParticulars">
+  <view class="wallet_top_left">
+    <view class="wallet_top_left_money">￥{{bala}}</view>
+    <view class="wallet_top_left_text">钱包余额(元)</view>
+  </view>
+  <view class="wallet_top_right">
+    <view class="iconfont icon-youjiantou"></view>
+  </view>
+</view>
+<view class="wallet_outer">
+  <!-- 充值中心 -->
+  <view class="wallet_center" wx:if="{{isCenter}}">
+    <view class="wallet_center_title">充值中心</view>
+    <view class="wallet_center_outer" wx:for="{{money}}" wx:key="index">
+      <view class="wallet_center_border">
+        <view class="wallet_center_money">
+          <text class="wallet_center_mon_left">￥</text> 
+          <text class="wallet_center_mon_right">{{item.price}}</text>
+        </view>
+        <view class="wallet_border_center"></view>
+        <view class="wallet_center_bottom_text">
+          <view class="wallet_center_bottom_left" hidden="{{!item.integral}}">{{item.text}}</view>
+          <view class="wallet_center_bottom_right">{{item.noMK}}</view>
+          <view class="wallet_center_bottom_right">{{item.noWash}}</view>
+        </view>
+      </view>
+      <view class="wallet_right_text" bindtap="topUp" data-id="{{item.id}}">充值</view>
+    </view>
+  </view>
+</view>
+<!-- 订单 -->
+<!-- <view class="wallent_bottom_outer">
+  <button class="wallent_btn" bindtap="topUp">充值</button>
+</view> -->
+
+<!-- 弹出层 -->
+<van-popup show="{{ show }}" bind:close="onClose" custom-style="width: 80%;border-radius:10rpx" closeable>
+  <view class="set-password">
+    <view class="tip">{{tipText}}</view>
+    <!-- 密码框 -->
+    <view class="password-wrapper">
+      <!-- 使用自定义组件。绑定一个事件，接收组件传递的值 -->
+      <password-box id="passwordBox" bind:change="inputChange"></password-box>
+    </view>
+    <!-- 显示/隐藏密码 -->
+    <view class="toggle-tip" bindtap="toggleValue">
+      <text class="tip {{valueIsShow?'active':''}}">{{valueIsShow?'隐藏密码':'显示密码'}}</text>
+    </view>
+    <!-- 下一步操作按钮 -->
+    <view wx:if="{{firstValue==''}}" class="btn-next {{currentValue.length==6?'btn-next-active':''}}" bindtap="saveInputValue">下一步</view>
+    <view wx:if="{{firstValue!=''}}" class="btn-next {{currentValue.length==6?'btn-next-active':''}}" bindtap="checkPassword">验证</view>
+  </view>
+</van-popup>

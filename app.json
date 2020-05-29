@@ -1,0 +1,98 @@
+{
+  "pages": [
+    "pages/entrance/entrance",
+    "pages/personal/personal",
+    "pages/vip/vip",
+    "pages/washList/washList",
+    "pages/detailPage/detailPage",
+    "pages/goodsDetail/goodsDetail",
+    "pages/carList/carList",
+    "pages/car/car",
+    "pages/orderList/orderList",
+    "pages/orderListDetail/orderListDetail",
+    "pages/map/map",
+    "pages/evaSuccess/evaSuccess",
+    "pages/addEvaluate/addEvaluate",
+    "pages/success/success",
+    "pages/user/login/login",
+    "pages/discounts/discounts",
+    "pages/coupon/coupon",
+    "pages/recruit/recruit",
+    "components/passwordBox/passwordBox",
+    "components/addCarPopup/addCarPopup",
+    "pages/purchase/purchase",
+    "pages/setting/setting",
+    "pages/wallet/wallet",
+    "pages/particulars/particulars",
+    "pages/password/password",
+    "pages/forget/forget",
+    "pages/integral/integral",
+    "components/passwordWriting/passwordWriting"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "芯意洗",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#2480FF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/entrance/entrance",
+        "text": "首页",
+        "iconPath": "img/home.png",
+        "selectedIconPath": "img/actionHome.png"
+      },
+      {
+        "pagePath": "pages/orderList/orderList",
+        "text": "订单",
+        "iconPath": "img/DD.png",
+        "selectedIconPath": "img/actionDD.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "我的",
+        "iconPath": "img/my.png",
+        "selectedIconPath": "img/actionMy.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 20000,
+    "connectSocket": 20000,
+    "uploadFile": 20000,
+    "downloadFile": 20000
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于确定您车辆的位置"
+    }
+  },
+  "debug": true,
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-image": "dist/image/index",
+    "van-divider": "dist/divider/index",
+    "van-grid": "dist/grid/index",
+    "van-grid-item": "dist/grid-item/index",
+    "van-picker": "dist/picker/index",
+    "van-popup": "dist/popup/index",
+    "van-cell": "dist/cell/index",
+    "van-cell-group": "dist/cell-group/index",
+    "van-icon": "dist/icon/index",
+    "van-field": "dist/field/index",
+    "van-button": "dist/button/index",
+    "van-checkbox": "dist/checkbox/index",
+    "van-checkbox-group": "dist/checkbox-group/index",
+    "van-dialog": "dist/dialog/index",
+    "van-transition": "dist/transition/index",
+    "van-radio": "dist/radio/index",
+    "van-radio-group": "dist/radio-group/index",
+    "password-box": "/components/passwordBox/passwordBox",
+    "add-car-popup": "/components/addCarPopup/addCarPopup",
+    "password-writing": "/components/passwordWriting/passwordWriting"
+  }
+}

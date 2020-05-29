@@ -1,0 +1,115 @@
+page{
+  background-color: #F0F0F0;
+}
+.all_outer{
+  margin-bottom: 30rpx;
+}
+/* 顶部信息 */
+.info_outer,.header_outer{
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 274rpx;
+  padding: 24rpx 24rpx 0rpx;
+  box-sizing: border-box;
+  background-color: #1678FF;
+  /* background:-moz-linear-gradient(bottom,#5DA1FF 25%,#1678FF);
+  background:-webkit-linear-gradient(bottom,#5DA1FF 25%,#1678FF);
+  background:-o-linear-gradient(bottom,#5DA1FF 25%,#1678FF);
+  background:-ms-linear-gradient(bottom,#5DA1FF 25%,#1678FF);
+  background:linear-gradient(bottom,#5DA1FF 25%,#1678FF); */
+}
+/* 头像/欢迎文字 */
+.info_top_image,.header_top_image{
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+}
+.info_top_image image,.header_top_image image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+.header_top_image .vipImage{
+  width: 40rpx;
+  height: auto;
+  margin-left: 10rpx;
+}
+.info_top_tishi,.header_top_tishi{
+  font-size: 36rpx;
+  color: white;
+  margin-left: 20rpx;
+}
+.info_top_text{
+  font-size: 36rpx;
+  line-height: 60rpx;
+  margin-top: 24rpx;
+  color: white;
+}
+/* 头像/欢迎文字 */
+.header_top_three{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25rpx;
+  align-items: center;
+}
+.header_top_only{
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+.header_border{
+  width: 6rpx;
+  height: 58rpx;
+  background-color: white;
+  /* border: 0.5rpx solid white; */
+}
+.header_top_num{
+  font-size: 36rpx;
+}
+.header_top_bottom_text{
+  font-size: 28rpx;
+}
+/* vip */
+.header_top_vip{
+  font-size: 0rpx;
+  margin-top: 35rpx;
+}
+.header_top_vip image{
+  width: 100%;
+  height: auto;
+}
+/* 列表 */
+.list_outer{
+  margin: 10rpx 0rpx;
+  padding: 0rpx 20rpx;
+  background-color: white;
+  font-size: 28rpx;
+}
+.list_line{
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx 20rpx;
+}
+.list_line_bottom_two{
+  background-color: white;
+  padding: 30rpx 40rpx;
+}
+/* 员工登录 */
+.staff_outer{
+  padding: 24rpx;
+  background-color: white;
+  display: flex;
+}
+.staff_one_only{
+  text-align: center;
+  font-size: 24rpx;
+  margin-right: 52rpx;
+}
+.staff_top_img{
+  height: 50rpx;
+}
+/* .staff_top_img image{
+  width: 38rpx;
+  height: auto;
+} */

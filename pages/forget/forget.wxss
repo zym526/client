@@ -1,0 +1,44 @@
+page{
+  background-color: #F0F0F0;
+}
+.forget_three_outer{
+  background-color: white;
+  padding: 0rpx 20rpx;
+}
+.forget_old,.forget_new,.forget_new_two{
+  height: 89rpx;
+  color: #666666;
+}
+.forget_old,.forget_new{
+  border-bottom: 1rpx solid #E1E1E1;
+}
+.forget_old_input,.forget_new_input,.forget_new_two_input{
+  font-size: 30rpx;
+  height: 100%;
+  width: 100%;
+}
+/* 提示信息 */
+.title_text{
+  font-size: 30rpx;
+  color: #666666;
+  margin-left: 20rpx;
+  padding: 30rpx 0rpx;
+}
+.forget_text{
+  font-size: 24rpx;
+  color: #FF6600;
+  margin-bottom: 30rpx;
+  margin-right: 20rpx;
+  text-align: right;
+}
+.forget_btn{
+  width: calc(100% - 40rpx);
+  margin-left: 20rpx;
+  height: 90rpx;
+  background-color: #1678FF;
+  color: white;
+  font-size: 32rpx;
+  padding: 0rpx;
+  line-height: 90rpx;
+  border-radius: 90rpx;
+}

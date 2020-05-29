@@ -1,0 +1,112 @@
+<view class="all_outer">
+  <!-- 顶部信息/登录状态 -->
+  <view class="header_outer" hidden="{{isHeaderShow}}">
+    <!-- 头像 -->
+    <view class="header_top_image" bindtap="toPersonal"> 
+      <image src="{{item.avatarUrl}}" mode="widthFix"></image>
+      <text class="header_top_tishi">{{item.chooseUser_phone}}</text>
+      <!-- <view class="iconfont icon-huangguan" style="font-size:40rpx;color:#f4ea29;margin-left:10rpx" hidden="{{isVip}}"></view> -->
+    </view>
+    <!-- 余额/积分/卡券 -->
+    <view class="header_top_three">
+      <view class="header_top_only" bindtap="toWallet">
+        <view class="header_top_num">{{getuserdate.bala?getuserdate.bala:'0'}}</view>
+        <view class="header_top_bottom_text">余额</view>
+      </view>
+      <view class="header_border"></view>
+      <view class="header_top_only" bindtap="toLookJF">
+        <view class="header_top_num">{{getuserdate.integral?getuserdate.integral:'0'}}</view>
+        <view class="header_top_bottom_text">积分</view>
+      </view>
+      <view class="header_border"></view>
+      <view class="header_top_only" bindtap="toLookYhq">
+        <view class="header_top_num">{{getuserdate.coupon_count?getuserdate.coupon_count:'0'}}</view>
+        <view class="header_top_bottom_text">卡券</view>
+      </view>
+    </view>
+    <!-- vip -->
+    <!-- <view class="header_top_vip"  hidden="{{!isVip}}" bindtap="toVipChange">
+      <image src="../../img/me-vip.svg" mode="widthFix"></image>
+    </view> -->
+  </view>
+  <!-- 顶部信息/未登录状态 -->
+  <view class="info_outer" hidden="{{!isHeaderShow}}">
+    <!-- 头像 -->
+    <view class="info_top_image" bindtap="toLogin"> 
+      <view class="iconfont icon-ziyuan7" style="font-size:100rpx;color:white"></view>
+      <text class="info_top_tishi">点击头像登录</text>
+    </view>
+    <!-- 欢迎文字 -->
+    <view class="info_top_text">
+      HI,欢迎使用芯意洗！
+    </view>
+  </view>
+  <!-- 列表信息 -->
+  <view class="list_outer">
+    <view class="list_line" bindtap="toWallet">
+      <view class="line_left">
+        <view class="iconfont icon-qianbao" style="color:#232323;font-size:35rpx;margin-right:10rpx;display:inline-block"></view>
+        <text>钱包</text>
+      </view>
+      <view class="line_right">
+        <view class="iconfont icon-youjiantou" style="font-size:35rpx;color:#999999"></view>
+      </view>
+    </view>
+    <view class="list_line" bindtap="toLookJF">
+      <view class="line_left">
+        <view class="iconfont icon-jifen" style="color:#232323;font-size:38rpx;margin-right:10rpx;display:inline-block"></view>
+        <text>积分</text>
+      </view>
+      <view class="line_right">
+        <view class="iconfont icon-youjiantou" style="font-size:35rpx;color:#999999"></view>
+      </view>
+    </view>
+    <view class="list_line" bindtap="toLookYhq">
+      <view class="line_left">
+        <view class="iconfont icon-qiaquan1" style="color:#232323;font-size:33rpx;margin-right:10rpx;display:inline-block"></view>
+        <text>卡券</text>
+      </view>
+      <view class="line_right">
+        <view class="iconfont icon-youjiantou" style="font-size:35rpx;color:#999999"></view>
+      </view>
+    </view>
+    <view class="list_line" bindtap="toAllOrder">
+      <view class="line_left">
+        <view class="iconfont icon-layer" style="color:#232323;font-size:35rpx;margin-right:10rpx;display:inline-block"></view>
+        <text>订单</text>
+      </view>
+      <view class="line_right">
+        <view class="iconfont icon-youjiantou" style="font-size:35rpx;color:#999999"></view>
+      </view>
+    </view> 
+  </view>
+  <view class="list_line list_line_bottom_two" bindtap="toTel" style="margin-top:10rpx">
+    <view class="line_left">
+      <view class="iconfont icon-jishuzhichizhichizhinengzhinengfuwufuwukefujishu" style="color:#232323;font-size:35rpx;margin-right:10rpx;display:inline-block"></view>
+      <text>客服</text>
+    </view>
+    <view class="line_right">
+      <view class="iconfont icon-youjiantou" style="font-size:35rpx;color:#999999"></view>
+    </view>
+  </view>
+  <view class="list_line list_line_bottom_two" bindtap="toSetting" style="margin-top:10rpx">
+    <view class="line_left">
+      <view class="iconfont icon-setup" style="color:#232323;font-size:35rpx;margin-right:10rpx;display:inline-block"></view>
+      <text>设置</text>
+    </view>
+    <view class="line_right">
+      <view class="iconfont icon-youjiantou" style="font-size:35rpx;color:#999999"></view>
+    </view>
+  </view>
+  <!-- 积分商城/员工登录 -->
+  <!-- <view class="staff_outer">
+    <view class="staff_one_only">
+      <view class="staff_top_img">
+        <view class="iconfont icon-shangcheng" style="color:#232323;font-size:50rpx;font-weight: bold;"></view>
+      </view>
+      <view class="staff_bottom_text">积分商城</view>
+    </view>
+  </view> -->
+</view>
+
+  

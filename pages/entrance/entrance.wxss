@@ -1,0 +1,411 @@
+page{
+  background-color: #F0F0F0;
+}
+.all_outer{
+  margin-bottom: 30rpx;
+}
+/* 顶部信息 */
+.info_outer,.header_outer{
+  width: 100%;
+  box-sizing: border-box;
+  height: 274rpx;
+  padding: 24rpx;
+  box-sizing: border-box;
+  background-color: #1678FF;
+  /* background:-moz-linear-gradient(bottom,#5DA1FF 25%,#1678FF);
+  background:-webkit-linear-gradient(bottom,#5DA1FF 25%,#1678FF);
+  background:-o-linear-gradient(bottom,#5DA1FF 25%,#1678FF);
+  background:-ms-linear-gradient(bottom,#5DA1FF 25%,#1678FF);
+  background:linear-gradient(bottom,#5DA1FF 25%,#1678FF); */
+}
+/* 头像/欢迎文字 */
+.info_top_image,.header_top_image{
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+}
+.info_top_image image,.header_top_image image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+/* .header_top_image .vipImage{
+  width: 40rpx;
+  height: auto;
+  margin-left: 10rpx;
+} */
+.info_top_tishi,.header_top_tishi{
+  font-size: 36rpx;
+  color: white;
+  margin-left: 20rpx;
+}
+.info_top_text{
+  font-size: 36rpx;
+  line-height: 60rpx;
+  margin-top: 24rpx;
+  color: white;
+}
+/* 头像/欢迎文字 */
+
+.header_top_three{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25rpx;
+  align-items: center;
+}
+.header_top_only{
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+.header_border{
+  width: 6rpx;
+  height: 58rpx;
+  background-color: white;
+  /* border-left: 0.5rpx solid white; */
+}
+.header_top_num{
+  font-size: 36rpx;
+}
+.header_top_bottom_text{
+  font-size: 28rpx;
+}
+/* 汽车精选/汽车保养 */
+.car_two_outer{
+  padding: 24rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.car_left,.car_right{
+  width: calc(50% - 45rpx);
+  height: 148rpx;
+  box-shadow: 0rpx 0rpx 10rpx rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rpx 13rpx 0rpx 20rpx;
+  border-radius: 10rpx;
+  background-color: white;
+  position: relative;
+}
+.car_left image,.car_right image{
+  position: absolute;
+  right: 0rpx;
+  top: 0rpx;
+  width: 168rpx;
+  height: auto;
+}
+.right_text_car .text_car_one,.right_right_text_car .text_car_one{
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #232323;
+}
+.right_text_car .text_car_two,.right_right_text_car .text_car_two{
+  font-size: 22rpx;
+  letter-spacing: 5rpx;
+  color: #666666;
+}
+.right_text_car .iconfont,.right_right_text_car .iconfont{
+  font-size: 26rpx;
+  margin-top: 5rpx;
+}
+/* 现在预约 */
+.subscribe_outer{
+  margin: 0rpx 24rpx 24rpx;
+  background-color: white;
+  box-shadow: 0rpx 0rpx 10rpx rgba(0,0,0,0.1);
+  border-radius: 10rpx;
+}
+/* 现在预约顶部 */
+.subscribe_top{
+  font-size: 26rpx;
+  line-height: 64rpx;
+  margin:0rpx 24rpx;
+  border-bottom: 1rpx solid #E1E1E1;
+  color: #666666;
+  display: flex;
+  justify-content: space-between;
+}
+.subscribe_top .left_subscribe_top{
+  display: flex;
+  align-items: center;
+}
+.weather_top{
+  line-height: 64rpx;
+}
+.subscribe_top_weather{
+  display: flex;
+  line-height: 64rpx;
+}
+.yuanCheng{
+  display: inline-block;
+  width: 9rpx;
+  height: 9rpx;
+  border-radius: 9rpx;
+  margin: 0rpx 5rpx;
+}
+.right_weather_text,.subscribe_top_right_out{
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+/* 当前位置 */
+.subscribe_center{
+  margin: 24rpx 24rpx 0rpx;
+  padding-bottom: 24rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #E1E1E1;
+}
+/* .subscribe_center_left{
+  width: 50rpx;
+  height: auto;
+  margin-right: 52rpx;
+} */
+.subscribe_center_right view{
+  font-size: 30rpx;
+}
+/* 订单/洗车/现在预约 */
+.subscribe_bottom{
+  padding: 24rpx;
+}
+.subscribe_bottom_two{
+  font-size: 30rpx;
+  line-height: 80rpx;
+  background-color: #1678FF;
+  border-radius: 80rpx;
+  color: white;
+  width: 100%;
+  text-align: center;
+}
+/* 服务招募等 */
+.serve_outer{
+  margin: 0rpx 24rpx 24rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.serve_inside_only{
+  text-align: center;
+}
+.serve_inside_top{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0rpx 0rpx 10rpx rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: -3rpx;
+}
+/* .serve_inside_top image{
+  width: 60%;
+  height: auto;
+} */
+.serve_inside_only text{
+  color: #232323;
+  font-size: 22rpx;
+}
+.serve_inside_only .inside_text_black{
+  color: #232323;
+}
+/* banner */
+.banner_outer{
+  margin: 0rpx 24rpx 24rpx;
+  line-height: 0rpx;
+}
+.banner_outer image{
+  width: 100%;
+  height: auto;
+}
+/* 优惠券 */
+.discounts_outer{
+  position: fixed;
+  z-index: 999;
+  left: 0rpx;
+  right: 0rpx;
+  top: 0rpx;
+  bottom: 0rpx;
+  background-color: rgba(0,0,0,0.5);
+}
+.outer_bian{
+  position: relative;
+  margin-top: 15%;
+}
+.discounts_inside{
+  width: 80%;
+  background-color: white;
+  margin-left: 10%;
+  border-radius: 20rpx;
+  text-align: center;
+  padding: 40rpx 0rpx 50rpx;
+}
+.discounts_inside_title{
+  font-size: 46rpx;
+}
+.discounts_inside_look{
+  font-size: 32rpx;
+  margin-top: 15rpx;
+}
+.discounts_inside_look text{
+  color: #1678FF;
+}
+.discounts_inside image{
+  width: 90%;
+  height: auto;
+  margin-top: 40rpx;
+}
+.discounts_inside button{
+  width: 411rpx;
+  font-size: 32rpx;
+  line-height: 88rpx;
+  color: white;
+  background-color: #1678FF;
+  margin-top: 45rpx;
+}
+.cross_outer{
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  border: 4rpx solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  bottom: -90rpx;
+  transform: translateX(-50%);
+}
+/* 下优惠券banner */
+.outer_swiper{
+  width: calc(100% - 48rpx);
+  margin-left: 24rpx;
+  height: 160rpx;
+}
+.inside_swiper_item{
+  width: 100%;
+  height: 160rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10rpx;
+}
+.inside_swiper_bg{
+  background-color: #C7DFFF;
+}
+.swiper_text_color{
+  color: #207EFF;
+}
+.inside_swiper_bg1{
+  background-color: #C7CCFF;
+}
+.swiper_text_color1{
+  color: #B18AFF;
+}
+.swiper_left_text{
+  width: calc(100% - 150rpx);
+  padding-left: 23rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.swiper_top_text{
+  font-size: 42rpx;
+}
+/* .swiper_bottom_text{
+  font-size: 30rpx;
+} */
+.swiper_right_image{
+  width: 140rpx;
+  height: 140rpx;
+  margin-top: 10rpx;
+  margin-right: 10rpx;
+}
+.swiper_right_image image{
+  width: 100%;
+  height: auto;
+}
+/* 提交车辆信息 */
+.add-car-submit{
+  width: calc(100% - 40rpx);
+  line-height: 80rpx;
+  font-size: 32rpx;
+  color: white;
+  background-color: #1678FF;
+  text-align: center;
+  border-radius: 80rpx;
+  margin: 30rpx 20rpx;
+}
+/* 车牌号 */
+.city,.openCarNumber { 
+  background: #eeeeee ; 
+  overflow: hidden ; 
+  position: absolute ; 
+  bottom: 0 ; 
+  z-index: 999; 
+  display: block ; 
+  padding : 20rpx 0 10rpx 0 ;
+  left: 0rpx;
+  right: 0rpx
+}
+.cityItem { 
+  width: 10% ; 
+  height : 70rpx ; 
+  line-height: 70rpx ; 
+  background: #fff ; 
+  margin : 15rpx 1.25% ; 
+  float: left; 
+  box-shadow:0 2px 4px 0 rgba(123,123,123,0.50); 
+  border-radius: 6px ; 
+  font-size: 36rpx ; 
+  text-align: center ;
+} 
+.del {
+  font-size: 28rpx ;
+  background: #1678FF ; 
+  color : #fff ; 
+  width : 15% ;
+} 
+.hide{
+  display: none;
+}
+/* 地区性优惠券 */
+.youhui-only{
+  position: fixed;
+  left: 0rpx;
+  right: 0rpx;
+  top: 0rpx;
+  bottom: 0rpx;
+  background-color: rgba(0,0,0,0.5);
+}
+.youhui-inside{
+  width: calc(100% - 80rpx);
+  /* margin-left: 90rpx;
+  margin-top: 50%;
+  transform: translateY(-30%); */
+  position: absolute;
+  left: 40rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0rpx;
+}
+.youhui-inside image{
+  width: 100%;
+  height: auto;
+}
+.close-bottom{
+  border: 1px solid red;
+  display: inline-block;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  border: 4rpx solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  bottom: -90rpx;
+  transform: translateX(-50%);
+}

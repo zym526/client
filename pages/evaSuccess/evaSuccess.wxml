@@ -1,0 +1,12 @@
+<view>
+  <view class="header">
+    <view class="headerImg">
+      <image src="../../img/eva.png"></image>
+    </view>
+    <view class="thanks">感谢您的评价！</view>
+    <view class="text">您的评价是我们日后努力的方向</view>
+  </view>
+  <view class="centerImg"><image src="../../img/evas.png"></image></view>
+  <view class="tip">请前往逸掌帮APP使用优惠券！</view>
+  <view class="finish" bindtap='finish'>完成</view>
+</view>

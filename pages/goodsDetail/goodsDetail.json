@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {},
+  "navigationBarTitleText": "立即下单",
+  "navigationBarBackgroundColor": "#1678FF",
+  "navigationBarTextStyle":"white"
+}

@@ -1,0 +1,8 @@
+/* pages/success/success.wxss */
+
+.img { width: 150rpx ; height : 150rpx ; margin : 273rpx auto 54rpx ;  }
+image { width: 100% ; height : 100% ; display: block ; }
+.tip { font-size: 36rpx ; color : #1678FF ;text-align: center ; margin-bottom : 17rpx ; }
+.text { font-size: 36rpx ; color : #999999 ; text-align: center ; margin-bottom : 72rpx ; }
+.goBack { width: 206rpx ; border-radius: 4rpx ; height : 58rpx ; background: #1678FF ; color : #fff ; text-align: center ; font-size: 32rpx ; line-height: 58rpx ; margin : 0 30rpx ; display: inline-block; }
+.goBackBox{margin: 0 auto;text-align: center;}

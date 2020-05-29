@@ -1,0 +1,140 @@
+<!--pages/index/index.wxml-->
+<import src="../tip/tip.wxml" />
+<template is="showToast" data="{{showToast: showToast}}" />
+<view>
+  <!-- 顶部tabbar选择 -->
+  <view class="swiper-tab">
+    <view wx:for="{{titleList}}" wx:for-index="index" data-index="{{index}}" wx:for-item="item" wx:key="i" class="swiper-tab-list {{currentTab == index ? 'active' : ''}}" data-current="0" bindtap="swichNav" data-id="{{item.status}}">
+      <view class="tabImg">
+        <image src="../../img/{{item.tabImg}}.png" mode="widthFix"></image>
+        <!-- <view class="iconfont icon-{{item.tabImg}}" style="font-size:50rpx"></view> -->
+      </view>
+      {{item.name}}
+    </view>
+  </view> 
+  <view class="zwf"></view>
+  <view class="tipMessage {{showView ? 'showTrue' : 'showFalse'}}"></view>
+  <!-- <swiper current="{{currentTab}}" class="swiper-box " duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+    <swiper-item style="overflow: scroll;" wx:for='{{titleList}}' wx:key="j"> -->
+      <view class="order" wx:for="{{list}}" wx:key="i" wx:for-item="items">
+        <!-- 上边订单编号和订单状态 -->
+        <view class="orderTop" bindtap='goDetail' data-obj='{{items}}'>
+          <view class="orderNumber">订单编号：{{items.order_number}}</view>
+          <view class="orderStatus {{items.order_state == -1?'hui-text':''}}" wx:if="{{items.order_state == -1}}"><text class="yuan-dian {{items.order_state == -1?'hui-bg':''}}"/>已取消</view>
+          <view class="orderStatus {{items.order_state == -2?'hui-text':''}}" wx:if="{{items.order_state == -2}}"><text class="yuan-dian {{items.order_state == -2?'hui-bg':''}}"/>已取消</view>
+          <view class="orderStatus {{items.order_state == -3?'hui-text':''}}" wx:if="{{items.order_state == -3}}"><text class="yuan-dian {{items.order_state == -3?'hui-bg':''}}"/>已取消</view>
+          <view class="orderStatus {{items.order_state == 0?'red-text':''}}" wx:if="{{items.order_state == 0}}"><text class="yuan-dian {{items.order_state == 0?'red-bg':''}}"/>待付款</view>
+          <view class="orderStatus {{items.order_state == 1?'origin-text':''}}" wx:if="{{items.order_state == 1}}"><text class="yuan-dian {{items.order_state == 1?'origin-bg':''}}"/>待服务</view>
+          <view class="orderStatus {{items.order_state == 10?'origin-text':''}}" wx:if="{{items.order_state == 10}}"><text class="yuan-dian {{items.order_state == 10?'origin-bg':''}}"/>待服务</view>
+          <view class="orderStatus {{items.order_state == 11?'origin-text':''}}" wx:if="{{items.order_state == 11}}"><text class="yuan-dian {{items.order_state == 11?'origin-bg':''}}"/>服务中</view>
+          <!-- <view class="orderStatus" wx:if="{{items.order_state == 2}}">待评价</view> -->
+          <view class="orderStatus {{items.order_state == 2?'blue-text':''}}" wx:if="{{items.order_state == 2}}"><text class="yuan-dian {{items.order_state == 2?'blue-bg':''}}"/>已完成</view>
+        </view>
+        <!-- 订单服务项目，服务时间，服务地点 -->
+        <view class="orderBox" bindtap='goDetail' data-obj='{{items}}'>
+          <view class="order-box-left">
+            <image src="{{items.imgae_url}}" mode="widthFix"></image>
+          </view>
+          <view class="order-box-right">
+            <view class="title">{{items.service_name}}</view>
+            <view class="time">{{items.bespeak_time}}</view>
+            <view class="address">{{items.address}}</view>
+          </view>
+        </view>
+        <view class="orderBottom">
+          <view class="price {{items.order_state == 0?'red-text':items.order_state == 1?'origin-text':items.order_state == 2?'blue-text':''}}">总价：￥{{items.real_price}}</view>
+          <view class="btn" wx:if="{{items.order_state == -1 ||items.order_state == -2 ||items.order_state == -3 }}">
+          </view> 
+          <!-- 取消订单或立即支付 -->
+          <view class="btn" wx:if="{{items.order_state == 0}}">
+            <view class="cen" bindtap='cen' data-order='{{items.order_number}}'>取消订单</view>
+            <view class="payNow red-bg" bindtap='payNow' data-realprice="{{items.real_price}}" data-order='{{items.order_number}}' data-status='{{items.order_state}}' data-category='{{items.category}}'>立即付款</view>
+          </view>
+          <!-- 支付完成但未接单 -->
+          <view class="btn" wx:if="{{items.order_state == 1}}">
+            <view class="cen" bindtap='cen' data-order='{{items.order_number}}' data-phone="客服电话">联系客服</view>
+          </view>
+          <!-- 已接单待上门服务 -->
+          <view class="btn" wx:if="{{items.order_state == 10}}">
+            <view class="cen" bindtap='goDetail' data-obj='{{items}}'>查看订单</view>
+            <view class="begin origin-bg" data-order="{{items.order_number}}" bindtap="begin">开始服务</view>
+          </view>
+          <!-- 开始服务，等待结束 -->
+          <view class="btn" wx:if="{{items.order_state == 11}}">
+            <view class="cen" bindtap='goDetail' data-obj='{{items}}'>查看订单</view>
+            <view class="begin origin-bg" data-order="{{items.order_number}}" bindtap="endFw">结束服务</view>
+          </view>
+          <!-- <view class="btn" wx:if="{{items.order_state == 2}}">
+            <view class="payNow" bindtap='goEva' data-order='{{items.order_number}}'>评论</view>
+          </view> -->
+          <view class="btn" wx:if="{{items.order_state == 3}}">
+
+          </view>
+          <!-- 完成订单 -->
+          <view class="btn" wx:if="{{items.order_state == 2||items.order_state == -1}}">
+            <view class="cen" bindtap='goDetail' data-obj='{{items}}'>查看订单</view>
+          </view>
+
+        </view>
+        <view class="shadowLine"></view>
+      </view>
+      <view class="block {{displayBlock ? 'isShow' : 'isHide'}}">
+        <view class="iconfont icon-kongbaiye" style="font-size:261rpx"></view>
+        <!-- <image src="../../img/block.png"></image> -->
+      </view>
+      <view class="blockText {{displayBlock ? 'isShow' : 'isHide'}}">
+        <view>还没有订单哦~</view>
+        <view>全去挑选心仪的服务！</view>
+      </view>
+    <!-- </swiper-item>
+  </swiper> -->
+</view>
+<!-- <view class="mmzwf"></view>
+<view class="footer">
+  <view bindtap='goIndex'>首页</view>
+  <view class="active">我的订单</view>
+</view> -->
+
+<!-- 支付方式 -->
+<van-popup 
+  show="{{ show }}" 
+  bind:close="onClose"
+  position="bottom"
+  custom-style="height: 297rpx;"
+  >
+  <view class="show-titile">
+    <view class="title-text">请选择支付方式</view>
+    <view class="iconfont icon-quxiao1" bindtap="onClose"></view>
+  </view>
+  <view class="weixin-outer" bindtap="weixinPay" data-type="1">
+    <view class="iconfont icon-weixin1"></view>
+    <view class="weixin-text">微信支付</view>
+    <view class="iconfont icon-you"></view>
+  </view>
+  <view class="yue-outer" bindtap="yuePay" data-type="2">
+    <view class="iconfont icon-yue {{!payYE?'huise':''}}"></view>
+    <view class="yue-text {{!payYE?'huise':''}}">
+      <view>余额({{priceYE}})</view>
+      <view hidden="{{payYE}}">余额不足</view>
+    </view>
+    <view class="iconfont icon-you"></view>
+  </view>
+</van-popup>
+
+<!-- 余额支付弹框 -->
+<van-popup show="{{ yuePay }}" bind:close="onClose2" custom-style="width: 80%;border-radius:10rpx">
+  <view class="set-password">
+    <view class="tip">
+      <view>余额支付</view>
+      <view class="iconfont icon-quxiao1" bindtap="onClose2"></view>
+    </view>
+    <view class="password-money">￥{{realprice}}</view>
+    <!-- 密码框 -->
+    <view class="password-wrapper">
+      <!-- 使用自定义组件。绑定一个事件，接收组件传递的值 -->
+      <password-writing id="passwordWriting" bind:change="inputChange"></password-writing>
+    </view>
+    <!-- 下一步操作按钮 -->
+    <view class="btn-bottom" bindtap="checkPassword">确定支付</view>
+  </view>
+</van-popup>

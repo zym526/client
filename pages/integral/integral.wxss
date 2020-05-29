@@ -1,0 +1,39 @@
+page{
+  background-color: #F0F0F0;
+}
+.integral_top{
+  width: 100%;
+  /* background:-moz-linear-gradient(bottom,#1678FF 25%,#5DA1FF);
+  background:-webkit-linear-gradient(bottom,#1678FF 25%,#5DA1FF);
+  background:-o-linear-gradient(bottom,#1678FF 25%,#5DA1FF);
+  background:-ms-linear-gradient(bottom,#1678FF 25%,#5DA1FF);
+  background:linear-gradient(bottom,#1678FF 25%,#5DA1FF); */
+  background-color: #FF6600;
+  color: white;
+  box-sizing: border-box;
+  position: relative;
+}
+.integral_top_left{
+  text-align: center;
+  height: 220rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.integral_top_left_text{
+  font-size: 24rpx;
+  line-height: 50rpx;
+}
+.integral_top_left_money{
+  font-size: 70rpx;
+  line-height: 90rpx;
+}
+.integral_top_right{
+  position: absolute;
+  top: 0rpx;
+  right: 50rpx;
+  line-height: 220rpx;
+}
+.integral_top_right .icon-youjiantou{
+  font-size: 35rpx;
+}
