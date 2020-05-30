@@ -37,6 +37,7 @@ Page({
         showNull: false,
         userInfos: false,
         huakuai:false,//滑块函数触发
+        textEmpty:"",//空白页提示信息
     },
 
     onLoad: function (options) {
@@ -222,26 +223,41 @@ Page({
     // 进入求情tab
     get_service: function () {
         var that = this;
-        // 请求tab列表
-        wx.request({
-            url: app.globalData.url+'service_category_types',
-            dataType: "json",
-            data: {
-                category: that.data.category,
-                lon: getApp().globalData.lon,
-                lat: getApp().globalData.lat,
-                wsid: getApp().globalData.wsid
-            },
-            success: function (res) {
-                console.log("获取tab",res)
-                that.setData({
-                    firstId: res.data.data[that.data.currentTab].id,//导航id
-                    titleList: res.data.data//导航列表
-                })
-                that.loadCity(getApp().globalData.lon, getApp().globalData.lat)
-            }
+        // 如果有经纬度并且有wsid时请求数据
+        if(app.globalData.lat&&app.globalData.lon){
+            if(app.globalData.wsid!=""&&app.globalData.wsid){
+                // 请求tab列表
+                wx.request({
+                    url: app.globalData.url+'service_category_types',
+                    dataType: "json",
+                    data: {
+                        category: that.data.category,
+                        lon: getApp().globalData.lon,
+                        lat: getApp().globalData.lat,
+                        wsid: getApp().globalData.wsid
+                    },
+                    success: function (res) {
+                        console.log("获取tab",res)
+                        that.setData({
+                            firstId: res.data.data[that.data.currentTab].id,//导航id
+                            titleList: res.data.data//导航列表
+                        })
+                        that.loadCity(getApp().globalData.lon, getApp().globalData.lat)
+                    }
 
-        });
+                });
+            }else{
+                console.log("没有wsid")
+                that.setData({
+                    textEmpty:"您所在的位置没有代理商运营哦",
+                    showNull: true,
+                })
+            }  
+        // 如果没有经纬度则做请求
+        }else{
+            that.getPermission()
+        }
+        
     },
 
     // 进入我的订单
@@ -250,8 +266,156 @@ Page({
             url: '../orderList/orderList',
         })
     },
+
     /**
      * 组件的方法列表
      */
-    methods: {}
+    methods: {},
+
+
+    // 获取wsid
+    get_wsid: function (longitude, latitude) {
+        var that = this
+        // 发起请求获取wsid
+        wx.request({
+            url: app.globalData.url+"get_bd_wash_station",
+            method: "POST",
+            data: {
+                latitude: latitude,
+                longitude: longitude
+            },
+            success: function (res) {
+                console.log(res)
+                var wsid = res.data.data.wsid;
+                var wash_station = res.data.data.station
+                // 将wsid存储在app中并存储在缓存中
+                getApp().globalData.wsid = wsid
+                wx.setStorageSync("wsid", wsid);
+                that.get_service()
+            }
+        })
+    },
+    // 打开权限获取当前地理位置
+    openMap: function () {
+        let that = this;
+        // 微信获取用户当前权限
+        wx.getSetting({
+        success(res) {
+            console.log("map_success:",res)
+            //scope.userLocation是返回的是否打开位置权限，true为打开
+            if (!res.authSetting['scope.userLocation']) {
+            // 微信获取用户地理位置
+            wx.getLocation({
+                type: 'gcj02',
+                success: function (res) {
+                var longitude = res.longitude;
+                var latitude = res.latitude;
+                // 将经纬度存储在app的globalData中
+                getApp().globalData.lat = latitude;
+                getApp().globalData.lon = longitude;
+                that.get_wsid(longitude, latitude);
+                },
+            });
+            // 调起用户设置界面，设置权限
+            wx.openSetting({
+                //设置权限，这个列表中会包含用户已请求过的权限，可更改权限状态
+                success(res) {
+                //如果再次拒绝则返回页面并提示
+                if (!res.authSetting['scope.userLocation']) {
+                    wx.showToast({
+                    title: '为方便为您提供上门洗车服务，请开启小程序定位',
+                    duration: 3000,
+                    icon: 'none'
+                    })
+                } else {
+                    //允许授权，获取当前经纬度
+                    wx.getLocation({
+                    type: 'gcj02',
+                    success: function (res) {
+                        console.log(res)
+                        var longitude = res.longitude;
+                        var latitude = res.latitude;
+                        // 将经纬度存储在app的globalData中
+                        getApp().globalData.lat = latitude;
+                        getApp().globalData.lon = longitude;
+                        that.get_wsid(longitude, latitude);
+                    },
+                    });
+                    // 当允许获取当前位置时，存储addressText
+                    wx.setStorageSync("addressText", "");
+                }
+                }
+            })
+            } else {
+            //获取当前经纬度
+            wx.getLocation({
+                type: 'gcj02',
+                success: function (res) {
+                var longitude = res.longitude;
+                var latitude = res.latitude;
+                // 将经纬度存储在app的globalData中
+                getApp().globalData.lat = latitude;
+                getApp().globalData.lon = longitude;
+                that.get_wsid(longitude, latitude);
+                },
+            });
+            wx.setStorageSync("addressText", "");
+            }
+        }
+        })
+    },
+    //获取用户地理位置权限
+    getPermission: function () {
+        var that = this;
+        // 获取用户地理位置
+        wx.getLocation({
+        type: 'gcj02',
+        // 如果确定则调用openMap进行位置获取和转换
+        success: function (res) {
+            that.openMap();
+        },
+        // 如果失败再次授权并提示
+        fail: function () {
+            wx.getSetting({
+            success: function (res) {
+                var statu = res.authSetting;
+                // 如果拒绝获取再次提示获取
+                if (!statu['scope.userLocation']) {
+                wx.showModal({
+                    title: '是否授权当前位置',
+                    content: '需要获取您的地理位置，请确认授权，否则地图功能将无法使用',
+                    success: function (tip) {
+                    // 点击确定获取
+                    if (tip.confirm) {
+                        wx.openSetting({
+                        success: function (data) {
+                            if (data.authSetting["scope.userLocation"] === true) {
+                            //授权成功之后
+                            that.openMap();
+                            } else {
+                            console.log("授权取消！")
+                            }
+                        }
+                        })
+                    } else {
+                        wx.showToast({
+                        title: '您已取消位置权限，请手动选择定位！',
+                        icon: 'none',
+                        duration: 1000
+                        })
+                    }
+                    }
+                })
+                }
+            },
+            fail: function (res) {
+                console.log("窗口失败")
+            }
+            })
+        }
+        })
+        that.openMap();
+    },
+
+
 })

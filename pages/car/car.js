@@ -41,6 +41,7 @@ Page({
         carChepai : '',
         popupShow:false,//下弹出层
         popupShow2:false,//车型
+        carTypeId:"",//车辆id
     },
     onLoad: function (options) {
         let that = this;
@@ -101,17 +102,23 @@ Page({
         }
         that.setData({
             carView: !that.data.carView,
-            colorView: false,            
+            colorView: false,          
+            popupShow: false,  
         })
     },
     // 点击车牌添加
     chooseCar(e){
         let that = this;
-        if (e.currentTarget.dataset.id) {
-          that.setData({
-            carH: that.data.carH + e.currentTarget.dataset.id
-          })
+        if(that.data.carH.length<6){
+            if (e.currentTarget.dataset.id) {
+                that.setData({
+                  carH: that.data.carH + e.currentTarget.dataset.id
+                })
+            }
+        }else{
+            
         }
+        
         // if (that.data.carChepai.length >= 6) {
         //     that.setData({
         //         carH: '',
@@ -152,11 +159,24 @@ Page({
             popupShow: true
         })
     },
+    onConfirm(e){
+        var that=this
+        console.log(e.currentTarget.dataset.item)
+        that.setData({
+            showView : false ,
+            carView : false ,
+            popupShow: false,
+            carColor: e.currentTarget.dataset.item,
+        })
+    },
 
     openCarType(){
         var that=this
         that.setData({
             popupShow2:true,
+            showView:false,
+            carView:false,
+            popupShow:false
         })
     },
     onClose(){
@@ -178,13 +198,13 @@ Page({
     //         colorView: (!that.data.colorView)
     //     })
     // },
-    onConfirm(event) {
-        const { picker, value, index } = event.detail;
-        this.setData({
-            carColor: value,
-            popupShow:false
-        })
-    },
+    // onConfirm(event) {
+    //     const { picker, value, index } = event.detail;
+    //     this.setData({
+    //         carColor: value,
+    //         popupShow:false
+    //     })
+    // },
     onConfirm2(event){
         const { picker, value, index } = event.detail;
         this.setData({
@@ -235,7 +255,25 @@ Page({
                 icon: 'none',
                 duration: 2000
             })
-        }else{      
+            return
+        }
+        // else if(!e.detail.value.carColor||e.detail.value.carColor==""){
+        //     wx.showToast({
+        //         title: '请填写车辆颜色',
+        //         icon: 'none',
+        //         duration: 2000
+        //     })
+        //     return
+        // }
+        else if(that.data.carTypeId==null||String(that.data.carTypeId)==""){
+            wx.showToast({
+                title: '请选择车型',
+                icon: 'none',
+                duration: 2000
+            })
+            return
+        }else{    
+            console.log(that.data.carTypeId) 
             var car_number = that.data.city + e.detail.value.carH
             const stringCar = that.data.city + e.detail.value.carH + e.detail.value.carP + e.detail.value.carColor
             let myToken = wx.getStorageSync("token");
@@ -249,22 +287,37 @@ Page({
                     data: { car_color: e.detail.value.carColor, brand: '', car_number: car_number, id: that.data.carId,category_car:that.data.carTypeId},
                     success: function (res) {
                         console.log(res)
-                        wx.redirectTo({
-                            url: "../carList/carList"
+                        wx.showToast({
+                            title: res.data.msg,
+                            icon: 'none',
+                            duration: 2000
                         })
+                        if(res.data.code==200){
+                            wx.redirectTo({
+                                url: "../carList/carList"
+                            })
+                        }
                     }
                 })
             }else{
+                console.log(that.data.carTypeId,e.detail.value.carColor,car_number,e)
                 wx.request({
                 url: app.globalData.url+'add_car',
                     header: { "token": myToken },
                     data: { car_color: e.detail.value.carColor, brand: '', car_number: car_number,category_car:that.data.carTypeId,id:'' },
                     success: function (res) {
                         console.log(res)
-                        wx.setStorageSync("myCar_id", res.data.data.id)
-                        wx.redirectTo({
-                            url: "../carList/carList"
+                        wx.showToast({
+                            title: res.data.msg,
+                            icon: 'none',
+                            duration: 2000
                         })
+                        if(res.data.code==200){
+                            wx.setStorageSync("myCar_id", res.data.data.id)
+                            wx.redirectTo({
+                                url: "../carList/carList"
+                            })
+                        }
                     }
                 })
             }

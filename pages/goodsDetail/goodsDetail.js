@@ -98,7 +98,7 @@ Page({
                     wx.setStorageSync('car_category', res.data.data[0].car_category)
                     console.log("将第一个车辆信息存储")
                     if(res.data.data!==0){
-                        wx.setStorageSync('selectCar', res.data.data[0].car_number + "-" + res.data.data[0].car_color)
+                        wx.setStorageSync('selectCar', res.data.data[0].car_number)// + "-" + res.data.data[0].car_color
                         wx.setStorageSync('selectCarId', res.data.data[0].id)
                         var car_category=""
                         if (res.data.data[0].car_category==0){
@@ -108,21 +108,20 @@ Page({
                         } else if (res.data.data[0].car_category == 2) {
                           car_category="MPV"
                         }
-                      if (res.data.data[0].car_color && res.data.data[0].car_color!=""){
-                        that.setData({
-                          // carType: res.data.data[0].car_number + "-" + res.data.data[0].car_color,
-                          carType: res.data.data[0].car_number + "-" + res.data.data[0].car_color + "-" + car_category ,
-                          carId: res.data.data[0].id,
-                          car_category: res.data.data[0].car_category
-                        })
-                      }else{
+                      // if (res.data.data[0].car_color && res.data.data[0].car_color!=""){
+                      //   that.setData({
+                      //     carType: res.data.data[0].car_number + "-" + res.data.data[0].car_color + "-" + car_category ,
+                      //     carId: res.data.data[0].id,
+                      //     car_category: res.data.data[0].car_category
+                      //   })
+                      // }else{
                         that.setData({
                           // carType: res.data.data[0].car_number + "-" + res.data.data[0].car_color,
                           carType: res.data.data[0].car_number + "-" + car_category,
                           carId: res.data.data[0].id,
                           car_category: res.data.data[0].car_category
                         })
-                      }
+                      // }
                     }                   
                 } else {
                     console.log("有车辆信息",wx.getStorageSync("selectCar"))
@@ -233,11 +232,11 @@ Page({
         // 如果有最新的购买经历
         if(that.data.recently==="1"){
             console.log("买买买")
-            if(wx.getStorageSync('car_color')&&wx.getStorageSync('car_color')!=""){
-              wx.setStorageSync('selectCar', wx.getStorageSync('car_number') + "-" + wx.getStorageSync('car_color'))
-            }else{
+            // if(wx.getStorageSync('car_color')&&wx.getStorageSync('car_color')!=""){
+            //   wx.setStorageSync('selectCar', wx.getStorageSync('car_number') + "-" + wx.getStorageSync('car_color'))
+            // }else{
               wx.setStorageSync('selectCar', wx.getStorageSync('car_number'))
-            }
+            // }
             var car_category = ""
             if (wx.getStorageSync("car_category") == 0) {
               car_category = "轿车"
@@ -302,18 +301,18 @@ Page({
                         } else if (wx.getStorageSync("car_category") == 2) {
                           car_category="MPV"
                         }
-                      if (wx.getStorageSync("car_color") && wx.getStorageSync("car_color")!=""){
-                        that.setData({
-                          carType: wx.getStorageSync('car_number') + '-' + wx.getStorageSync('car_color')+'-'+car_category,
-                          carId: wx.getStorageSync('selectCarId')
-                        })
-                      }else{
+                      // if (wx.getStorageSync("car_color") && wx.getStorageSync("car_color")!=""){
+                      //   that.setData({
+                      //     carType: wx.getStorageSync('car_number') + '-' + wx.getStorageSync('car_color')+'-'+car_category,
+                      //     carId: wx.getStorageSync('selectCarId')
+                      //   })
+                      // }else{
                         console.log("缓存中有")
                         that.setData({
                           carType: wx.getStorageSync('car_number') + '-' + car_category,
                           carId: wx.getStorageSync('selectCarId')
                         })
-                      }
+                      // }
                         
                     } else {
                         var car_category = ""
@@ -825,19 +824,19 @@ Page({
         }else{
           console.log(that.data.car_category, that.data.allAfter)
           // 判断车辆信息是否缺少
-          if(that.data.carType.split("-").length==2){
-            Dialog.confirm({
+          // if(that.data.carType.split("-").length==2){
+          //   Dialog.confirm({
               // title: '标题',
-              message: '缺少车辆颜色，是否补全?',
-              confirmButtonText:"补全"
-            }).then(() => {
-                app.globalData.getInputValue=that.data.getInputValue
-                wx.redirectTo({
-                  url: '/pages/carList/carList',
-                })
-            }).catch(() => {
-            });
-          }else{
+              // message: '缺少车辆颜色，是否补全?',
+              // confirmButtonText:"补全"
+          //   }).then(() => {
+          //       app.globalData.getInputValue=that.data.getInputValue
+          //       wx.redirectTo({
+          //         url: '/pages/carList/carList',
+          //       })
+          //   }).catch(() => {
+          //   });
+          // }else{
             //判断车型是否一致
             if (that.data.car_category == that.data.allAfter.category_car){
               // 判断实付金额是否为0
@@ -981,7 +980,7 @@ Page({
               }).catch(() => {
               });
             }
-          }
+          // }
         }
     },
 

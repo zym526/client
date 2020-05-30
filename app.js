@@ -93,7 +93,8 @@ App({
 
     globalData: {
         userInfo: null,
-        url:"https://wash.xypvip.cn/",
+        // url:"https://wash.xypvip.cn/",
+        url:"http://192.168.10.62:83/",
         lat:null,
         lon:null,
         wsid:null,

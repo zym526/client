@@ -207,10 +207,12 @@ Page({
   // 输入车牌号
   chooseCar(e){
     let that = this;
-    if (e.currentTarget.dataset.id) {
-      that.setData({
-        city: that.data.city + e.currentTarget.dataset.id
-      })
+    if(that.data.city.length<6){
+      if (e.currentTarget.dataset.id) {
+        that.setData({
+          city: that.data.city + e.currentTarget.dataset.id
+        })
+      }
     }
   },
   // 车牌删除

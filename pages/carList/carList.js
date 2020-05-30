@@ -63,7 +63,7 @@ Page({
         let that = this;
         console.log(e)
         wx.setStorageSync("selectCar", e.currentTarget.dataset.item)
-        wx.setStorageSync("car_color", e.currentTarget.dataset.carcolor)
+        // wx.setStorageSync("car_color", e.currentTarget.dataset.carcolor)
         wx.setStorageSync("car_number", e.currentTarget.dataset.carnumber)
         wx.setStorageSync("selectCarId", e.currentTarget.dataset.carid)
         wx.setStorageSync('car_category', e.currentTarget.dataset.carcategory)

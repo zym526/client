@@ -110,20 +110,28 @@ Page({
                 console.log(res)
                 // 如果有洗过车能获取最近一次洗车记录
                 if(res.data.data){
-                  // 将车辆颜色，车牌信息，车辆id，经纬度存储起来
-                  wx.setStorageSync('car_color', res.data.data.car_color)
-                  wx.setStorageSync('car_number', res.data.data.car_number)
-                  wx.setStorageSync('myCar_id', res.data.data.car_id)
-                  wx.setStorageSync('lat', res.data.data.latitude)
-                  wx.setStorageSync('lon', res.data.data.longitude)
-                  wx.setStorageSync('bd_lat', res.data.data.latitude)
-                  wx.setStorageSync('bd_lng', res.data.data.longitude)
-                  wx.setStorageSync('fuwuId', res.data.data.service_id)
-                  wx.setStorageSync('car_category', res.data.data.car_category)
-                  // 跳转页面
-                  wx.navigateTo({
-                    url: '../goodsDetail/goodsDetail?recently=1&remark=' + res.data.data.remark,
-                  })
+                  if(wx.getStorageSync('wsid')!=""&&wx.getStorageSync('wsid')){
+                    // 将车辆颜色，车牌信息，车辆id，经纬度存储起来
+                    wx.setStorageSync('car_color', res.data.data.car_color)
+                    wx.setStorageSync('car_number', res.data.data.car_number)
+                    wx.setStorageSync('myCar_id', res.data.data.car_id)
+                    wx.setStorageSync('lat', res.data.data.latitude)
+                    wx.setStorageSync('lon', res.data.data.longitude)
+                    wx.setStorageSync('bd_lat', res.data.data.latitude)
+                    wx.setStorageSync('bd_lng', res.data.data.longitude)
+                    wx.setStorageSync('fuwuId', res.data.data.service_id)
+                    wx.setStorageSync('car_category', res.data.data.car_category)
+                    // 跳转页面
+                    wx.navigateTo({
+                      url: '../goodsDetail/goodsDetail?recently=1&remark=' + res.data.data.remark,
+                    })
+                  }else{
+                    wx.showToast({
+                      title: "无法获取站点信息",
+                      icon: 'none',
+                      duration: 2000
+                    })
+                  } 
                 //如果没洗过车 
                 }else{
                   // 判断所在地是否有站点
@@ -133,9 +141,9 @@ Page({
                     success: function (res) {
                       console.log("get_bd_wash_station", res)
                       // 没有站点
-                      if (res.data.code == 2) {
+                      if (res.data.code != 1) {
                         wx.showToast({
-                          title: '该位置没有服务站点',
+                          title: res.data.msg,
                           icon: 'none',
                           duration: 2000
                         })
@@ -406,10 +414,12 @@ Page({
   // 输入车牌号
   chooseCar(e){
     let that = this;
-    if (e.currentTarget.dataset.id) {
-      that.setData({
-        city: that.data.city + e.currentTarget.dataset.id
-      })
+    if(that.data.city.length<6){
+      if (e.currentTarget.dataset.id) {
+        that.setData({
+          city: that.data.city + e.currentTarget.dataset.id
+        })
+      }
     }
   },
   // 车牌删除
@@ -478,6 +488,7 @@ Page({
               icon: 'none',
               duration: 2000
             })
+            that.toGoodsDetail()
             // 隐藏确认框,添加矿,显示支付选择
             that.setData({
               isAddCarShow:false,
@@ -521,38 +532,46 @@ Page({
         longitude: longitude
       },
       success: function (res) {
-        var wsid = res.data.data.wsid;
-        var wash_station = res.data.data.station
-        // 将wsid存储在app中并存储在缓存中
-        getApp().globalData.wsid = wsid
-        wx.setStorageSync("wsid", wsid);
-        that.setData({
-          wsid:wsid
-        })
-        // 获取优惠券列表
-        wx.request({
-          url: app.globalData.url+"couponlist",
-          method: "GET",
-          data:{
-            wsid:wx.getStorageSync('wsid')
-          },
-          success: function (res) {
-            console.log(res)
-            var data=res.data.data
-            data.forEach(item=>{
-              if(item.type=="无门槛"){
-                item.text="送"+item.price+"元无门槛优惠券"
-              }else if(item.type=="免洗"){
-                item.text="送您一张免洗券"
-              }
-            })
-            that.setData({
-              banner:data
-            })
-            console.log(that.data.banner)
-          }
-        })
-        that.getYHQ()
+        if(res.data.code==1){
+          var wsid = res.data.data.wsid;
+          var wash_station = res.data.data.station
+          // 将wsid存储在app中并存储在缓存中
+          getApp().globalData.wsid = wsid
+          wx.setStorageSync("wsid", wsid);
+          that.setData({
+            wsid:wsid
+          })
+          // 获取优惠券列表
+          wx.request({
+            url: app.globalData.url+"couponlist",
+            method: "GET",
+            data:{
+              wsid:wx.getStorageSync('wsid')
+            },
+            success: function (res) {
+              console.log(res)
+              var data=res.data.data
+              data.forEach(item=>{
+                if(item.type=="无门槛"){
+                  item.text="送"+item.price+"元无门槛优惠券"
+                }else if(item.type=="免洗"){
+                  item.text="送您一张免洗券"
+                }
+              })
+              that.setData({
+                banner:data
+              })
+              console.log(that.data.banner)
+            }
+          })
+          that.getYHQ()
+        }else{
+          wx.showToast({
+            title: res.data.msg,
+            duration: 3000,
+            icon: 'none'
+          })
+        }
       }
     })
   },
@@ -601,9 +620,8 @@ Page({
           // 将经纬度存储在app的globalData中
           getApp().globalData.lat = latitude;
           getApp().globalData.lon = longitude;
-
-          that.get_wsid(longitude, latitude);
           that.getWeather()
+          that.get_wsid(longitude, latitude); 
         }
       })
     };
@@ -963,6 +981,14 @@ Page({
       }
       // 获取天气情况
       that.getWeather()
+      if(wx.getStorageSync('wsid') == ""||!wx.getStorageSync('wsid')){
+        wx.showToast({
+          title: '站点信息获取失败',
+          duration: 3000,
+          icon: 'none'
+        })
+        return
+      }
       // 获取优惠券列表
       wx.request({
         url: app.globalData.url+"couponlist",

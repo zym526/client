@@ -1,10 +1,10 @@
 <!--pages/index/index.wxml-->
 <view id="index">
   <view class="swiper-tab">
-    <view wx:for="{{titleList}}" wx:for-index="index" wx:for-item="item" wx:key="i" data-index="{{index}}" class="swiper-tab-list {{currentTab == index ? 'active' : ''}}" data-current="0" bindtap="swichNav" data-id="{{item.id}}">{{item.name}}</view>
+    <view style="width:calc(100% / {{titleList.length}})" wx:for="{{titleList}}" wx:for-index="index" wx:for-item="item" wx:key="i" data-index="{{index}}" class="swiper-tab-list {{currentTab == index ? 'active' : ''}}" data-current="0" bindtap="swichNav" data-id="{{item.id}}">{{item.name}}</view>
   </view>
   <view class="headerZwf"></view>
-  <swiper current="{{currentTab}}" class="swiper-box " duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 45}}px" bindchange="bindChange">
     <swiper-item style="overflow: scroll;" wx:for='{{titleList}}' wx:key="j">
       <view class="box" bindtap="toDetailAll" wx:for="{{list}}" wx:for-item="itemList" wx:key="j" data-all="{{itemList}}">
         <view class="item">
@@ -30,8 +30,11 @@
           <view class="btn" catchtap='goDetail' data-all="{{itemList}}">预约</view>
         </view>
       </view>
-      <view class="nullCity {{showNull ? 'showImg' : 'hideImg'}}">
-        <image src="../../img/nullCity.png"></image>
+    </swiper-item>
+    <swiper-item>
+      <view style="width:100%;display: {{showNull?'flex':'none'}};flex-direction: column;align-items: center;">
+        <image src="../../img/empty.png" mode="widthFix" style="width:220rpx;height:auto;margin-top:100rpx"></image>
+        <view style="font-size:26rpx;color:#999999;margin-top:30rpx;">{{textEmpty}}</view>
       </view>
     </swiper-item>
   </swiper>

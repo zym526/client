@@ -1,21 +1,26 @@
 <form bindsubmit='finish'>
     <view>
         <view class="userTime userName">
-            <input class="text" value='车牌号：' readonly="readonly" disabled/>
+            <!-- <input class="text" value='车牌号：' readonly="readonly" disabled/> -->
+            <view class="text">车牌号</view>
             <view id="getCity" bindtap='openCar'>{{city}}</view>
             <input placeholder='输入您的车牌号' value='{{carH}}' name="carH" disabled='disabled' bindtap='openCarNumber'/>
         </view>
 
-        <view class="userTime">
-            <input class="text" value='车身颜色：' readonly="readonly" disabled/>
-            <input placeholder='点击选择车身颜色' bindtap='openCarColor' value='{{carColor}}' name="carColor" disabled />
-        </view>
+        <!-- <view class="userTime user_color"> -->
+            <!-- <input class="text" value='车身颜色：' readonly="readonly" disabled/> -->
+            <!-- <view class="text">车身颜色</view>
+            <input placeholder='点击选择车身颜色' bindtap='openCarColor' value='{{carColor}}' name="carColor"/>
+            <view class="select_outer" hidden="{{!popupShow}}">
+                <view wx:for="{{chooseColor}}" wx:key="index" bindtap="onConfirm" data-item='{{item}}'>{{item}}</view>
+            </view>
+        </view> -->
 
-        <view class="userTime">
-            <input class="text" value='车型：' readonly="readonly" disabled/>
+        <view class="userTime car_type">
+            <!-- <input class="text" value='车型：' readonly="readonly" disabled/> -->
+            <view class="text">车型</view>
             <input placeholder='点击选择车型' bindtap='openCarType' value='{{carType2}}' name="carType" disabled />
         </view>
-
     </view>
     <!-- 城市选择 -->
     <view class="city hide{{showView?'show':''}}">
@@ -31,7 +36,7 @@
     <!-- <view class="openCarNumber carColor hide{{colorView?'show':''}}">
         <view class="cityItem" bindtap='chooseColor' data-id='{{item}}' wx:key="i" wx:for='{{chooseColor}}' wx:for-item='item'>{{item}}</view>
     </view> -->
-    <van-popup
+    <!-- <van-popup
         show="{{ popupShow }}"
         position="bottom"
         custom-style="height: calc(90rpx + 240px);"
@@ -46,7 +51,7 @@
             item-height="60"
             visible-item-count="4"
         />
-    </van-popup>
+    </van-popup> -->
 
     <van-popup
         show="{{ popupShow2 }}"
