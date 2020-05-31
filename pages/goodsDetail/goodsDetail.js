@@ -229,33 +229,6 @@ Page({
               console.log(error)
             }
         })
-        // 如果有最新的购买经历
-        if(that.data.recently==="1"){
-            console.log("买买买")
-            // if(wx.getStorageSync('car_color')&&wx.getStorageSync('car_color')!=""){
-            //   wx.setStorageSync('selectCar', wx.getStorageSync('car_number') + "-" + wx.getStorageSync('car_color'))
-            // }else{
-              wx.setStorageSync('selectCar', wx.getStorageSync('car_number'))
-            // }
-            var car_category = ""
-            if (wx.getStorageSync("car_category") == 0) {
-              car_category = "轿车"
-            } else if (wx.getStorageSync("car_category") == 1) {
-              car_category = "SUV"
-            } else if (wx.getStorageSync("car_category") == 2) {
-              car_category = "MPV"
-            }
-            that.setData({
-              carType: wx.getStorageSync('selectCar') + '-' + car_category,
-                carId: wx.getStorageSync('myCar_id'),
-                isBtn:false
-            })
-        // 如果没有最新的一次购买经历
-        }else{   
-            console.log("其他")  
-            wx.setStorageSync('selectCar', "")
-            that.get_mycar()
-        }
         if (getApp().globalData.wsid != null) {
             that.get_poi_list()
         }
@@ -328,6 +301,33 @@ Page({
                             carId: wx.getStorageSync("selectCarId")
                         })
                     }
+                  // 如果有最新的购买经历
+                  if (that.data.recently === "1") {
+                    console.log("买买买")
+                    // if(wx.getStorageSync('car_color')&&wx.getStorageSync('car_color')!=""){
+                    //   wx.setStorageSync('selectCar', wx.getStorageSync('car_number') + "-" + wx.getStorageSync('car_color'))
+                    // }else{
+                    wx.setStorageSync('selectCar', wx.getStorageSync('car_number'))
+                    // }
+                    var car_category = ""
+                    if (wx.getStorageSync("car_category") == 0) {
+                      car_category = "轿车"
+                    } else if (wx.getStorageSync("car_category") == 1) {
+                      car_category = "SUV"
+                    } else if (wx.getStorageSync("car_category") == 2) {
+                      car_category = "MPV"
+                    }
+                    that.setData({
+                      carType: wx.getStorageSync('selectCar') + '-' + car_category,
+                      carId: wx.getStorageSync('myCar_id'),
+                      isBtn: false
+                    })
+                    // 如果没有最新的一次购买经历
+                  } else {
+                    console.log("其他")
+                    wx.setStorageSync('selectCar', "")
+                    that.get_mycar()
+                  }
                 }
             }
         })
@@ -841,7 +841,7 @@ Page({
             if (that.data.car_category == that.data.allAfter.category_car){
               // 判断实付金额是否为0
               if (that.data.dealWith == 0){
-                console.log("实付金额为0")            
+                console.log("实付金额为0", that.data.optionsType)            
                 wx.showModal({
                     title: '提示',
                     content: '确定下单吗？',

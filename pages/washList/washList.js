@@ -208,6 +208,7 @@ Page({
                 if (res.data.data == "") {
                     page.setData({
                         showNull: true,
+                        textEmpty: "本地代理商没有开通该服务哦",
                     })
                 }
                 wx.hideLoading()
@@ -313,6 +314,11 @@ Page({
                 // 将经纬度存储在app的globalData中
                 getApp().globalData.lat = latitude;
                 getApp().globalData.lon = longitude;
+                // 将经纬度和地址信息存储在缓存中
+                wx.setStorageSync("lat", latitude);
+                wx.setStorageSync("lon", longitude);
+                wx.setStorageSync("bd_lat", latitude);
+                wx.setStorageSync("bd_lng", longitude);
                 that.get_wsid(longitude, latitude);
                 },
             });
@@ -338,6 +344,11 @@ Page({
                         // 将经纬度存储在app的globalData中
                         getApp().globalData.lat = latitude;
                         getApp().globalData.lon = longitude;
+                        // 将经纬度和地址信息存储在缓存中
+                        wx.setStorageSync("lat", latitude);
+                        wx.setStorageSync("lon", longitude);
+                        wx.setStorageSync("bd_lat", latitude);
+                        wx.setStorageSync("bd_lng", longitude);
                         that.get_wsid(longitude, latitude);
                     },
                     });
@@ -356,6 +367,11 @@ Page({
                 // 将经纬度存储在app的globalData中
                 getApp().globalData.lat = latitude;
                 getApp().globalData.lon = longitude;
+                // 将经纬度和地址信息存储在缓存中
+                wx.setStorageSync("lat", latitude);
+                wx.setStorageSync("lon", longitude);
+                wx.setStorageSync("bd_lat", latitude);
+                wx.setStorageSync("bd_lng", longitude);
                 that.get_wsid(longitude, latitude);
                 },
             });

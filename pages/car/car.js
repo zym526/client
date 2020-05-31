@@ -287,15 +287,21 @@ Page({
                     data: { car_color: e.detail.value.carColor, brand: '', car_number: car_number, id: that.data.carId,category_car:that.data.carTypeId},
                     success: function (res) {
                         console.log(res)
-                        wx.showToast({
-                            title: res.data.msg,
-                            icon: 'none',
-                            duration: 2000
-                        })
-                        if(res.data.code==200){
+                        if(res.data.code==1){
+                            wx.showToast({
+                              title: "修改成功",
+                              icon: 'none',
+                              duration: 2000
+                            })
                             wx.redirectTo({
                                 url: "../carList/carList"
                             })
+                        }else{
+                          wx.showToast({
+                            title: res.data.msg,
+                            icon: 'none',
+                            duration: 2000
+                          })
                         }
                     }
                 })
@@ -307,16 +313,22 @@ Page({
                     data: { car_color: e.detail.value.carColor, brand: '', car_number: car_number,category_car:that.data.carTypeId,id:'' },
                     success: function (res) {
                         console.log(res)
-                        wx.showToast({
-                            title: res.data.msg,
-                            icon: 'none',
-                            duration: 2000
-                        })
-                        if(res.data.code==200){
+                        if(res.data.code==1){
+                            wx.showToast({
+                              title: "添加成功",
+                              icon: 'none',
+                              duration: 2000
+                            })
                             wx.setStorageSync("myCar_id", res.data.data.id)
                             wx.redirectTo({
                                 url: "../carList/carList"
                             })
+                        }else{
+                          wx.showToast({
+                            title: res.data.msg,
+                            icon: 'none',
+                            duration: 2000
+                          })
                         }
                     }
                 })
