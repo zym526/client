@@ -3,7 +3,7 @@
     <view class="inside-text-one">加入芯意洗</view>
     <view class="inside-text-two">高收入 超稳定 更自由</view>
   </view>
-  <view class="inside-address">杭州市西湖区</view>
+  <view class="inside-address">{{address}}</view>
   <image src="https://imgxypvipcn.oss-cn-hangzhou.aliyuncs.com/7cad66a8145cfeb9daf9296a7e2b6b4c-C%3A%5CUsers%5C22659%5CAppData%5CLocal%5CTemp%5Cphp498A.tmp.png" mode="widthFix"></image>
 </view>
 <!-- 文字 -->

@@ -22,7 +22,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -58,35 +58,7 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "pages/orderList/orderList",
-					"pathName": "pages/orderList/orderList",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/goodsDetail/goodsDetail",
-					"pathName": "pages/goodsDetail/goodsDetail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/washList/washList",
-					"pathName": "pages/washList/washList",
-					"query": "currentTab=0&category=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/car/car",
-					"pathName": "pages/car/car",
-					"scene": null
-				}
-			]
+			"list": []
 		}
 	}
 }

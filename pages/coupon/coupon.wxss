@@ -5,7 +5,7 @@ page{
 .outer{
   padding: 21rpx 29rpx;
   box-sizing: border-box;
-  margin-bottom: 108rpx;
+  margin-bottom: 20rpx;
 }
 .one_discount_title{
   font-size: 26rpx;
@@ -110,6 +110,8 @@ page{
 .clip_only_bottom .van-radio .van-radio__icon-wrap{
   height: 52rpx!important;
   background-color: rgba(0,0,0,0)!important;
+  display: flex;
+  align-items: center;
 }
 .van-radio{
   width: 52rpx;
@@ -169,7 +171,7 @@ page{
 .fuwuka{
   padding: 21rpx 29rpx;
   box-sizing: border-box;
-  margin-bottom: 108rpx;
+  margin-bottom: 18rpx;
 }
 .fuwuka-top-title{
   font-size: 26rpx;
@@ -253,4 +255,28 @@ page{
 .van-radio__icon-wrap{
   background-color: white;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+}
+/* 不使用 */
+.noUse{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  align-items: center;
+  margin-bottom: 18rpx;
+}
+.noUse_text{
+  font-size: 32rpx;
+}
+.fuwuka .noUse{
+  background-color: #FF6600;
+  color: white;
+}
+.fuwuka .van-radio__icon-wrap{
+  background-color: rgba(0,0,0,0);
 }

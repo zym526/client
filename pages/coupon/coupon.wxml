@@ -1,14 +1,21 @@
  <view class="outer" hidden="{{type=='1'}}">
   <!-- 优惠券 -->
   <view class="one_discount_outer" hidden="{{usableCoupon.length==0}}">
-    <view class="one_discount_title">可用优惠券</view>
     <van-radio-group value="{{ radio }}" bind:change="onChange">
+      <!-- 不使用优惠券 -->
+      <view class="noUse">
+        <view class="noUse_text">不使用优惠券</view>
+        <van-radio use-icon-slot value="{{ radio }}" name="">
+          <image slot="icon" src="{{ radio === '' ? yesActive : noActive }}" mode="widthFix" style="width:52rpx;height:auto"/>
+        </van-radio>
+      </view>
+      <view class="one_discount_title">可用优惠券</view>
       <view class="one_discount" wx:for="{{usableCoupon}}" wx:key="index">
         <view class="discount_left">
           <image src="../../img/all-tou.png" class="discount_left_tou"></image>
           <view class="discount_text">
             <view class="discount_left_text {{item.couponprice==0?'qitaColor2':'qitaColor'}}">
-              <view class="discount_left_text_top {{item.couponprice==0?'discount_left_text_color':'discount_left_text_color1'}}">{{item.couponprice==0?'体验券':'优惠券'}}</view>
+              <view class="discount_left_text_top {{item.couponprice==0?'discount_left_text_color':'discount_left_text_color1'}}">{{item.couponprice==0?'体验券':'抵用券'}}</view>
               <view class="discount_left_text_bottom">
                 <text>{{item.couponprice==0?'体验':item.couponprice}}</text>{{item.couponprice==0?'':'元'}}
               </view>
@@ -65,8 +72,15 @@
 <!-- 服务卡 -->
 <view class="fuwuka" hidden="{{type!='1'}}">
   <view class="fuwuka-top" hidden="{{usableTimecard.length==0}}">
-    <view class="fuwuka-top-title">可用服务卡</view>
     <van-radio-group value="{{ radio }}" bind:change="onChange">
+      <!-- 不使用服务卡 -->
+      <view class="noUse">
+        <view class="noUse_text">不使用服务卡</view>
+        <van-radio use-icon-slot value="{{ radio }}" name="">
+          <image slot="icon" src="{{ radio === '' ? activeIcon : inactiveIcon }}" mode="widthFix" style="width:52rpx;height:auto"/>
+        </van-radio>
+      </view>
+      <view class="fuwuka-top-title">可用服务卡</view>
       <view class="clip_only_outer" style="background:{{item.color}};" wx:for="{{usableTimecard}}" wx:key="index">
         <!-- 顶部 -->
         <view class="clip_only_top">
@@ -133,4 +147,4 @@
 </view>
 
 <!-- 确定框 -->
-<view class="btn-bottom" bindtap="toDetail">确定</view>
+<!-- <view class="btn-bottom" bindtap="toDetail">确定</view> -->

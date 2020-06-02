@@ -12,19 +12,26 @@
   </view>
 </view> -->
 <view class="container">
-    <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend='touchEnd' wx:for="{{carList}}" wx:key="">
-        <view class="content">
-            <view class="title" bindtap='selectCar' data-carId="{{item.id}}" data-carColor="{{item.car_color}}" data-carNumber="{{item.car_number}}" data-carCategory="{{item.car_category}}" data-item="{{item.car_number}}-{{item.brand}}">车辆{{index + 1}}</view><!-- {{item.car_color?'-'+item.car_color:''}} -->
-            <view class="type" bindtap='selectCar' wx:if="{{item.brand}}" data-carColor="{{item.car_color}}" data-carNumber="{{item.car_number}}" data-carCategory="{{item.car_category}}" data-carId="{{item.id}}" data-item="{{item.car_number}}-{{item.brand}}">{{item.car_number}}-{{item.brand}}</view><!-- {{item.car_color?'-'+item.car_color:''}}  {{item.car_color}} -->
-            <view class="type" bindtap='selectCar' wx:if="{{!item.brand}}" data-carColor="{{item.car_color}}" data-carNumber="{{item.car_number}}" data-carCategory="{{item.car_category}}" data-carId="{{item.id}}" data-item="{{item.car_number}}">{{item.car_number}}{{item.car_category==0?'-轿车':item.car_category==1?'-SUV':'-MPV'}}</view><!--  {{item.car_color?'-'+item.car_color:''}}  {{item.car_color&&item.car_color!=""?'-'+item.car_color:''}}  -->
-            <view class="img" bindtap='selectCar' data-carId="{{item.id}}" data-carColor="{{item.car_color}}" data-carNumber="{{item.car_number}}" data-carCategory="{{item.car_category}}" data-item="{{item.car_number}}-{{item.brand}}"><!-- {{item.car_color?'-'+item.car_color:''}} -->
-                <view class="iconfont icon-you" style="font-size:30rpx"></view>
-            </view>
+    <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" wx:for="{{carList}}" wx:key="">
+        <view class="content" bindtap='selectCar' data-carId="{{item.id}}" data-carCategory="{{item.car_category}}" data-carNumber="{{item.car_number}}" data-carColor="{{item.car_color}}" data-item="{{item.car_number}}{{item.brand?'-'+item.brand:''}}">
+            <!-- <view class="title" bindtap='selectCar' data-carId="{{item.id}}" data-carColor="{{item.car_color}}" data-carNumber="{{item.car_number}}" data-carCategory="{{item.car_category}}" data-item="{{item.car_number}}-{{item.brand}}">车辆{{index + 1}}</view>{{item.car_color?'-'+item.car_color:''}} -->
+            <!-- <view class="type" bindtap='selectCar' wx:if="{{item.brand}}" data-carColor="{{item.car_color}}" data-carNumber="{{item.car_number}}" data-carCategory="{{item.car_category}}" data-carId="{{item.id}}" data-item="{{item.car_number}}-{{item.brand}}">{{item.car_number}}-{{item.brand}}</view>{{item.car_color?'-'+item.car_color:''}}  {{item.car_color}} -->
+            <!-- <view class="type" bindtap='selectCar' wx:if="{{!item.brand}}" data-carColor="{{item.car_color}}" data-carNumber="{{item.car_number}}" data-carCategory="{{item.car_category}}" data-carId="{{item.id}}" data-item="{{item.car_number}}">{{item.car_number}}{{item.car_category==0?'-轿车':item.car_category==1?'-SUV':'-MPV'}}</view> {{item.car_color?'-'+item.car_color:''}}  {{item.car_color&&item.car_color!=""?'-'+item.car_color:''}}  -->
+            <!-- <view class="img" bindtap='selectCar' data-carId="{{item.id}}" data-carColor="{{item.car_color}}" data-carNumber="{{item.car_number}}" data-carCategory="{{item.car_category}}" data-item="{{item.car_number}}-{{item.brand}}">{{item.car_color?'-'+item.car_color:''}} -->
+                <!-- <view class="iconfont icon-you" style="font-size:30rpx"></view>
+            </view> -->
+            <view class="title">车辆{{index + 1}}</view>
+            <view class="type" wx:if="{{item.brand}}">{{item.car_number}}-{{item.brand}}</view>
+            <view class="type" wx:if="{{!item.brand}}">{{item.car_number}}{{item.car_category==0?'-轿车':item.car_category==1?'-SUV':'-MPV'}}</view>
         </view>
-        <view class="del" data-index="{{index}}">
+        <view class="img">
+            <view class="iconfont icon-bianji" style="color:8a8a8a;font-size:32rpx;margin-right:20rpx" data-carId="{{item.id}}" data-obj="{{item}}" catchtap='edit'></view>
+            <view class="iconfont icon-shanchu" style="color:8a8a8a;font-size:36rpx" data-carId="{{item.id}}" catchtap='del'></view>
+        </view>
+        <!-- <view class="del" data-index="{{index}}">
             <view class="edit" data-carId="{{item.id}}" data-obj="{{item}}" catchtap='edit'>编辑</view>
             <view class="dels" data-carId="{{item.id}}" catchtap='del'>删除</view>
-        </view>
+        </view> -->
     </view>
 </view>
 <view class="addCar" bindtap='addCar'>添加新车辆</view>

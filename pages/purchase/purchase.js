@@ -23,6 +23,7 @@ Page({
     car1:"",
     car2:"",
     car3:"",
+    showNull:false,
   },
   cartoon(e){
     var that=this
@@ -449,53 +450,6 @@ Page({
     that.setData({
       allCarCity:carCity.allCarCity
     })
-    // 获取服务卡列表
-    wx.request({
-      url: app.globalData.url+"timecard",
-      header:{ "token": wx.getStorageSync('token') },
-      method: "POST",
-      data: {
-        wsid: wx.getStorageSync('wsid')
-      },
-      success(res){
-        if(res.data.code===200){
-          if(res.data.data.length===0){
-            that.setData({
-              isShow:true
-            })
-          }else{
-            var data=res.data.data
-            // category_car 0 轿车 1 SUV 2 MPV
-            data.forEach(item=>{
-              if(item.category_car==0){
-                item.color="#FF6600",
-                item.bg="small-car.png"
-              } else if(item.category_car==1){
-                item.color="#1678FF",
-                item.bg="SUV.png"
-              } else if(item.category_car==2){
-                item.color="#59493F",
-                item.bg="MPV.png"
-              } 
-              item.rules=item.rules.split("@")
-            })
-            that.setData({
-              clip:data,
-              isShow:false
-            })
-          }
-        }else{
-          wx.showToast({
-            title: res.data.msg,
-            icon: 'none',
-            duration: 2000
-          })
-        }
-      },
-      fail(error){
-        console.log(error)
-      }
-    })
   },
 
   /**
@@ -509,13 +463,78 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that=this
     this.passwordBox = this.selectComponent('#addCarPopup')
     this.setData({
       carNumber: app.globalData.carNumber,
       cityList: app.globalData.cityList
     })
+    that.panduan()
   },
 
+  panduan(){
+    var that=this
+    // 判断是否获取到定位
+    if(app.globalData.lat&&app.globalData.lon){
+      if(app.globalData.wsid!=""&&app.globalData.wsid){
+        // 获取服务卡列表
+        wx.request({
+          url: app.globalData.url+"timecard",
+          header:{ "token": wx.getStorageSync('token') },
+          method: "POST",
+          data: {
+            wsid: wx.getStorageSync('wsid')
+          },
+          success(res){
+            if(res.data.code===200){
+              if(res.data.data.length===0){
+                that.setData({
+                  isShow:true
+                })
+              }else{
+                var data=res.data.data
+                // category_car 0 轿车 1 SUV 2 MPV
+                data.forEach(item=>{
+                  if(item.category_car==0){
+                    item.color="#FF6600",
+                    item.bg="small-car.png"
+                  } else if(item.category_car==1){
+                    item.color="#1678FF",
+                    item.bg="SUV.png"
+                  } else if(item.category_car==2){
+                    item.color="#59493F",
+                    item.bg="MPV.png"
+                  } 
+                  item.rules=item.rules.split("@")
+                })
+                that.setData({
+                  clip:data,
+                  isShow:false
+                })
+              }
+            }else{
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'none',
+                duration: 2000
+              })
+            }
+          },
+          fail(error){
+            console.log(error)
+          }
+        })
+      }else{
+        that.setData({
+          textEmpty:"您所在的位置没有代理商运营哦",
+          showNull: true,
+          isShow:false
+        })
+      }
+    }else{
+      that.getPermission()
+    }
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -559,6 +578,163 @@ Page({
       currentValue
     })
   },
-
+    // 获取wsid
+    get_wsid: function (longitude, latitude) {
+        var that = this
+        // 发起请求获取wsid
+        wx.request({
+            url: app.globalData.url+"get_bd_wash_station",
+            method: "POST",
+            data: {
+                latitude: latitude,
+                longitude: longitude
+            },
+            success: function (res) {
+                console.log(res)
+                var wsid = res.data.data.wsid;
+                var wash_station = res.data.data.station
+                // 将wsid存储在app中并存储在缓存中
+                getApp().globalData.wsid = wsid
+                wx.setStorageSync("wsid", wsid);
+                that.panduan()
+            }
+        })
+    },
+    // 打开权限获取当前地理位置
+    openMap: function () {
+        let that = this;
+        // 微信获取用户当前权限
+        wx.getSetting({
+        success(res) {
+            console.log("map_success:",res)
+            //scope.userLocation是返回的是否打开位置权限，true为打开
+            if (!res.authSetting['scope.userLocation']) {
+            // 微信获取用户地理位置
+            wx.getLocation({
+                type: 'gcj02',
+                success: function (res) {
+                var longitude = res.longitude;
+                var latitude = res.latitude;
+                // 将经纬度存储在app的globalData中
+                getApp().globalData.lat = latitude;
+                getApp().globalData.lon = longitude;
+                // 将经纬度和地址信息存储在缓存中
+                wx.setStorageSync("lat", latitude);
+                wx.setStorageSync("lon", longitude);
+                wx.setStorageSync("bd_lat", latitude);
+                wx.setStorageSync("bd_lng", longitude);
+                that.get_wsid(longitude, latitude);
+                },
+            });
+            // 调起用户设置界面，设置权限
+            wx.openSetting({
+                //设置权限，这个列表中会包含用户已请求过的权限，可更改权限状态
+                success(res) {
+                //如果再次拒绝则返回页面并提示
+                if (!res.authSetting['scope.userLocation']) {
+                    wx.showToast({
+                    title: '为方便为您提供上门洗车服务，请开启小程序定位',
+                    duration: 3000,
+                    icon: 'none'
+                    })
+                } else {
+                    //允许授权，获取当前经纬度
+                    wx.getLocation({
+                    type: 'gcj02',
+                    success: function (res) {
+                        console.log(res)
+                        var longitude = res.longitude;
+                        var latitude = res.latitude;
+                        // 将经纬度存储在app的globalData中
+                        getApp().globalData.lat = latitude;
+                        getApp().globalData.lon = longitude;
+                        // 将经纬度和地址信息存储在缓存中
+                        wx.setStorageSync("lat", latitude);
+                        wx.setStorageSync("lon", longitude);
+                        wx.setStorageSync("bd_lat", latitude);
+                        wx.setStorageSync("bd_lng", longitude);
+                        that.get_wsid(longitude, latitude);
+                    },
+                    });
+                    // 当允许获取当前位置时，存储addressText
+                    wx.setStorageSync("addressText", "");
+                }
+                }
+            })
+            } else {
+            //获取当前经纬度
+            wx.getLocation({
+                type: 'gcj02',
+                success: function (res) {
+                var longitude = res.longitude;
+                var latitude = res.latitude;
+                // 将经纬度存储在app的globalData中
+                getApp().globalData.lat = latitude;
+                getApp().globalData.lon = longitude;
+                // 将经纬度和地址信息存储在缓存中
+                wx.setStorageSync("lat", latitude);
+                wx.setStorageSync("lon", longitude);
+                wx.setStorageSync("bd_lat", latitude);
+                wx.setStorageSync("bd_lng", longitude);
+                that.get_wsid(longitude, latitude);
+                },
+            });
+            wx.setStorageSync("addressText", "");
+            }
+        }
+        })
+    },
+    //获取用户地理位置权限
+    getPermission: function () {
+        var that = this;
+        // 获取用户地理位置
+        wx.getLocation({
+        type: 'gcj02',
+        // 如果确定则调用openMap进行位置获取和转换
+        success: function (res) {
+            that.openMap();
+        },
+        // 如果失败再次授权并提示
+        fail: function () {
+            wx.getSetting({
+            success: function (res) {
+                var statu = res.authSetting;
+                // 如果拒绝获取再次提示获取
+                if (!statu['scope.userLocation']) {
+                wx.showModal({
+                    title: '是否授权当前位置',
+                    content: '需要获取您的地理位置，请确认授权，否则地图功能将无法使用',
+                    success: function (tip) {
+                    // 点击确定获取
+                    if (tip.confirm) {
+                        wx.openSetting({
+                        success: function (data) {
+                            if (data.authSetting["scope.userLocation"] === true) {
+                            //授权成功之后
+                            that.openMap();
+                            } else {
+                            console.log("授权取消！")
+                            }
+                        }
+                        })
+                    } else {
+                        wx.showToast({
+                        title: '您已取消位置权限，请手动选择定位！',
+                        icon: 'none',
+                        duration: 1000
+                        })
+                    }
+                    }
+                })
+                }
+            },
+            fail: function (res) {
+                console.log("窗口失败")
+            }
+            })
+        }
+        })
+        that.openMap();
+    },
 
 })

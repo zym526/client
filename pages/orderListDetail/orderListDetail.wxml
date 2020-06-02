@@ -42,7 +42,7 @@
   </view>
   <view class="box">
     <view class="box-left">车辆信息</view>
-    <view class="box-right">{{obj.service_car}}</view>
+    <view class="box-right">{{obj.car_number}}{{obj.car_type?'-'+obj.car_type:''}}</view><!-- 拼接车型 -->
   </view>
   <view class="box">
     <view class="box-left">联系电话</view>
@@ -57,7 +57,7 @@
     <view class="box-left">服务人</view>
     <view class="box-right">{{obj.workman_name}}</view>
   </view>
-  <view class="box borderNone">
+  <view class="box borderNone" bindtap="toTel">
     <view class="box-left">服务电话</view>
     <view class="box-right">{{obj.workman_phone}}</view>
   </view>

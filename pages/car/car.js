@@ -287,7 +287,7 @@ Page({
                     data: { car_color: e.detail.value.carColor, brand: '', car_number: car_number, id: that.data.carId,category_car:that.data.carTypeId},
                     success: function (res) {
                         console.log(res)
-                        if(res.data.code==1){
+                        if(res.data.code==200){
                             wx.showToast({
                               title: "修改成功",
                               icon: 'none',
@@ -313,7 +313,7 @@ Page({
                     data: { car_color: e.detail.value.carColor, brand: '', car_number: car_number,category_car:that.data.carTypeId,id:'' },
                     success: function (res) {
                         console.log(res)
-                        if(res.data.code==1){
+                        if(res.data.code==200){
                             wx.showToast({
                               title: "添加成功",
                               icon: 'none',

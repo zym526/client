@@ -150,7 +150,7 @@
 <van-popup 
   round
   show="{{ isAddCarShow }}"
-  custom-style="width:624rpx;border-radius:10rpx"
+  custom-style="width:624rpx;border-radius:10rpx;top:330rpx"
   z-index="100"
   bind:close="onClose"
 >

@@ -166,7 +166,7 @@ Page({
         wx.setStorageSync('selectCar', "")
         wx.setStorageSync('selectCarId', "")
         app.globalData.getInputValue=that.data.getInputValue
-        wx.redirectTo({
+        wx.navigateTo({
             url: '../carList/carList',
         })
     },
@@ -182,7 +182,7 @@ Page({
           return
         }else{
           app.globalData.getInputValue=that.data.getInputValue
-          wx.redirectTo({
+          wx.navigateTo({
             url: '/pages/coupon/coupon?type=' + type+"&recently=1",
           })
         }
@@ -191,7 +191,7 @@ Page({
           return
         }else{
           app.globalData.getInputValue=that.data.getInputValue
-          wx.redirectTo({
+          wx.navigateTo({
             url: '/pages/coupon/coupon?type=' + type+"&recently=1",
           })
         }
@@ -412,10 +412,11 @@ Page({
                                 optionsType: 2
                               })
                               that.data.youhui.forEach(item => {
+                                console.log(item)
                                 if (item.id == options.youhuiId) {
                                   if (item.couponprice == 0) {
                                     that.setData({
-                                      price: "免洗券",
+                                      price: item.title,
                                       // price2: "未使用"
                                     })
                                   } else {
@@ -974,7 +975,7 @@ Page({
                 confirmButtonText:"切换车型"
               }).then(() => {
                   app.globalData.getInputValue=that.data.getInputValue
-                  wx.redirectTo({
+                  wx.navigateTo({
                     url: '/pages/carList/carList',
                   })
               }).catch(() => {

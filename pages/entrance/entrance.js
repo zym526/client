@@ -16,6 +16,7 @@ Page({
     isAddCarShow:false,//填写车辆信息弹窗
     id:0,
     onlyTC:true,//地区性弹窗
+    map:""
   },
   toLogin(){
     wx.navigateTo({
@@ -92,6 +93,14 @@ Page({
         url: app.globalData.url+'get_my_cars',
         header: { "token": wx.getStorageSync('token') },
         success: res => {
+          if(res.data.code==401){
+            wx.showToast({
+              title: "token失效，稍后请重试",
+              icon: 'none',
+              duration: 2000
+            })
+            that.getToken()
+          }
           if(res.data.data.length==0){
             that.getCity()
             that.setData({
@@ -108,6 +117,14 @@ Page({
               },
               success: function (res) {
                 console.log(res)
+                if(res.data.code==401){
+                  wx.showToast({
+                    title: "token失效，稍后请重试",
+                    icon: 'none',
+                    duration: 2000
+                  })
+                  that.getToken()
+                }
                 // 如果有洗过车能获取最近一次洗车记录
                 if(res.data.data){
                   if(wx.getStorageSync('wsid')!=""&&wx.getStorageSync('wsid')){
@@ -141,7 +158,7 @@ Page({
                     success: function (res) {
                       console.log("get_bd_wash_station", res)
                       // 没有站点
-                      if (res.data.code != 1) {
+                      if (res.data.code != 200) {
                         wx.showToast({
                           title: res.data.msg,
                           icon: 'none',
@@ -230,7 +247,7 @@ Page({
     var cid=e.currentTarget.dataset.cid
     var that=this
     // 判断是否登录
-    if(wx.getStorageSync('chooseUser_phone')&&wx.getStorageSync('userInfo')){
+    if(wx.getStorageSync('chooseUser_phone')&&wx.getStorageSync('userInfo')&&wx.getStorageSync('uid')){
       // 请求获取优惠券
       wx.request({
         url: app.globalData.url+"getcoupon",
@@ -241,6 +258,14 @@ Page({
           uid: wx.getStorageSync('uid')
         },
         success: function (res) {
+          if(res.data.code==401){
+            wx.showToast({
+              title: "token失效，稍后请重试",
+              icon: 'none',
+              duration: 2000
+            })
+            that.getToken()
+          }
           if(res.data.code===200){
             that.setData({
               discountShow:false
@@ -256,9 +281,9 @@ Page({
             //     url: '/pages/discounts/discounts?nweText=优惠券',
             //   })
             // },3000)
-          }else if(res.data.code===204){
+          }else{
             wx.showToast({
-              title: '您已领取过了~',
+              title: res.data.msg,
               duration: 3000,
               icon: 'none'
             })
@@ -294,6 +319,14 @@ Page({
         url: app.globalData.url+'get_my_cars',
         header: { "token": wx.getStorageSync('token') },
         success: res => {
+          if(res.data.code==401){
+            wx.showToast({
+              title: "token失效，稍后请重试",
+              icon: 'none',
+              duration: 2000
+            })
+            that.getToken()
+          }
           if(res.data.data.length==0){
             that.getCity()
             that.setData({
@@ -311,6 +344,14 @@ Page({
                 uid: wx.getStorageSync('uid')
               },
               success: function (res) {
+                if(res.data.code==401){
+                  wx.showToast({
+                    title: "token失效，稍后请重试",
+                    icon: 'none',
+                    duration: 2000
+                  })
+                  that.getToken()
+                }
                   that.setData({
                     onlyTC:true
                   })
@@ -481,6 +522,14 @@ Page({
           header: { "token": myToken },
           data: { brand: '', car_number: car_number, category_car:that.data.id,car_color:"",id:"" },
           success: function (res) {
+            if(res.data.code==401){
+              wx.showToast({
+                title: "token失效，稍后请重试",
+                icon: 'none',
+                duration: 2000
+              })
+              that.getToken()
+            }
             console.log(123,res)
             wx.setStorageSync("myCar_id", res.data.data.id)
             wx.showToast({
@@ -509,7 +558,7 @@ Page({
   onLoad: function (options) {
     var that=this;
     that.setData({
-      map:options.map,
+      // map:options.map,
       allCarCity:carCity.allCarCity
     })
   },
@@ -532,7 +581,7 @@ Page({
         longitude: longitude
       },
       success: function (res) {
-        if(res.data.code==1){
+        if(res.data.code==200){
           var wsid = res.data.data.wsid;
           var wash_station = res.data.data.station
           // 将wsid存储在app中并存储在缓存中
@@ -944,6 +993,14 @@ Page({
             "token": wx.getStorageSync("token")
           },
           success(res){
+            if(res.data.code==401){
+              wx.showToast({
+                title: "token失效，稍后请重试",
+                icon: 'none',
+                duration: 2000
+              })
+              that.getToken()
+            }
             console.log(res)
             // 如果vip返回为1则为vip，0为非vip 
             if(res.data.data.vip===1){
@@ -1030,6 +1087,14 @@ Page({
         uid:wx.getStorageSync('uid')
       },
       success(res){
+        if(res.data.code==401){
+          wx.showToast({
+            title: "token失效，稍后请重试",
+            icon: 'none',
+            duration: 2000
+          })
+          that.getToken()
+        }
         console.log(res)
         if(res.data.code===200){
           res.data.data.integral=parseInt(res.data.data.integral)
@@ -1086,5 +1151,50 @@ Page({
         console.log(res)
       }
     })
+  },
+  // 获取token
+  getToken(){
+    var that=this
+    wx.login({
+      success: function (res) {
+          if (res.code) {
+              let myCode = res.code;
+              wx.getUserInfo({
+                  success: function (res) {
+                      that.setData({
+                          userInfo: res.userInfo
+                      })
+                      wx.setStorageSync("userInfo", that.data.userInfo)
+                      that.setData({
+                          data: res.encryptedData,
+                          iv: res.iv
+                      })
+                      wx.request({
+                          url: app.globalData.url+'mp_login',
+                          data: {
+                              code: myCode,
+                              iv: that.data.iv,
+                              data: that.data.data,
+                              m_type: "car",
+                              lon: app.globalData.lon,
+                              lat: app.globalData.lat
+                          },
+                          success: function (res) {
+                              that.setData({
+                                isAddCarShow:false
+                              })
+                              console.log("login_info",res)
+                              wx.setStorageSync("openId", res.data.data.openid)
+                              wx.setStorageSync("unionid", res.data.data.unionid)
+                              wx.setStorageSync("token", res.data.data.token)
+                              getApp().globalData.token = res.data.data.token;
+                              that.onLoad()
+                          }
+                      })
+                  }
+              })
+          }
+      }
+    });
   }
 })

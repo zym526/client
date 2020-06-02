@@ -387,7 +387,7 @@ Page({
                         header: { "token": myToken },
                         data: { order_number: e.currentTarget.dataset.order, lat: that.data.lat, lon: that.data.lon },
                         success: function (res) {
-                            if (res.data.code == 1) {
+                            if (res.data.code == 200) {
                                 wx.showToast({
                                     title: '取消订单成功',
                                     icon: 'none',
@@ -471,7 +471,7 @@ Page({
           order_number: order_number
         },
         success(res) {
-          if (res.data.code==1){
+          if (res.data.code==200){
             console.log("已经开始服务")
             that.setData({
               list: [],
@@ -510,7 +510,7 @@ Page({
                   order_number: order_number
                 },
                 success(res) {
-                  if (res.data.code == 1) {
+                  if (res.data.code == 200) {
                     console.log("结束服务")
                     that.setData({
                       list: [],

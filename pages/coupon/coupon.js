@@ -18,18 +18,22 @@ Page({
 
   // 选择优惠券
   onChange(event) {
+    var that=this
     console.log(event)
     this.setData({
       radio: event.detail,
     });
-  },
-  // 返回订单页面
-  toDetail(){
-    var that=this
     wx.redirectTo({
       url: '/pages/goodsDetail/goodsDetail?remark='+that.data.getInputValue+"&youhuiId="+that.data.radio+"&type="+that.data.type+"&recently=1",
     })
   },
+  // 返回订单页面
+  // toDetail(){
+  //   var that=this
+  //   wx.redirectTo({
+  //     url: '/pages/goodsDetail/goodsDetail?remark='+that.data.getInputValue+"&youhuiId="+that.data.radio+"&type="+that.data.type+"&recently=1",
+  //   })
+  // },
 
   /**
    * 生命周期函数--监听页面加载

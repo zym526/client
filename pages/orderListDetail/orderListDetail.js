@@ -19,6 +19,14 @@ Page({
     let that = this ;
     let obj = JSON.parse(options.obj)
     obj.jiaoyi=that.formatDuring(obj.creat_time)
+    // 判断车型
+    if(obj.car_category==0){
+      obj.car_type="轿车"
+    }else if(obj.car_category==1){
+      obj.car_type="SUV"
+    }else if(obj.car_category==2){
+      obj.car_type="MPV"
+    }
     that.setData({
       obj : obj,
       lat: wx.getStorageSync("lat"),
@@ -116,7 +124,7 @@ Page({
         order_number: that.data.obj.order_number
       },
       success(res) {
-        if(res.data.code == 1){
+        if(res.data.code == 200){
           wx.switchTab({
             url: '/pages/orderList/orderList',
           })
@@ -143,7 +151,8 @@ Page({
                 order_number: that.data.obj.order_number
               },
               success(res) {
-                if (res.data.code == 1) {
+                console.log(res.data.data)
+                if (res.data.code == 200) {
                   wx.switchTab({
                     url: '/pages/orderList/orderList',
                   })
@@ -199,6 +208,14 @@ Page({
     // })
 
 },
+  // 给小哥打电话
+  toTel(){
+    var that=this
+    console.log(that.data.obj)
+    wx.makePhoneCall({
+      phoneNumber: that.data.obj.workman_phone //仅为示例，并非真实的电话号码
+    })
+  },
   //点击立即下单   
   payNow : function (e){
     let that = this ;

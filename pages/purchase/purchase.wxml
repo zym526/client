@@ -32,6 +32,11 @@
     <image src="/img/{{item.bg}}" mode="widthFix" class="bg_image"></image>
   </view>
 </view>
+<!-- 如果定位位置没有运营商 -->
+<view style="width:100%;display: {{showNull?'flex':'none'}};flex-direction: column;align-items: center;">
+  <image src="../../img/empty.png" mode="widthFix" style="width:220rpx;height:auto;margin-top:100rpx"></image>
+  <view style="font-size:26rpx;color:#999999;margin-top:30rpx;">{{textEmpty}}</view>
+</view>
 <!-- 规则 -->
 <view class="guize" style="opacity:{{bottom==='19rpx'?'0':'1'}};transition: opacity 1s" hidden="{{isShow}}">
   <view wx:for="{{desc}}" wx:key="index">{{item}}</view>
@@ -47,7 +52,7 @@
 <van-popup 
   round
   show="{{ addCarShow }}"
-  custom-style="width:624rpx;border-radius:10rpx"
+  custom-style="width:624rpx;border-radius:10rpx;"
   z-index="100"
   bind:close="onClose"
 >
@@ -69,7 +74,7 @@
 <van-popup 
   round
   show="{{ isAddCarShow }}"
-  custom-style="width:624rpx;border-radius:10rpx"
+  custom-style="width:624rpx;border-radius:10rpx;top:330rpx"
   z-index="100"
   bind:close="onClose"
 >

@@ -1,5 +1,8 @@
 // pages/recruit/recruit.js
 const app=new getApp()
+// 引用百度地图微信小程序JSAPI模块
+var bmap = require('../../libs/bmap-wx.js');
+var txTobdMap = require('../../js/map.js');
 Page({
 
   /**
@@ -14,6 +17,7 @@ Page({
     text:"获取验证码",//获取验证码
     lock:true,//判断是否可以重新获取
     countdown:60,//60秒
+    address:"未获取到您的所在地"
   },
   onChange(event) {
     this.setData({
@@ -108,6 +112,12 @@ Page({
           wx.switchTab({
             url: '/pages/entrance/entrance',
           })
+        }else{
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000
+          })
         }
       },
       fail(error){
@@ -130,7 +140,7 @@ Page({
           },
           success(res){
             console.log(res)
-            if(res.data.code===1){
+            if(res.data.code===200){
               that.setData({
                 lock:false
               })
@@ -195,7 +205,149 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    // 获取当前位置
+    var that=this
+    that.getPermission()
+  },
+  //根据当前经纬度转百度地图获取精准定位，并存储经纬度和地址名
+  loadCity: function (longitude, latitude) {
+    var that = this;
 
+    //从微信的定位转换到百度地图定位
+    var mapBD = txTobdMap.qqMapTransBMap(longitude, latitude);
+
+    var BMap = new bmap.BMapWX({
+      // ak: '6tBFv1u228awbjW4lNhbYxTtQHBKvNCy'
+      ak:'NnxYM3KVSX3yAwArHsaxldeHPuUSeQ9B'
+    });
+    var fail = function (data) {
+      console.log(data)
+      console.log("获取城市失败")
+    };
+    var success = function (data) {
+      console.log("获取城市信息成功",data)
+      var address_info = data.originalData.result.addressComponent//位置信息对象
+      that.setData({
+        address:address_info.city+address_info.district
+      })
+    };
+
+    BMap.regeocoding({
+      fail: fail,
+      success: success
+    });
+  },
+  // 打开权限获取当前地理位置
+  openMap: function () {
+    let that = this;
+    // 微信获取用户当前权限
+    wx.getSetting({
+      success(res) {
+        console.log("map_success:",res)
+        //scope.userLocation是返回的是否打开位置权限，true为打开
+        if (!res.authSetting['scope.userLocation']) {
+          // 微信获取用户地理位置
+          wx.getLocation({
+            type: 'gcj02',
+            success: function (res) {
+              var longitude = res.longitude;
+              var latitude = res.latitude;
+
+              that.loadCity(longitude, latitude);
+            },
+          });
+          // 调起用户设置界面，设置权限
+          wx.openSetting({
+            //设置权限，这个列表中会包含用户已请求过的权限，可更改权限状态
+            success(res) {
+              //如果再次拒绝则返回页面并提示
+              if (!res.authSetting['scope.userLocation']) {
+                wx.showToast({
+                  title: '请开启小程序定位',
+                  duration: 3000,
+                  icon: 'none'
+                })
+              } else {
+                //允许授权，获取当前经纬度
+                wx.getLocation({
+                  type: 'gcj02',
+                  success: function (res) {
+                    console.log(res)
+                    var longitude = res.longitude;
+                    var latitude = res.latitude;
+
+                    that.loadCity(longitude, latitude);
+                  },
+                });
+              }
+            }
+          })
+        } else {
+          //获取当前经纬度
+          wx.getLocation({
+            type: 'gcj02',
+            success: function (res) {
+              var longitude = res.longitude;
+              var latitude = res.latitude;
+
+              that.loadCity(longitude, latitude);
+            },
+          });
+        }
+      }
+    })
+  },
+  //获取用户地理位置权限
+  getPermission: function () {
+    var that = this;
+    // 获取用户地理位置
+    wx.getLocation({
+      type: 'gcj02',
+      // 如果确定则调用openMap进行位置获取和转换
+      success: function (res) {
+        that.openMap();
+      },
+      // 如果失败再次授权并提示
+      fail: function () {
+        wx.getSetting({
+          success: function (res) {
+            var statu = res.authSetting;
+            // 如果拒绝获取再次提示获取
+            if (!statu['scope.userLocation']) {
+              wx.showModal({
+                title: '是否授权当前位置',
+                content: '需要获取您的地理位置，请确认授权',
+                success: function (tip) {
+                  // 点击确定获取
+                  if (tip.confirm) {
+                    wx.openSetting({
+                      success: function (data) {
+                        if (data.authSetting["scope.userLocation"] === true) {
+                          //授权成功之后
+                          that.openMap();
+                        } else {
+                          console.log("授权取消！")
+                        }
+                      }
+                    })
+                  } else {
+                    wx.showToast({
+                      title: '您已取消位置权限，请手动选择定位！',
+                      icon: 'none',
+                      duration: 1000
+                    })
+                  }
+                }
+              })
+            }
+          },
+          fail: function (res) {
+            console.log("窗口失败")
+          }
+        })
+      }
+    })
+    that.openMap();
   },
 
   /**
