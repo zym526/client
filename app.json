@@ -27,6 +27,7 @@
     "pages/password/password",
     "pages/forget/forget",
     "pages/integral/integral",
+    "pages/plateNumber/plateNumber",
     "components/passwordWriting/passwordWriting"
   ],
   "window": {

@@ -3,7 +3,7 @@ const app=getApp()
 // 引用百度地图微信小程序JSAPI模块
 var bmap = require('../../libs/bmap-wx.js');
 var txTobdMap = require('../../js/map.js');
-var carCity=require('../../utils/carCity.js')
+// var carCity=require('../../utils/carCity.js')
 Page({
   /**
    * 页面的初始数据
@@ -102,7 +102,7 @@ Page({
             that.getToken()
           }
           if(res.data.data.length==0){
-            that.getCity()
+            // that.getCity()
             that.setData({
               isAddCarShow:true
             })
@@ -328,7 +328,7 @@ Page({
             that.getToken()
           }
           if(res.data.data.length==0){
-            that.getCity()
+            // that.getCity()
             that.setData({
               isAddCarShow:true
             })
@@ -398,96 +398,96 @@ Page({
     }
   },
   // 获取当前所在省份的简称和市的简写
-  getCity(){
-    var that=this
-    // 微信获取用户所在省份
-    wx.getLocation({
-      type: 'gcj02',
-      success: function (res) {
-        var longitude = res.longitude;
-        var latitude = res.latitude;
+  // getCity(){
+  //   var that=this
+  //   // 微信获取用户所在省份
+  //   wx.getLocation({
+  //     type: 'gcj02',
+  //     success: function (res) {
+  //       var longitude = res.longitude;
+  //       var latitude = res.latitude;
       
-        //从微信的定位转换到百度地图定位
-        var mapBD = txTobdMap.qqMapTransBMap(longitude, latitude);
-        var BMap = new bmap.BMapWX({
-          // ak: '6tBFv1u228awbjW4lNhbYxTtQHBKvNCy'
-          ak:'NnxYM3KVSX3yAwArHsaxldeHPuUSeQ9B'
-        });
-        var fail = function (data) {
-          console.log(data)
-          console.log("获取城市失败")
-        };
-        var success = function (data) {
-          console.log("获取城市信息成功",data)
-          var province=data.originalData.result.addressComponent.province//省份
-          var city=data.originalData.result.addressComponent.city//市
-          province=province.replace("省","")
-          city=city.replace("市","")
-          // 便利数组获取当前的省市车牌前两位
-          that.data.allCarCity.forEach(item=>{
-            if(item.province.indexOf(province)!=-1&&item.city.indexOf(city)!=-1){
-              that.setData({
-                province:item.code.substr(0,1),
-                city:item.code.substr(-1)
-              })
-            }else{
-              that.setData({
-                province:"浙",
-                city:"A"
-              })
-            }
-          })         
-        };      
-        BMap.regeocoding({
-          fail: fail,
-          success: success
-        });
-      },
-      fail(error){
-        wx.showToast({
-          title: '省份获取失败',
-          duration: 2000,
-          icon: 'none'
-        })
-      }
-    });
-  },
+  //       //从微信的定位转换到百度地图定位
+  //       var mapBD = txTobdMap.qqMapTransBMap(longitude, latitude);
+  //       var BMap = new bmap.BMapWX({
+  //         // ak: '6tBFv1u228awbjW4lNhbYxTtQHBKvNCy'
+  //         ak:'NnxYM3KVSX3yAwArHsaxldeHPuUSeQ9B'
+  //       });
+  //       var fail = function (data) {
+  //         console.log(data)
+  //         console.log("获取城市失败")
+  //       };
+  //       var success = function (data) {
+  //         console.log("获取城市信息成功",data)
+  //         var province=data.originalData.result.addressComponent.province//省份
+  //         var city=data.originalData.result.addressComponent.city//市
+  //         province=province.replace("省","")
+  //         city=city.replace("市","")
+  //         // 便利数组获取当前的省市车牌前两位
+  //         that.data.allCarCity.forEach(item=>{
+  //           if(item.province.indexOf(province)!=-1&&item.city.indexOf(city)!=-1){
+  //             that.setData({
+  //               province:item.code.substr(0,1),
+  //               city:item.code.substr(-1)
+  //             })
+  //           }else{
+  //             that.setData({
+  //               province:"浙",
+  //               city:"A"
+  //             })
+  //           }
+  //         })         
+  //       };      
+  //       BMap.regeocoding({
+  //         fail: fail,
+  //         success: success
+  //       });
+  //     },
+  //     fail(error){
+  //       wx.showToast({
+  //         title: '省份获取失败',
+  //         duration: 2000,
+  //         icon: 'none'
+  //       })
+  //     }
+  //   });
+  // },
   // 输入车牌号
-  chooseCar(e){
-    let that = this;
-    if(that.data.city.length<6){
-      if (e.currentTarget.dataset.id) {
-        that.setData({
-          city: that.data.city + e.currentTarget.dataset.id
-        })
-      }
-    }
-  },
+  // chooseCar(e){
+  //   let that = this;
+  //   if(that.data.city.length<6){
+  //     if (e.currentTarget.dataset.id) {
+  //       that.setData({
+  //         city: that.data.city + e.currentTarget.dataset.id
+  //       })
+  //     }
+  //   }
+  // },
   // 车牌删除
-  delCar(e){
-    let that = this ;
-    if(that.data.city.length > 0){
-        that.setData({
-            city : that.data.city.substring(0,that.data.city.length - 1)
-        })
-    }
-  },
+  // delCar(e){
+  //   let that = this ;
+  //   if(that.data.city.length > 0){
+  //       that.setData({
+  //           city : that.data.city.substring(0,that.data.city.length - 1)
+  //       })
+  //   }
+  // },
   // 车牌确定
-  btnCar: function () {
-    var that = this;
-    that.setData({
-      carView: false,
-    })
+  // btnCar: function () {
+  //   var that = this;
+  //   that.setData({
+  //     carView: false,
+  //   })
     //判断车牌信息
-    if (!that.isLicensePlate(that.data.province + that.data.city)) {
-      console.log("车牌不正确");
-      wx.showToast({
-        title: '请输入正确车牌号',
-        icon: 'none',
-        duration: 2000
-      })
-    }
-  },
+  //   if (!that.isLicensePlate(that.data.province + that.data.city)) {
+  //     console.log("车牌不正确");
+  //     wx.showToast({
+  //       title: '请输入正确车牌号',
+  //       icon: 'none',
+  //       duration: 2000
+  //     })
+  //   }
+  // },
   // 城市选择
   changeCar: function (e) {
     let that = this;
@@ -505,48 +505,48 @@ Page({
   finish: function (e) {
     let that = this;
     //判断车牌信息
-    if (!that.isLicensePlate(that.data.province + that.data.city)) {
-      console.log("车牌不正确");
-      wx.showToast({
-        title: '请输入正确车牌号',
-        icon: 'none',
-        duration: 2000
-      })
-    } else {
-      var car_number = that.data.province + that.data.city
-      const stringCar = that.data.province + that.data.city
-      let myToken = wx.getStorageSync("token");
-      wx.setStorageSync('car_number', car_number)
-        wx.request({
-          url: app.globalData.url + 'add_car',
-          header: { "token": myToken },
-          data: { brand: '', car_number: car_number, category_car:that.data.id,car_color:"",id:"" },
-          success: function (res) {
-            if(res.data.code==401){
-              wx.showToast({
-                title: "token失效，稍后请重试",
-                icon: 'none',
-                duration: 2000
-              })
-              that.getToken()
-            }
-            console.log(123,res)
-            wx.setStorageSync("myCar_id", res.data.data.id)
-            wx.showToast({
-              title: '车辆添加成功',
-              icon: 'none',
-              duration: 2000
-            })
-            that.toGoodsDetail()
-            // 隐藏确认框,添加矿,显示支付选择
-            that.setData({
-              isAddCarShow:false,
-              addCarShow:false,
-              show:false
-            })
-          }
-        })
-    }
+    // if (!that.isLicensePlate(that.data.province + that.data.city)) {
+    //   console.log("车牌不正确");
+    //   wx.showToast({
+    //     title: '请输入正确车牌号',
+    //     icon: 'none',
+    //     duration: 2000
+    //   })
+    // } else {
+    //   var car_number = that.data.province + that.data.city
+    //   const stringCar = that.data.province + that.data.city
+    //   let myToken = wx.getStorageSync("token");
+    //   wx.setStorageSync('car_number', car_number)
+    //     wx.request({
+    //       url: app.globalData.url + 'add_car',
+    //       header: { "token": myToken },
+    //       data: { brand: '', car_number: car_number, category_car:that.data.id,car_color:"",id:"" },
+    //       success: function (res) {
+    //         if(res.data.code==401){
+    //           wx.showToast({
+    //             title: "token失效，稍后请重试",
+    //             icon: 'none',
+    //             duration: 2000
+    //           })
+    //           that.getToken()
+    //         }
+    //         console.log(123,res)
+    //         wx.setStorageSync("myCar_id", res.data.data.id)
+    //         wx.showToast({
+    //           title: '车辆添加成功',
+    //           icon: 'none',
+    //           duration: 2000
+    //         })
+    //         that.toGoodsDetail()
+    //         // 隐藏确认框,添加矿,显示支付选择
+    //         that.setData({
+    //           isAddCarShow:false,
+    //           addCarShow:false,
+    //           show:false
+    //         })
+    //       }
+    //     })
+    // }
   },
   // 正则验证车牌,验证通过返回true,不通过返回false
   isLicensePlate(str) {
@@ -556,11 +556,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
-    that.setData({
+    // var that=this;
+    // that.setData({
       // map:options.map,
-      allCarCity:carCity.allCarCity
-    })
+      // allCarCity:carCity.allCarCity
+    // })
   },
 
   /**
@@ -950,18 +950,10 @@ Page({
   openCarNumber(e){
     var that=this
     that.setData({
-      carView: e.detail.carView,
+      // carView: e.detail.carView,
       showView: e.detail.showView
     })
   },
-  // 获取car的id
-  changeType(e){
-    var that=this
-    that.setData({
-      id:e.detail
-    })
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */

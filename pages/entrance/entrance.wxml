@@ -154,16 +154,17 @@
   z-index="100"
   bind:close="onClose"
 >
-  <add-car-popup id="addCarPopup" province="{{province}}" city="{{city}}" bind:carView="openCarNumber" bind:showView="openCarNumber" bind:changeType="changeType"></add-car-popup>
+  <!-- <add-car-popup id="addCarPopup" province="{{province}}" city="{{city}}" bind:carView="openCarNumber" bind:showView="openCarNumber" bind:changeType="changeType"></add-car-popup> -->
+  <add-car-popup id="addCarPopup" province="{{province}}" city="{{city}}" bind:showView="openCarNumber"></add-car-popup>
   <view class="add-car-submit" bindtap="finish">提交</view>
 </van-popup>
 
 <!-- 车牌键盘 -->
-<view class="openCarNumber hide{{carView?'show':''}}">
+<!-- <view class="openCarNumber hide{{carView?'show':''}}">
   <view class="cityItem" bindtap='chooseCar' data-id='{{item}}' wx:key="i" wx:for='{{carNumber}}' wx:for-item='item'>{{item}}</view>
   <view class="cityItem del" bindtap='delCar' >删除</view>
   <view class="cityItem del" bindtap='btnCar' >确认</view>
-</view>
+</view> -->
 
 <!-- 城市选择 -->
 <view class="city hide{{showView?'show':''}}">
