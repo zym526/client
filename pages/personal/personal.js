@@ -75,7 +75,7 @@ Page({
   },
   // 拨打客服电话
   toTel(){
-    console.log(123)
+    // console.log(123)
     wx.makePhoneCall({
       phoneNumber: '4000060808' //仅为示例，并非真实的电话号码
     })
@@ -122,6 +122,8 @@ Page({
    */
   onShow: function () {
     var that=this
+    app.globalData.nowIndex=0
+    app.globalData.nowIndex2=0
     // 每次进来判断是否登录，显示隐藏头部信息
     if(wx.getStorageSync('chooseUser_phone')&&wx.getStorageSync('userInfo')){
       that.setData({
@@ -143,7 +145,7 @@ Page({
             "token": wx.getStorageSync("token")
           },
           success(res){
-            console.log(res)
+            // console.log(res)
             // 如果vip返回为1则为vip，0为非vip 
             if(res.data.data.vip===1){
               app.globalData.isVip=false
@@ -158,7 +160,7 @@ Page({
             }
           },
           fail(error){
-            console.log(error)
+            // console.log(error)
           }
         })
       }
@@ -172,7 +174,7 @@ Page({
           uid:wx.getStorageSync('uid')
         },
         success(res){
-          console.log(res)
+          // console.log(res)
           if(res.data.code===200){
             res.data.data.integral=parseInt(res.data.data.integral)
             that.setData({
@@ -181,7 +183,7 @@ Page({
           }
         },
         fail(error){
-          console.log(error)
+          // console.log(error)
         }
       })
     }else{

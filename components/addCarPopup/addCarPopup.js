@@ -10,7 +10,11 @@ Component({
    */
   properties: {
     province:{type:String},
-    city:{type:String}
+    city:{type:String},
+    carType:{type:String},
+    idCarType:{type:String},
+    bid:{type:String},
+    car_category:{type:String}
   },
 
   /**
@@ -21,7 +25,10 @@ Component({
     radio:0,//车子类型
     carLength:6,//车牌长度
     isHiddenColor:true,//颜色选择
-    carPlate:"请选择您的品牌车型",//车型
+    icon:{
+      active:"../../img/yesActive.png",
+      noActive:"../../img/noActive.png"
+    }
   },
   ready(){
     var that=this
@@ -64,7 +71,6 @@ Component({
     },
     // 获取车牌输入框内容
     cityChange(event){
-      console.log(event)
       var that=this
       that.setData({
         city:event.detail.value
@@ -72,6 +78,9 @@ Component({
     },
     // 跳转车型选择
     toPlateNum(){
+      this.setData({
+        isHiddenColor: true
+      })
       wx.navigateTo({
         url: '/pages/plateNumber/plateNumber',
       })
@@ -81,12 +90,23 @@ Component({
       this.setData({
         isHiddenColor:false
       })
+      this.triggerEvent('marginTop', "350rpx")//通过triggerEvent将参数传给父组件
     },
-    // 颜色输入框失焦
-    blurColor(){
+    // 输入框上移动
+    marginTop(){
+      this.triggerEvent('marginTop', "350rpx")//通过triggerEvent将参数传给父组件
+    },
+    closeColor(){
       this.setData({
         isHiddenColor:true
       })
+    },
+    // 颜色输入框失焦
+    blurColor(){
+      this.triggerEvent('marginTop', "")//通过triggerEvent将参数传给父组件
+    },
+    marginTopNo(){
+      this.triggerEvent('marginTop', "")//通过triggerEvent将参数传给父组件
     },
     colorChange(event){
       var that=this
@@ -96,10 +116,61 @@ Component({
     },
     // 颜色选择
     colorQue(e){
-      console.log(e)
       this.setData({
-        carColor:e.currentTarget.dataset.item
+        isHiddenColor: true,
+        carColor:e.currentTarget.dataset.item,
       })
+    },
+    // 添加车辆
+    finish(){
+      var that=this
+      that.setData({
+        isHiddenColor:true,
+        city:that.data.city.toUpperCase()
+      })
+      if(!app.isLicensePlate(that.data.province+that.data.city)){
+        app.showToast("车牌验证失败")
+        return
+      }else if(that.data.carType=="请选择您的品牌车型"||that.data.carType==""){
+        app.showToast("请选择您的品牌车型")
+        return
+      }else if(that.data.carColor==""||!that.data.carColor){
+        app.showToast("请填写您的车身颜色")
+        return
+      }else{
+        wx.request({
+          url: app.globalData.url+"add_car",
+          header:{ "token": wx.getStorageSync('token') },
+          method: "POST",
+          data:{
+            car_color:that.data.carColor,//车辆颜色
+            brand_secont:that.data.idCarType,//车系id
+            bid:that.data.bid,//品牌id
+            car_number:that.data.province+that.data.city,//车牌号
+            category_car:that.data.car_category,//车型
+            car_gear:that.data.radio==1?1:0,//是否为新能源
+            default:1,//是否为默认车型
+            id:"",//车辆id
+            uid:wx.getStorageSync('uid'),//用户id
+          },
+          success(res){
+            if(res.data.code==200){
+              that.triggerEvent('onClose', false)//通过triggerEvent将参数传给父组件
+              // wx.navigateTo({
+              //   url: '/pages/carList/carList',
+              // })
+              wx.removeStorageSync('carType')
+            }else if(res.data.code==401){
+              console.log("请退出登录")
+            }else{
+              app.showToast(res.data.msg)
+            }
+          },
+          fail(err){
+            app.showToast(err.data.msg)
+          },
+        })
+      }
     },
   },
   created(){
@@ -129,11 +200,8 @@ Component({
           ak:'NnxYM3KVSX3yAwArHsaxldeHPuUSeQ9B'
         });
         var fail = function (data) {
-          console.log(data)
-          console.log("获取城市失败")
         };
         var success = function (data) {
-          console.log("获取城市信息成功",data)
           var province=data.originalData.result.addressComponent.province//省份
           var city=data.originalData.result.addressComponent.city//市
           province=province.replace("省","")

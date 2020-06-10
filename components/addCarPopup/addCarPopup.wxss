@@ -54,6 +54,10 @@ van-radio-group van-radio view:last-child{
   border: 2rpx solid #1678FF;
   border-radius: 6rpx;
 }
+.out-radio-slot{
+  font-size: 28rpx;
+  height: 40rpx;
+}
 /* .com-car-qu{
   margin: 0rpx 10rpx;
 } */
@@ -76,10 +80,13 @@ van-radio-group van-radio view:last-child{
   line-height: 40rpx;
   color: #666666;
 }
+.outer-com-car-two{
+  display: flex;
+  width: calc(100% - 50rpx);
+}
 .com-car-input-color input{
   font-size: 28rpx;
   height: 40rpx;
-  text-align: right;
 }
 .com-car-color{
   position: relative;
@@ -91,7 +98,7 @@ van-radio-group van-radio view:last-child{
   z-index: 999;
   position: absolute;
   top: -300rpx;
-  right: 0rpx;
+  left: 140rpx;
   width: 250rpx;
   height: 300rpx;
   text-align: center;
@@ -104,6 +111,17 @@ van-radio-group van-radio view:last-child{
   font-size: 26rpx;
   line-height: 65rpx;
   border-bottom: 1rpx solid #EDEDED;
+}
+/* 提交车辆信息 */
+.add-car-submit{
+  width: calc(100% - 40rpx);
+  line-height: 80rpx;
+  font-size: 32rpx;
+  color: white;
+  background-color: #1678FF;
+  text-align: center;
+  border-radius: 80rpx;
+  margin: 30rpx 20rpx;
 }
 
 /* .com-car-type{

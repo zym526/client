@@ -1,41 +1,43 @@
-.car-outer{
+.address-outer{
   padding: 0rpx 30rpx;
   box-sizing: border-box;
 }
-.car-one-outer{
-  padding: 29rpx 0rpx 20rpx 0rpx;
+.address-one-outer{
+  padding: 30rpx 0rpx;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   border-bottom: 3rpx solid #E1E1E1;
 }
-.car-left{
+.address-left{
   display: flex;
   width: calc(100% - 111rpx);
   align-items: center;
 }
-.car-img{
-  margin: 0rpx 28rpx 0rpx 10rpx;
-  width: 102rpx;
+.address-img{
+  margin: 0rpx 20rpx;
+  width: 80rpx;
+  height:80rpx;
+  border-radius: 80rpx;
+  background-color: rgba(255,102,0,0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.car-img image{
-  width: 100%;
-  height: auto;
-}
-.car-text-outer{
+.address-text-outer{
   width: calc(100% - 140rpx);
   padding-right: 24rpx;
   box-sizing: border-box;
+  margin-left: 20rpx;
 }
-.car-number-outer{
+.address-name-outer{
   font-size: 30rpx;
   color: #232323;
-  margin-bottom: 18rpx;
+  margin-bottom: 15rpx;
   display: flex;
   align-items: center;
 }
-.car-def{
+.address-def{
   font-size: 22rpx;
   line-height: 30rpx;
   display: inline-block;
@@ -45,13 +47,21 @@
   color: #FF6600;
   margin-left: 10rpx;
 }
-.car-type{
+.address-phone,.address-text-all{
   font-size: 26rpx;
   color: #666666;
 }
-.car-right{
+.address-text-all{
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.address-right{
   width: 111rpx;
-  height: 79rpx;
   font-size: 26rpx;
   color: #999999;
   display: flex;
@@ -59,7 +69,6 @@
   justify-content: center;
   border-left: 3rpx solid #CECECE;
 }
-/* 添加车辆信息 */
 .add-new-bottom{
   position: fixed;
   bottom: 20rpx;

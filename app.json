@@ -28,6 +28,8 @@
     "pages/forget/forget",
     "pages/integral/integral",
     "pages/plateNumber/plateNumber",
+    "pages/addressList/addressList",
+    "pages/addAddress/addAddress",
     "components/passwordWriting/passwordWriting"
   ],
   "window": {
@@ -92,6 +94,9 @@
     "van-transition": "dist/transition/index",
     "van-radio": "dist/radio/index",
     "van-radio-group": "dist/radio-group/index",
+    "van-index-bar": "dist/index-bar/index",
+    "van-index-anchor": "dist/index-anchor/index",
+    "van-switch": "dist/switch/index",
     "password-box": "/components/passwordBox/passwordBox",
     "add-car-popup": "/components/addCarPopup/addCarPopup",
     "password-writing": "/components/passwordWriting/passwordWriting"

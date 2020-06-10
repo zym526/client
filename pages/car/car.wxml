@@ -1,11 +1,11 @@
-<form bindsubmit='finish'>
-    <view>
-        <view class="userTime userName">
+<!-- <form bindsubmit='finish'>
+    <view> -->
+        <!-- <view class="userTime userName"> -->
             <!-- <input class="text" value='车牌号：' readonly="readonly" disabled/> -->
-            <view class="text">车牌号</view>
+            <!-- <view class="text">车牌号</view>
             <view id="getCity" bindtap='openCar'>{{city}}</view>
             <input placeholder='输入您的车牌号' value='{{carH}}' name="carH" disabled='disabled' bindtap='openCarNumber'/>
-        </view>
+        </view> -->
 
         <!-- <view class="userTime user_color"> -->
             <!-- <input class="text" value='车身颜色：' readonly="readonly" disabled/> -->
@@ -16,22 +16,22 @@
             </view>
         </view> -->
 
-        <view class="userTime car_type">
+        <!-- <view class="userTime car_type"> -->
             <!-- <input class="text" value='车型：' readonly="readonly" disabled/> -->
-            <view class="text">车型</view>
+            <!-- <view class="text">车型</view>
             <input placeholder='点击选择车型' bindtap='openCarType' value='{{carType2}}' name="carType" disabled />
         </view>
-    </view>
+    </view> -->
     <!-- 城市选择 -->
-    <view class="city hide{{showView?'show':''}}">
+    <!-- <view class="city hide{{showView?'show':''}}">
         <view class="cityItem" bindtap='changeCar' data-id='{{item.name}}' wx:key="i" wx:for='{{cityList}}' wx:for-item='item'>{{item.name}}</view>
-    </view>
+    </view> -->
     <!-- 号码选择 -->
-    <view class="openCarNumber hide{{carView?'show':''}}">
+    <!-- <view class="openCarNumber hide{{carView?'show':''}}">
         <view class="cityItem" bindtap='chooseCar' data-id='{{item}}' wx:key="i" wx:for='{{carNumber}}' wx:for-item='item'>{{item}}</view>
         <view class="cityItem del" bindtap='delCar' >删除</view>
         <view class="cityItem del" bindtap='btnCar' >确认</view>
-    </view>
+    </view> -->
     <!-- 车辆颜色选择 -->
     <!-- <view class="openCarNumber carColor hide{{colorView?'show':''}}">
         <view class="cityItem" bindtap='chooseColor' data-id='{{item}}' wx:key="i" wx:for='{{chooseColor}}' wx:for-item='item'>{{item}}</view>
@@ -53,7 +53,7 @@
         />
     </van-popup> -->
 
-    <van-popup
+    <!-- <van-popup
         show="{{ popupShow2 }}"
         position="bottom"
         custom-style="height: calc(90rpx + 180px);"
@@ -71,4 +71,58 @@
     </van-popup>
     <button class="btn" form-type='submit' wx:if='{{carType != 1}}'>添加并使用</button>
     <button class="btn" form-type='submit' wx:if='{{carType == 1}}'>修改</button>
-</form>
+</form> -->
+
+
+
+
+<view class="add-outer">
+  <view class="one-info-top" bindtap="loseColor">
+    <view class="one-info-top-title">车牌号</view>
+    <view class="one-info-top-chepai">
+        <view class="one-info-top-left">
+            <view class="one-info-province"  bindtap='openCar'>{{province}}</view>
+            <input type="text" placeholder="请输入您的车牌号"  value='{{car}}' oninput="cityChange" maxlength="{{carLength}}"  />
+        </view>
+        <van-radio use-icon-slot value="{{ radio }}" name="1" bind:change="onChange" custom-class="out-radio-slot">
+            新能源
+            <image slot="icon" src="{{ radio === '1' ? icon.active : icon.noActive }}" mode="widthFix" style="width:28rpx;height:28rpx;vertical-align: 2rpx;" />
+        </van-radio>
+        <!-- <van-radio-group value="{{ radio }}" bind:change="onChange">
+            <van-radio name="1" icon-size="28rpx" style="height:40rpx;font-size:28rpx;line-height:40rpx">新能源</van-radio>
+        </van-radio-group> -->
+    </view>
+  </view>
+  <view class="one-info-outer" bindtap="loseColor">
+    <view class="one-info-left">品牌车型</view>
+    <view class="one-top-info-right" bindtap="toPlate">
+      <text>{{carType}}</text>
+      <view class="iconfont icon-you" style="font-size:30rpx;color:#999999"></view>
+    </view>
+  </view>
+  <view class="one-info-outer">
+    <view class="one-info-left" bindtap="loseColor">车身颜色</view>
+    <input class="one-info-right" value="{{carColor}}" type="text" placeholder="请输入您的车身颜色" bindinput="colorChange" bindtap="showColor"/>
+    <view class="choose_color" hidden="{{isShow}}">
+        <view class="one_color" wx:for="{{chooseColor}}" wx:key="index" bindtap="getColor" data-item="{{item}}">{{item}}</view>
+    </view>
+  </view>
+  <view class="one-info-outer" bindtap="loseColor">
+    <view class="one-info-left">设为默认车辆</view>
+    <van-switch checked="{{ checked }}" bind:change="changeDef" size="42rpx" active-color="#FF6600"/>
+  </view>
+</view>
+
+<!-- 确认添加或删除修改 -->
+<view class="btn-bottom" bindtap="loseColor">
+  <view class="btn-one" hidden="{{type=='1'}}" bindtap="addCarTwo">确定添加</view>
+  <view class="btn-del" hidden="{{type=='0'}}" bindtap="delCar">删除</view>
+  <view class="btn-save" hidden="{{type=='0'}}" bindtap="addCarTwo">保存</view>
+</view>
+<!-- 删除提示 -->
+<van-dialog id="van-dialog" confirm-button-color="#1678FF" cancel-button-color="#FF6600" />
+
+<!-- 城市选择 -->
+<view class="city hide{{showView?'show':''}}">
+    <view class="cityItem" bindtap='changeCar' data-id='{{item.name}}' wx:key="i" wx:for='{{cityList}}' wx:for-item='item'>{{item.name}}</view>
+</view>

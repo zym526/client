@@ -8,7 +8,13 @@
     <view class="iconfont icon-youjiantou"></view>
   </view>
 </view>
-<view class="wallet_outer">
+<!-- 充值方式 -->
+<view class="type-pay">
+  <view data-name="1" class="{{payName==1?'active-type-pay':''}}" bindtap="changePay">在线充值</view>
+  <text class="zhongjian"></text>
+  <view data-name="2" class="{{payName==2?'active-type-pay':''}}" bindtap="changePay">充值卡充值</view>
+</view>
+<view class="wallet_outer" hidden="{{payName!=1}}">
   <!-- 充值中心 -->
   <view class="wallet_center" wx:if="{{isCenter}}">
     <view class="wallet_center_title">充值中心</view>
@@ -28,6 +34,11 @@
       <view class="wallet_right_text" bindtap="topUp" data-id="{{item.id}}">充值</view>
     </view>
   </view>
+</view>
+<view class="wallet_outer only-wallet-car" hidden="{{payName!=2}}">
+  <input type="number" bindinput="carNumber" placeholder="输入充值卡卡号" class="wallet_car"/>
+  <input type="number" bindinput="carPassword" placeholder="输入充值卡密码" class="wallet_car"/>
+  <view class="car_btn" bindtap="payCar">立即充值</view>
 </view>
 <!-- 订单 -->
 <!-- <view class="wallent_bottom_outer">

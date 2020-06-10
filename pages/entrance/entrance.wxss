@@ -18,6 +18,9 @@ page{
   background:-ms-linear-gradient(bottom,#5DA1FF 25%,#1678FF);
   background:linear-gradient(bottom,#5DA1FF 25%,#1678FF); */
 }
+.header_outer{
+  height: 350rpx;
+}
 /* 头像/欢迎文字 */
 .info_top_image,.header_top_image{
   height: 100rpx;
@@ -113,14 +116,15 @@ page{
 .subscribe_outer{
   margin: 0rpx 24rpx 24rpx;
   background-color: white;
-  box-shadow: 0rpx 0rpx 10rpx rgba(0,0,0,0.1);
+  box-shadow: 0rpx 0rpx 10rpx rgba(0,0,0,0.2);
   border-radius: 10rpx;
 }
 /* 现在预约顶部 */
 .subscribe_top{
   font-size: 26rpx;
   line-height: 64rpx;
-  margin:0rpx 24rpx;
+  padding: 0rpx 20rpx;
+  box-sizing: border-box;
   border-bottom: 1rpx solid #E1E1E1;
   color: #666666;
   display: flex;
@@ -149,25 +153,75 @@ page{
   align-items: center;
   height: 100%;
 }
-/* 当前位置 */
+/* 爱车信息 */
 .subscribe_center{
-  margin: 24rpx 24rpx 0rpx;
-  padding-bottom: 24rpx;
-  display: flex;
-  align-items: center;
+  margin: 30rpx 24rpx 0rpx;
+  padding-bottom: 22rpx;
   border-bottom: 1px solid #E1E1E1;
 }
-/* .subscribe_center_left{
-  width: 50rpx;
-  height: auto;
-  margin-right: 52rpx;
-} */
+.no-car{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
 .subscribe_center_right view{
-  font-size: 30rpx;
+  font-size: 35rpx;
+}
+.yes-car{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.yes-car-left{
+  width: calc(100% - 239rpx);
+  display: flex;
+  align-items: center;
+}
+.yes-car-left image{
+  width: 80rpx;
+  height: auto;
+  margin-right: 20rpx;
+}
+.yes-car-left-text{
+  font-size: 40rpx;
+}
+.yes-car-info{
+  font-size: 28rpx;
+  color: #666666;
+}
+.yes-car-right{
+  display: flex;
+  width: 239rpx;
+  align-items: center;
+  justify-content: flex-end;
+}
+.yes-car-right image{
+  width: 188rpx;
+  height: auto;
+  margin-right: 10rpx;
+}
+/* 当前位置 */
+.address_center{
+  padding: 31rpx 24rpx 24rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #FF6600;
+}
+.address_center text text{
+  color: #232323!important;
+}
+.blur_address_center{
+  color: #1678FF;
+}
+.address_center .icon-you{
+  display: flex;
+  align-items: center;
 }
 /* 订单/洗车/现在预约 */
 .subscribe_bottom{
-  padding: 24rpx;
+  padding: 0rpx 24rpx 24rpx;
 }
 .subscribe_bottom_two{
   font-size: 30rpx;
@@ -408,4 +462,11 @@ page{
   left: 50%;
   bottom: -90rpx;
   transform: translateX(-50%);
+}
+.closePopup{
+  position: absolute;
+  top: 0rpx;
+  right: 20rpx;
+  line-height: 70rpx;
+  font-size: 32rpx;
 }

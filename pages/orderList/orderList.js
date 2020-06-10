@@ -42,6 +42,10 @@ Page({
         })
     },
     goDetail: function (e) {
+        wx.requestSubscribeMessage({
+          tmplIds: ['H-oYiigLOGzJHJAm4FULGuNpK2DMPm_LXdpKf1QwZRs', 'uRoacH2E2QenP_wEKcc1irOn_Tu1X94ULLua1ua-vr4', 'H-oYiigLOGzJHJAm4FULGg5ivWuoQs0J9yFnwaDs8c0'],
+          success(res) { }
+        })
         wx.navigateTo({
             url: '../orderListDetail/orderListDetail?obj=' + JSON.stringify(e.currentTarget.dataset.obj)
         })
@@ -49,7 +53,11 @@ Page({
     // 点击tabbbar触发
     swichNav: function (e) {
         var that = this;
-        console.log(e)
+        wx.requestSubscribeMessage({
+          tmplIds: ['H-oYiigLOGzJHJAm4FULGuNpK2DMPm_LXdpKf1QwZRs', 'uRoacH2E2QenP_wEKcc1irOn_Tu1X94ULLua1ua-vr4', 'H-oYiigLOGzJHJAm4FULGg5ivWuoQs0J9yFnwaDs8c0'],
+          success(res) { }
+        })
+        // console.log(e)
         that.setData({
             currentTab: e.currentTarget.dataset.index,
             currentId:e.currentTarget.dataset.id,
@@ -57,22 +65,22 @@ Page({
             page:1,
             isYes:true
         })
-        console.log(e.currentTarget.dataset.current)
+        // console.log(e.currentTarget.dataset.current)
         that.getData(that.data.titleList[that.data.currentTab].status,1)
     },
     bindChange: function (e) {
         var that = this;
-        console.log(that.data.titleList)
+        // console.log(that.data.titleList)
         that.setData({ 
             currentTab: e.detail.current,
             list:[],
             page:1,
             isYes:true 
         });
-        console.log(e)
+        // console.log(e)
         for (let i = 0; i < that.data.titleList.length; i++) {
             if (e.detail.current == i) {
-                console.log(e.detail.current,i)
+                // console.log(e.detail.current,i)
                 that.getData(that.data.titleList[that.data.currentTab].status,1)
             }
         }
@@ -80,7 +88,7 @@ Page({
     // 请求数据
     getData(state,page){
         var that=this
-        console.log(that.data.isYes,"请求开始")
+        // console.log(that.data.isYes,"请求开始")
         if(that.data.isYes){
             wx.showLoading({ title: '加载中', })
             let myToken = wx.getStorageSync("token");
@@ -90,7 +98,7 @@ Page({
                 header: { "token": myToken },
                 data: { order_state: state, lat: that.data.lat, lon: that.data.lon,page:page },
                 success: function (res) {
-                  console.log(res)
+                  // console.log(res)
                     // 如果页码为1，返回数据为0则无数据不再请求
                     if(page==1&&res.data.data.length==0){
                         that.setData({
@@ -112,7 +120,7 @@ Page({
                             })
                         }
                     }
-                    console.log(that.data.isYes,"请求结束")
+                    // console.log(that.data.isYes,"请求结束")
                     wx.hideLoading()
                 },
                 error: res => {
@@ -120,13 +128,13 @@ Page({
                 }
             })
         }else{
-            console.log("没有更多数据")
+            // console.log("没有更多数据")
         }
     },
     onLoad: function () {
-        console.log(123)
+        // console.log(123)
         let that = this;
-        console.log(that.data.hasOnShow)
+        // console.log(that.data.hasOnShow)
         if (that.data.hasOnShow) {
             return
         }else{
@@ -154,6 +162,8 @@ Page({
     },
     onShow: function(){
         var that=this
+        app.globalData.nowIndex=0
+        app.globalData.nowIndex2=0
         this.passwordWriting = this.selectComponent('#passwordWriting')
         var aShow=wx.getStorageSync('aShow')
         if(aShow){
@@ -171,6 +181,10 @@ Page({
         let that = this;
         let openId = wx.getStorageSync("openId");
         let order_number = e.currentTarget.dataset.order;
+        wx.requestSubscribeMessage({
+          tmplIds: ['H-oYiigLOGzJHJAm4FULGuNpK2DMPm_LXdpKf1QwZRs','uRoacH2E2QenP_wEKcc1irOn_Tu1X94ULLua1ua-vr4','H-oYiigLOGzJHJAm4FULGg5ivWuoQs0J9yFnwaDs8c0'],
+          success (res) { }
+        })
         that.setData({
             show: true,
             openIdNow:openId,
@@ -185,7 +199,7 @@ Page({
             header: { "token": wx.getStorageSync('token') },
             data: { uid: wx.getStorageSync('uid'), wsid: wx.getStorageSync('wsid'), type: 1, id: wx.getStorageSync('fuwuId') },
             success(res) {
-              console.log(res)
+              // console.log(res)
               // 可以购买
               if (res.data.code == 200) {
                 that.setData({
@@ -207,7 +221,7 @@ Page({
               }
             },
             fail(error) {
-              console.log(error)
+              // console.log(error)
             }
         })   
     },
@@ -220,12 +234,16 @@ Page({
     // 微信支付
     weixinPay(e){
         var that=this
+        wx.requestSubscribeMessage({
+          tmplIds: ['H-oYiigLOGzJHJAm4FULGuNpK2DMPm_LXdpKf1QwZRs', 'uRoacH2E2QenP_wEKcc1irOn_Tu1X94ULLua1ua-vr4', 'H-oYiigLOGzJHJAm4FULGg5ivWuoQs0J9yFnwaDs8c0'],
+          success(res) { }
+        })
         var openId=that.data.openIdNow
         var order_number=that.data.order_number_now
         var categoryNow=that.data.categoryNow
         var statusNow=that.data.statusNow
         if(categoryNow == 6){
-            console.log("走汽车精养模式")
+            // console.log("走汽车精养模式")
                 wx.request({
                     url: app.globalData.url+'wx_pay',
                     data: { openid: openId, order_number: order_number, lat: that.data.lat, lon: that.data.lon },
@@ -355,6 +373,10 @@ Page({
     },
     // 余额支付
     yuePay() {
+        wx.requestSubscribeMessage({
+          tmplIds: ['H-oYiigLOGzJHJAm4FULGuNpK2DMPm_LXdpKf1QwZRs', 'uRoacH2E2QenP_wEKcc1irOn_Tu1X94ULLua1ua-vr4', 'H-oYiigLOGzJHJAm4FULGg5ivWuoQs0J9yFnwaDs8c0'],
+          success(res) { }
+        })
         var that = this
         if (that.data.payYE) {
           that.setData({
@@ -377,6 +399,10 @@ Page({
             phoneNumber: '4000060808' //仅为示例，并非真实的电话号码
           })
         }else{
+          wx.requestSubscribeMessage({
+            tmplIds: ['H-oYiigLOGzJHJAm4FULGuNpK2DMPm_LXdpKf1QwZRs','uRoacH2E2QenP_wEKcc1irOn_Tu1X94ULLua1ua-vr4','H-oYiigLOGzJHJAm4FULGg5ivWuoQs0J9yFnwaDs8c0'],
+            success (res) { }
+          })
           wx.showModal({
             title: '提示',
             content: '您真的要取消订单吗？',
@@ -416,6 +442,10 @@ Page({
     // 余额确定支付
     checkPassword() {
         var that=this
+        wx.requestSubscribeMessage({
+          tmplIds: ['H-oYiigLOGzJHJAm4FULGuNpK2DMPm_LXdpKf1QwZRs', 'uRoacH2E2QenP_wEKcc1irOn_Tu1X94ULLua1ua-vr4', 'H-oYiigLOGzJHJAm4FULGg5ivWuoQs0J9yFnwaDs8c0'],
+          success(res) { }
+        })
         wx.request({
             url: app.globalData.url + 'service_balance_pay',
             header: { "token": wx.getStorageSync('token') },
@@ -425,11 +455,6 @@ Page({
               wx.hideLoading()
               that.onClose()
               that.onClose2()
-              wx.showToast({
-                title: res.data.msg,
-                icon: 'none',
-                duration: 2000
-              })
               if(res.data.code==200){
                 that.passwordWriting.clearCurrentValue() 
                 that.setData({
@@ -452,16 +477,25 @@ Page({
                   currentValue:''
                 })
               }
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'none',
+                duration: 2000
+              })
             },
             fail(err) {
               wx.hideLoading()
-              console.log(err)
+              // console.log(err)
             },
           })
       },
     // 点击开始服务
     begin(e){
       var that=this
+      wx.requestSubscribeMessage({
+        tmplIds: ['H-oYiigLOGzJHJAm4FULGuNpK2DMPm_LXdpKf1QwZRs','uRoacH2E2QenP_wEKcc1irOn_Tu1X94ULLua1ua-vr4','H-oYiigLOGzJHJAm4FULGg5ivWuoQs0J9yFnwaDs8c0'],
+        success (res) { }
+      })
       var order_number=e.currentTarget.dataset.order
       wx.request({
         url: app.globalData.url + "start_service",
@@ -472,7 +506,7 @@ Page({
         },
         success(res) {
           if (res.data.code==200){
-            console.log("已经开始服务")
+            // console.log("已经开始服务")
             that.setData({
               list: [],
               page: 1,
@@ -482,7 +516,7 @@ Page({
           }
         },
         fail(error){
-          console.log(error)
+          // console.log(error)
         }
       })
     },
@@ -496,6 +530,10 @@ Page({
     // 结束服务
     endFw(e){
       var that=this
+      wx.requestSubscribeMessage({
+        tmplIds: ['H-oYiigLOGzJHJAm4FULGuNpK2DMPm_LXdpKf1QwZRs','uRoacH2E2QenP_wEKcc1irOn_Tu1X94ULLua1ua-vr4','H-oYiigLOGzJHJAm4FULGg5ivWuoQs0J9yFnwaDs8c0'],
+        success (res) { }
+      })
       var order_number = e.currentTarget.dataset.order
       wx.showModal({
         title: '提示',
@@ -511,7 +549,7 @@ Page({
                 },
                 success(res) {
                   if (res.data.code == 200) {
-                    console.log("结束服务")
+                    // console.log("结束服务")
                     that.setData({
                       list: [],
                       page: 1,
@@ -527,7 +565,7 @@ Page({
                   }
                 },
                 fail(error) {
-                  console.log(error)
+                  // console.log(error)
                 }
               })
             } else if (res.cancel) {
@@ -546,7 +584,7 @@ Page({
    */
     onReachBottom: function () {
         var that=this
-        console.log(that.data.isYes,"下拉触底",that.data.page)
+        // console.log(that.data.isYes,"下拉触底",that.data.page)
         if(that.data.isYes){
           that.setData({
             page:that.data.page+1

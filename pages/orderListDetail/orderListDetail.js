@@ -32,7 +32,7 @@ Page({
       lat: wx.getStorageSync("lat"),
       lon:wx.getStorageSync("lon")
     })
-    console.log(that.data.obj)
+    // console.log(that.data.obj)
   },
   // 时间戳转年月日
   formatDuring(timestamp) {
@@ -68,7 +68,7 @@ Page({
           })
         }
       },1000);
-       console.log(that.data.nowTime)
+      //  console.log(that.data.nowTime)
     }
     // 如果为服务中
     if(obj.order_state=='11'){
@@ -87,7 +87,7 @@ Page({
           })
         }
       },1000);
-       console.log(that.data.nowTime)
+      //  console.log(that.data.nowTime)
     }
   },
   formatDuringDay: function(mss) {
@@ -115,7 +115,11 @@ Page({
   // 点击开始服务
   begin(e){
     var that=this
-    console.log("123456789")
+    wx.requestSubscribeMessage({
+      tmplIds: ['H-oYiigLOGzJHJAm4FULGuNpK2DMPm_LXdpKf1QwZRs','uRoacH2E2QenP_wEKcc1irOn_Tu1X94ULLua1ua-vr4','H-oYiigLOGzJHJAm4FULGg5ivWuoQs0J9yFnwaDs8c0'],
+      success (res) { }
+    })
+    // console.log("123456789")
     wx.request({
       url: app.globalData.url + "start_service",
       header: { "token": wx.getStorageSync('token') },
@@ -131,13 +135,17 @@ Page({
         }
       },
       fail(error){
-        console.log(error)
+        // console.log(error)
       }
     })
   },
   // 结束服务
   endFw(e){
     var that=this
+    wx.requestSubscribeMessage({
+      tmplIds: ['H-oYiigLOGzJHJAm4FULGuNpK2DMPm_LXdpKf1QwZRs','uRoacH2E2QenP_wEKcc1irOn_Tu1X94ULLua1ua-vr4','H-oYiigLOGzJHJAm4FULGg5ivWuoQs0J9yFnwaDs8c0'],
+      success (res) { }
+    })
     wx.showModal({
       title: '提示',
       content: '确定完成订单吗？',
@@ -151,7 +159,7 @@ Page({
                 order_number: that.data.obj.order_number
               },
               success(res) {
-                console.log(res.data.data)
+                // console.log(res.data.data)
                 if (res.data.code == 200) {
                   wx.switchTab({
                     url: '/pages/orderList/orderList',
@@ -165,7 +173,7 @@ Page({
                 }
               },
               fail(error) {
-                console.log(error)
+                // console.log(error)
               }
             })
           } else if (res.cancel) {
@@ -211,7 +219,7 @@ Page({
   // 给小哥打电话
   toTel(){
     var that=this
-    console.log(that.data.obj)
+    // console.log(that.data.obj)
     wx.makePhoneCall({
       phoneNumber: that.data.obj.workman_phone //仅为示例，并非真实的电话号码
     })
@@ -219,6 +227,10 @@ Page({
   //点击立即下单   
   payNow : function (e){
     let that = this ;
+    wx.requestSubscribeMessage({
+      tmplIds: ['H-oYiigLOGzJHJAm4FULGuNpK2DMPm_LXdpKf1QwZRs','uRoacH2E2QenP_wEKcc1irOn_Tu1X94ULLua1ua-vr4','H-oYiigLOGzJHJAm4FULGg5ivWuoQs0J9yFnwaDs8c0'],
+      success (res) { }
+    })
     // 显示支付方式
     that.setData({
         show: true,
@@ -229,7 +241,7 @@ Page({
         header: { "token": wx.getStorageSync('token') },
         data: { uid: wx.getStorageSync('uid'), wsid: wx.getStorageSync('wsid'), type: 1, id: wx.getStorageSync('fuwuId') },
         success(res) {
-          console.log(res)
+          // console.log(res)
           // 可以购买
           if (res.data.code == 200) {
             that.setData({
@@ -251,14 +263,18 @@ Page({
           }
         },
         fail(error) {
-          console.log(error)
+          // console.log(error)
         }
     })  
   },
   // 微信支付
   weixinPay(e){
     var that=this
-    console.log(that.data.obj)
+    wx.requestSubscribeMessage({
+      tmplIds: ['H-oYiigLOGzJHJAm4FULGuNpK2DMPm_LXdpKf1QwZRs', 'uRoacH2E2QenP_wEKcc1irOn_Tu1X94ULLua1ua-vr4', 'H-oYiigLOGzJHJAm4FULGg5ivWuoQs0J9yFnwaDs8c0'],
+      success(res) { }
+    })
+    // console.log(that.data.obj)
     if(that.data.obj.category == 1){
             wx.request({ 
             url: 'https://wash.xypvip.cn/wx_pay',
@@ -342,6 +358,10 @@ Page({
     // 余额支付
     yuePay() {
         var that = this
+        wx.requestSubscribeMessage({
+          tmplIds: ['H-oYiigLOGzJHJAm4FULGuNpK2DMPm_LXdpKf1QwZRs', 'uRoacH2E2QenP_wEKcc1irOn_Tu1X94ULLua1ua-vr4', 'H-oYiigLOGzJHJAm4FULGg5ivWuoQs0J9yFnwaDs8c0'],
+          success(res) { }
+        })
         if (that.data.payYE) {
             that.setData({
                 yuePay: true
@@ -371,6 +391,10 @@ Page({
   // 余额确定支付
   checkPassword() {
     var that=this
+    wx.requestSubscribeMessage({
+      tmplIds: ['H-oYiigLOGzJHJAm4FULGuNpK2DMPm_LXdpKf1QwZRs', 'uRoacH2E2QenP_wEKcc1irOn_Tu1X94ULLua1ua-vr4', 'H-oYiigLOGzJHJAm4FULGg5ivWuoQs0J9yFnwaDs8c0'],
+      success(res) { }
+    })
     wx.request({
         url: app.globalData.url + 'service_balance_pay',
         header: { "token": wx.getStorageSync('token') },
@@ -400,7 +424,7 @@ Page({
         },
         fail(err) {
           wx.hideLoading()
-          console.log(err)
+          // console.log(err)
         },
       })
   },

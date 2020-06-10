@@ -13,15 +13,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    markers: [],
+    markers: [],//标点位置
+    // 经纬度
     latitude: '',
     longitude: '',
-    rgcData: {},
-    typeId : '',
-    showMap: true,
+    // 检索出来的数据
     pois: [],
-    del: true,
-    addressText : ''
+    del: true,//搜索的删除按钮
+    addressText : '',//当前选择位置
   },
 
   /**
@@ -29,18 +28,45 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    that.setData({
-      typeId: options.id
-    })
+    console.log(options.topOrBottom)
+    // 如果type为1则显示，否则隐藏则有默认位置，显示当前和默认按钮
+    if(options.type==1){
+      that.setData({
+        type: options.type,//从哪里跳转过来的？type为1时显示默认和当前，为0时隐藏
+        topOrBottom:"top",
+        isShowAddress:false
+      })
+    }else{
+      that.setData({
+        type: options.type,//从哪里跳转过来的？type为1时显示默认和当前，为0时隐藏
+        isShowAddress:true
+      })
+    }
     // 根据微信  获取当前经纬度
     wx.getLocation({
       type: 'gcj02',
       success: function (res) {
-        console.log(res)
         var latitude = res.latitude
         var longitude = res.longitude
-
+        // 将获取到的当前位置的经纬度存储起来，并标点
+        wx.setStorageSync('bd_lat', res.latitude)
+        wx.setStorageSync('bd_lng', res.longitude)
+        if(app.globalData.morenLat==""||app.globalData.morenLon==""){
+          that.setData({
+            morenLat:wx.getStorageSync('lat'),//默认位置的经纬度
+            morenLon:wx.getStorageSync('lon'),//默认位置的经纬度
+          })
+          app.globalData.morenLon=wx.getStorageSync('lon')
+          app.globalData.morenLat=wx.getStorageSync('lat')
+        }else{
+          that.setData({
+            morenLat:app.globalData.morenLat,//默认位置的经纬度
+            morenLon:app.globalData.morenLon,//默认位置的经纬度
+          })
+        }
         that.setData({
+          dangqianLat:latitude,//当前位置的经纬度
+          dangqianLon:longitude,//当前位置的经纬度
           longitude: longitude,
           latitude: latitude,
           markers: [
@@ -62,17 +88,59 @@ Page({
   },
 
   // 将经纬度存入缓存bg_lat，bd_lng
-  gcj02tobd09: function (lng, lat){
-    var that = this;
-    wx.setStorageSync('bd_lng', lng);
-    wx.setStorageSync('bd_lat', lat);
-  },
+  // gcj02tobd09: function (lng, lat){
+  //   var that = this;
+  //   wx.setStorageSync('bd_lng', lng);
+  //   wx.setStorageSync('bd_lat', lat);
+  // },
 
   // 暂无用处
   makertap: function (e) {
     var that = this;
     var id = e.markerId;
     that.showSearchInfo(wxMarkerData, id);
+  },
+  // 当前位置
+  addressDangqain(){
+    var that=this
+    that.setData({
+      topOrBottom:'top',
+      markers: [
+        {
+          id: 0,
+          iconPath: "../../img/wxd.png",
+          longitude: that.data.dangqianLon,
+          latitude: that.data.dangqianLat,
+          width: 0,
+          height: 0
+        }
+      ]
+    })
+    that.mapCtx = wx.createMapContext("map");
+    // 获取站点
+    that.bd_decrypt(that.data.dangqianLon, that.data.dangqianLat)
+    that.getLngLat(that.data.dangqianLon, that.data.dangqianLat)
+  },
+  // 默认位置
+  addressMoren(){
+    var that=this
+    that.setData({
+      topOrBottom:'bottom',
+      markers: [
+        {
+          id: 0,
+          iconPath: "../../img/wxd.png",
+          longitude: that.data.morenLon,
+          latitude: that.data.morenLat,
+          width: 0,
+          height: 0
+        }
+      ]
+    })
+    that.mapCtx = wx.createMapContext("map");
+    // 获取站点
+    that.bd_decrypt(that.data.morenLon, that.data.morenLat)
+    that.getLngLat(that.data.morenLon, that.data.morenLat)
   },
 
   // 拖拽调用
@@ -82,6 +150,9 @@ Page({
     if (e.type == 'end') {
       that.mapCtx.getCenterLocation({
         success: function (res) {
+          // console.log(res)
+          wx.setStorageSync('bd_lat', res.latitude)
+          wx.setStorageSync('bd_lng', res.longitude)
           that.mapCtx.translateMarker({
             markerId: 0,
             duration: 500,
@@ -107,6 +178,8 @@ Page({
     that.mapCtx.getCenterLocation({
       success: function (res) {
         if (lon) {
+          wx.setStorageSync('bd_lat', lat)
+          wx.setStorageSync('bd_lng', lon)
           that.setData({
             longitude: lon,
             latitude: lat,
@@ -123,6 +196,8 @@ Page({
           })
           that.bd_decrypt(lon, lat)
         } else {
+          wx.setStorageSync('bd_lat', res.latitude)
+          wx.setStorageSync('bd_lng', res.longitude)
           that.setData({
             longitude: res.longitude,
             latitude: res.latitude,
@@ -147,32 +222,28 @@ Page({
   //换取地址；是否有站点
   bd_decrypt: function (bd_lon, bd_lat) {
     let that = this;
-    that.gcj02tobd09(bd_lon, bd_lat);
-    bd_lat = wx.getStorageSync("bd_lat");
-    bd_lon = wx.getStorageSync("bd_lng");
+    // 存储经纬度，两种名字
     var string = "" + bd_lon + "," + bd_lat + ""
-    wx.setStorageSync("lon", bd_lon)
-    wx.setStorageSync("lat", bd_lat)
     wx.request({
       url: app.globalData.url+'get_location',
       data: { location: string, lat: bd_lat, lon: bd_lon },
       success: function (res) {
-        console.log("map_data")
-        console.log(res.data.data);
+        // console.log(res.data.data);
         var address = JSON.parse(JSON.stringify(res.data.data))
         var address2=JSON.parse(JSON.stringify(res.data.data))
         that.setData({
-          address: address.regeocode.addressComponent.province+address.regeocode.addressComponent.city+address.regeocode.addressComponent.district+address.regeocode.addressComponent.streetNumber.street+address.regeocode.addressComponent.streetNumber.number
+          address:address.regeocode.formatted_address,
+          nowCity:address.regeocode.addressComponent.province
         })
         // 发起POI检索请求
         let newString = "" + bd_lat + "," + bd_lon + ""
-        console.log("发起检索")
+        // console.log("发起检索")
         BMap.regeocoding({
-          "query": address.regeocode.addressComponent.province+address.regeocode.addressComponent.city+address.regeocode.addressComponent.districe+address.regeocode.addressComponent.streetNumber.street+address.regeocode.addressComponent.streetNumber.number,
+          "query":address.regeocode.formatted_address,
           "location": newString,
           "pois": 1,
           success: function (data) {
-            console.log(data)
+            // console.log(data)
             that.setData({
               pois: data.originalData.result.pois
             })
@@ -182,94 +253,71 @@ Page({
           url: app.globalData.url+'get_bd_wash_station',
           data: { latitude: bd_lat, longitude: bd_lon, lat: bd_lat, lon: bd_lon},
           success: function (res) {
-            console.log("get_bd_wash_station", bd_lat, bd_lon,res)
-            // console.log("get_bd_wash_station",res)
+            // console.log("get_bd_wash_station", bd_lat, bd_lon,res)
             if (res.data.code == 2) {
               that.setData({
                 offOn: "该位置没有服务站点，请选择其他位置"
               })
             } else {
               that.setData({
-                offOn: res.data.data.station
-              })
-
-              wx.setStorageSync("wsid", res.data.data.wsid)
+                offOn: res.data.data.station,
+                wsid:res.data.data.wsid,
+              }) 
             }
           }
         })
       }
     })
   },
-
+  // 顶部搜索框点击置空
   listenerPhoneInput : function (){
     let that = this ;
     that.setData({
-      address: ''
+      address: ''//将输入框和当前位置置空
     })
   },
 
-  // input实时监控
+  // 顶部input实时监控
   bindKeyInput: function (e) {
     var that = this;
     that.setData({
-      sugData: "",
-      del: true
+      sugData: "",//数据置空
+      del: true,//删除按钮显示
+      inputAddress: e.detail.value,//输入内容
+      showView: true,//搜索出的数据显示
     });
-    that.setData({
-      inputAddress: e.detail.value
-    })
-    that.setData({
-      showView: true,
-      showMap: false
-    })
     // 发起suggestion检索请求
-    wx.getStorageSync("myCity")
-    let myCity = wx.getStorageSync("myCity")
     BMap.suggestion({
       query: e.detail.value,
-      region: myCity,
+      region:that.data.nowCity,//要获取当前的省份
       city_limit: true,
       success: function (data) {
         that.setData({
-          sugData: data.result
+          sugData: data.result//搜索除的数据
         });
       }
     });
   },
 
-  // 删除
+  // 输入框删除
   del: function () {
     this.setData({
-      address: "",
+      address: "",//输入框内容置空
       showView: false,
-      showMap: true,
-      del: false,
-      sugData: ''
+      del: false,//删除按钮隐藏
+      sugData: ''//检索内容置空
     })
-    let that = this;
-    if (that.data.sugData == "") {
-      let searchList = wx.getStorageSync('searchList');
-      this.setData({
-        address: "",
-        showView: true,
-        showMap: false,
-        del: false,
-        sugData: searchList
-      })
-    }
   },
-  
+  // 地址选择
   getLon: function (e, lat, lng) {
     let that = this;
     that.setData({
-      nigList: '',
       del: true,
       addressText: e.currentTarget.dataset.name
     })
     that.getLngLat(e.currentTarget.dataset.lng, e.currentTarget.dataset.lat)
     that.setData({
       showView: false,
-      showMap: true
     })
   },
   //搜索
@@ -277,16 +325,13 @@ Page({
     let that = this;
     let lng = "";
     let lat = '';
-    that.setData({
-      nigList: ''
-    })
-    wx.getStorageSync('searchList');
-
     BMap.regeocoding({
       success: function (res) {
+        // console.log(res,that.data.inputAddress)
         BMap.search({
           "query": that.data.inputAddress,
           success: function (res) {
+            // console.log(res)
             if (res.wxMarkerData.length != 0) {
               let newArray = [];
               lng = res.originalData.results[0].location.lng
@@ -294,12 +339,11 @@ Page({
               that.getLngLat(lng, lat)
               that.setData({
                 showView: false,
-                showMap: true
               })
               for (let i = 0; i < res.wxMarkerData.length && i < 3; i++) {
                 newArray.push(res.originalData.results[i])
               }
-              console.log(newArray)
+              // console.log(newArray)
               that.setData({
                 pois: newArray
               })
@@ -311,38 +355,31 @@ Page({
               })
             }
           },
-
         });
       },
     });
   },
+  // 确认地址
   trueAddress: function () {
     let that = this;
-
-    let addressText = ''
-    if(that.data.addressText == ''){
-        addressText = that.data.pois[0].name ;
-    }else{
-        addressText = that.data.addressText ;
-    }
-    wx.setStorageSync('addressText', that.data.address)
-    wx.setStorageSync('addressText', that.data.address + "-" + addressText)
     if (that.data.offOn != "该位置没有服务站点，请选择其他位置") {
-      if (that.data.typeId == 1) {
-        wx.redirectTo({
-          url: '../goodsDetail/goodsDetail',
-        })
-      } else if(that.data.typeId == 2){
-        wx.reLaunch({
-          url: '/pages/entrance/entrance?map='+1,
-        })
+      let addressText = ''
+      if(that.data.addressText == ''){
+          addressText = that.data.pois[0].name ;
+      }else{
+          addressText = that.data.addressText ;
       }
-      // else {
-      //   wx.redirectTo({
-      //     url: '../orderDetail/orderDetail',
-      //   })
-      // }
-
+      wx.setStorageSync('addressText', that.data.address + "-" + addressText)
+      // 在拖拽/点击/搜索等情况下将经纬度存储在缓存中，如果点击确定则将两个经纬度相同
+      wx.setStorageSync('lat', wx.getStorageSync('bd_lat'))
+      wx.setStorageSync('lon', wx.getStorageSync('bd_lng'))
+      // 返回上一页的时候判断缓存中lat和bd_lat，lon和bd_lng是否相同，不管何时都使用lat和lon
+      if(that.data.type==1){
+        app.globalData.nowIndex=1
+      }
+      wx.navigateBack({
+        delta: 1
+      })
     } else {
       wx.showToast({
           title: '该位置没有服务站点',

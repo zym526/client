@@ -1,17 +1,99 @@
-<!-- <import src="../imageText/imageText.wxml" />   -->
-<view>
-    <!-- 顶部信息 -->
     <view class="top_outer">
-        <view class="left_image">
-        <image src="{{allAfter.imgae_url}}" mode="widthFix"></image>
+        <!-- 车子 -->
+        <view class="car_outer" bindtap="toCarList">
+            <view class="car_left">
+                <image src="{{defaultCar.brand_logo}}" mode="widthFix"/>
+                <view class="car_left_text">
+                    <view hidden="{{defaultCar}}">{{selectCar}}</view>
+                    <view class="car_left_text_one" hidden="{{!defaultCar}}">{{defaultCar.car_number}}</view>
+                    <view class="car_left_text_two" hidden="{{!defaultCar}}">{{defaultCar.info}}</view>
+                </view>
+            </view>
+            <view class="iconfont icon-you"></view>
         </view>
-        <view class="right_text">
-        <view class="one_text">{{allAfter.name}}</view>
-        <view class="two_text"></view>
-        <view class="three_text">￥{{allAfter.city_price}}/次</view>
+        <!-- 地址 -->
+        <view class="address_outer" bindtap="toAddressList">
+            <view class="address_left">
+                <view class="address_outer_bg">
+                    <view class="iconfont icon-dizhi3" style="color:#FF6600;font-size:70rpx;"></view>
+                </view>
+                <view class="address_right">
+                    <view class="address_text_one">{{nowName?nowName:''}}</view>
+                    <view class="address_text_two">{{nowPhone?nowPhone:''}}</view>
+                    <view class="address_text_three">{{nowAddress}}</view>
+                </view>
+            </view>
+            <view class="iconfont icon-you"></view>
+        </view>
+        <!-- 时间 -->
+        <view class="time_outer" bindtap="openDate">
+            <view class="time_left">
+                <view class="time_left_bg">
+                    <view class="iconfont icon-shijian" style="color:#187AFF;font-size:40rpx;"></view>
+                </view>
+                <view class="time-right">
+                    <view hidden="{{userChooseTime}}">{{noTime}}</view>
+                    <view class="time-right-top" hidden="{{!userChooseTime}}">
+                        <view class="time-right-top-one"><text></text>{{userChooseTime.month}}</view>
+                        <view class="time-right-top-two"><text></text>{{userChooseTime.week}}</view>
+                    </view>
+                    <view class="time-right-bottom" hidden="{{!userChooseTime}}">
+                        <view class="time-right-bottom-one"><text></text>{{userChooseTime.time}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class="iconfont icon-you"></view>
         </view>
     </view>
-    <view class="content">
+    <view class="fuwu-outer">
+        <view class="fuwu-left">服务内容</view>
+        <view class="fuwu-right" hidden="{{washTitle}}">
+            <van-radio-group value="{{ radio }}" bind:change="onChange">
+                <van-radio name="{{radio1[0]}}" icon-size="36rpx" custom-class="index-bottom {{radio==radio1[0]?'strong-text':''}}">{{radio1[1]}}</van-radio>
+                <van-radio name="{{radio2[0]}}" icon-size="36rpx" custom-class="index-bottom {{radio==radio2[0]?'strong-text':''}}">{{radio2[1]}}</van-radio>
+            </van-radio-group>
+        </view>
+        <view hidden="{{!washTitle}}" class="fuwu-right">{{washTitle}}</view>
+    </view>
+    <view class="bottom-outer">
+        <view class="fuwu-jiage">
+            <view>服务价格</view>
+            <view>￥{{city_price}}</view>
+        </view>
+        <!-- 优惠券 -->
+        <view class="youhuiquan" bindtap="toDiscounts" data-type="2">
+            <view class="yhq_left_text">
+                优惠券
+                <text>{{count}}张可用</text>
+            </view>
+            <view class="yhq_right_text {{price=='未使用'?'priceColor':price2=='无可用'?'priceGry':''}}">{{price}}</view>
+        </view>
+        <!-- 服务卡 -->
+        <view class="fuwuka" bindtap="toDiscounts" data-type="1">
+            <view class="yhq_left_text">
+                服务卡
+                <text>{{count2}}张可用</text>
+            </view>
+            <view class="yhq_right_text {{price2=='未使用'?'priceColor':price2=='无可用'?'priceGry':''}}">{{price2}}</view>
+        </view>
+        <view class="sec">
+            <view class="timeTitle">备注</view>
+            <view class="timeText">
+                <input bindinput='getInputValue' placeholder='请输入您的车辆及详细停靠地点' value="{{getInputValue}}"/>
+            </view>
+        </view>
+    </view>
+    <view class="youhui-outer">
+        <view>已优惠：￥{{dealWith2}}</view>
+        <view>小计：￥{{dealWith}}</view>
+    </view>
+    <view class="pay_outer">
+        <view>实付款：￥{{dealWith}}</view>
+        <view bindtap="fukuan">立即下单</view>
+    </view>
+
+
+    <!-- <view class="content">
         <view class="addressLine" bindtap='selectCar'>
             <view class="addressTitle">车辆信息</view>
             <view class="address">
@@ -49,34 +131,34 @@
         <view class="timeText">
             <input bindinput='getInputValue' placeholder='请输入您的车辆及详细停靠地点' value="{{getInputValue}}"/>
         </view>
-    </view>
+    </view> -->
 
-    <view class="card_two">
+    <!-- <view class="card_two"> -->
         <!-- 优惠券 -->
-        <view class="youhuiquan" bindtap="toDiscounts" data-type="2">
+        <!-- <view class="youhuiquan" bindtap="toDiscounts" data-type="2">
         <view class="yhq_left_text">
             优惠券
             <text>{{count}}张可用</text>
         </view>
         <view class="yhq_right_text {{price=='未使用'?'priceColor':price2=='无可用'?'priceGry':''}}">{{price}}</view>
-        </view>
+        </view> -->
         <!-- 服务卡 -->
-        <view class="fuwuka" bindtap="toDiscounts" data-type="1">
+        <!-- <view class="fuwuka" bindtap="toDiscounts" data-type="1">
         <view class="yhq_left_text">
             服务卡
             <text>{{count2}}张可用</text>
         </view>
         <view class="yhq_right_text {{price2=='未使用'?'priceColor':price2=='无可用'?'priceGry':''}}">{{price2}}</view>
         </view>
-    </view>
-    <view class="bottom_bar">
+    </view> -->
+    <!-- <view class="bottom_bar">
         <view class="bottom_left_text">
             <view>实付款：￥{{dealWith}}</view>
             <view>已优惠：￥{{dealWith2}}</view>
         </view>
         <view class="bottom_right_text" bindtap="fukuan">立即下单</view>
-    </view> 
-</view>
+    </view>  -->
+<!-- </view> -->
 <view class="outer-picker {{date ? 'showTrue' : 'showFalse'}}">
     <view class="picker">
         <view class="picker_top_outer">
@@ -139,5 +221,4 @@
     <view class="btn-bottom" bindtap="checkPassword">确定支付</view>
   </view>
 </van-popup>
-
 <van-dialog id="van-dialog" />

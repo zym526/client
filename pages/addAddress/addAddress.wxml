@@ -1,0 +1,35 @@
+<view class="add-outer">
+  <view class="one-info-outer">
+    <view class="one-info-left">服务地址</view>
+    <view class="one-top-info-right" bindtap="toMap">
+      <text>{{addressFW}}</text>
+      <view class="iconfont icon-you" style="font-size:30rpx;color:#999999"></view>
+    </view>
+  </view>
+  <view class="one-info-outer">
+    <view class="one-info-left">详细地址</view>
+    <input class="one-info-right" value="{{addressXX}}" type="text" placeholder="详细地址，选填" bindinput="getAddress" />
+  </view>
+  <view class="one-info-outer">
+    <view class="one-info-left">联系人</view>
+    <input class="one-info-right" value="{{addressName}}" type="text" placeholder="请填写联系人姓名" bindinput="getName" />
+  </view>
+  <view class="one-info-outer">
+    <view class="one-info-left">手机号</view>
+    <input class="one-info-right" value="{{addressPhone}}" type="number" placeholder="请填写联系人手机号码" bindinput="getPhone" maxlength="11" />
+  </view>
+  <view class="one-info-outer">
+    <view class="one-info-left">设为默认地址</view>
+    <van-switch checked="{{ checked }}" bind:change="onChange" size="30rpx" active-color="#FF6600"/>
+  </view>
+</view>
+
+
+<!-- 确认添加或删除修改 -->
+<view class="btn-bottom">
+  <view class="btn-one" hidden="{{type=='1'}}" bindtap="addressTwo">确定添加</view>
+  <view class="btn-del" hidden="{{type=='0'}}" bindtap="delAddress">删除</view>
+  <view class="btn-save" hidden="{{type=='0'}}" bindtap="addressTwo">保存</view>
+</view>
+<!-- 删除提示 -->
+<van-dialog id="van-dialog" confirm-button-color="#1678FF" cancel-button-color="#FF6600" />

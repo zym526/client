@@ -1,0 +1,29 @@
+<view class="address-outer" hidden="{{!isShow}}">
+  <view class="address-one-outer" wx:for="{{allAddress}}" wx:key="index">
+    <!-- 编辑左侧 -->
+    <view class="address-left" bindtap="toGoodsDetail" data-item="{{item}}"> 
+      <!-- 地址图标 -->
+      <view class="address-img">
+        <view class="iconfont icon-dizhi3" style="color:#FF6600;font-size:70rpx;"></view>
+      </view>
+      <!-- 信息 -->
+      <view class="address-text-outer">
+        <view class="address-name-outer">
+          <text class="address-name">{{item.name}}</text>
+          <text class="address-def {{item.default_address==0?'hidden':'show'}}">默认</text>
+        </view>
+        <view class="address-phone">{{item.phone}}</view>
+        <view class="address-text-all">{{item.province}}{{item.detail_address}}
+        </view>
+      </view>
+    </view>
+    <view class="address-right" bindtap="toAddAddress" data-type="1" data-item="{{item}}">编辑</view>
+  </view>
+</view>
+<view class="empty" hidden="{{isShow}}">
+  <image src="../../img/empty.png" mode="widthFix"></image>
+  <view>您还没有地址信息哦！</view>
+</view>
+
+<!-- 添加新地址 -->
+<view class="add-new-bottom" bindtap="toAddAddress" data-type="0">添加新地址</view>

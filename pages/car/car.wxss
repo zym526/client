@@ -8,7 +8,7 @@
 .userTime { overflow: hidden ; }
 .text { width : 130rpx ; } */
 
-.userTime{
+/* .userTime{
   border-top: 1rpx solid #E4E4E4;
   display: flex;
   padding: 20rpx 30rpx;
@@ -22,10 +22,10 @@
   width: calc(100% - 140rpx);
   height: 100%;
   font-size: 28rpx;
-  line-height: 30rpx;
+  line-height: 30rpx; */
   /* border: 1px solid red; */
-}
-.userName input{
+/* } */
+/* .userName input{
   width: calc(100% - 195rpx);
 }
 .user_color{
@@ -52,18 +52,18 @@
 }
 .car_type{
   border-bottom: 1rpx solid #E1E1E1;
-}
+} */
 
 /* .carModul { display: block; position: fixed ; top : 0 ; height : 100% ; width: 100% ; background: #fff ; z-index: 50 ; bottom :0 ; overflow: scroll ;}
 .carModul .zimu {font-size: 14px ; text-align: left ; width: 100% ; border-bottom : 1px solid #dddddd ; padding : 0.3733rem 0.3rem 0.2844rem ;}
 .carModul .carList view{font-size: 14px ; text-align: left ; width: 85% ; margin: 0 5% ; border-bottom : 1px solid #dddddd ; padding : 0.3733rem 0.3rem 0.2844rem ;} */
-.btn { position: fixed ;bottom : 0 ; height : 100rpx ; font-size: 36rpx ; background : #1678FF ; width: 100% ; line-height: 100rpx ; text-align: center ; color: #fff ;}
+/* .btn { position: fixed ;bottom : 0 ; height : 100rpx ; font-size: 36rpx ; background : #1678FF ; width: 100% ; line-height: 100rpx ; text-align: center ; color: #fff ;} */
 
-.city,.openCarNumber { background: #eeeeee ; overflow: hidden ; position: fixed ; bottom: 0 ; z-index: 20 ; display: block ; padding : 20rpx 0 10rpx 0 ;left: 0rpx;right: 0rpx}
+/* .city,.openCarNumber { background: #eeeeee ; overflow: hidden ; position: fixed ; bottom: 0 ; z-index: 20 ; display: block ; padding : 20rpx 0 10rpx 0 ;left: 0rpx;right: 0rpx}
 .cityItem { width: 10% ; height : 70rpx ; line-height: 70rpx ; background: #fff ; margin : 15rpx 1.25% ; float: left; box-shadow:0 2px 4px 0 rgba(123,123,123,0.50); border-radius: 6px ; font-size: 36rpx ; text-align: center ;} 
-#getCity { float: left ;  margin-right : 5rpx; font-size: 30rpx ; border : 1px solid #1678FF ;padding : 2rpx ; color : #1678FF ; border-radius: 3px ;}
+#getCity { float: left ;  margin-right : 5rpx; font-size: 30rpx ; border : 1px solid #1678FF ;padding : 2rpx ; color : #1678FF ; border-radius: 3px ;} */
 /* { background: #eeeeee ; overflow: hidden ; position: fixed ; bottom: 0 ; z-index: 20 ; display: block ;} */
-.carColor .cityItem{ font-size: 28rpx ; width: 14% ;}
+/* .carColor .cityItem{ font-size: 28rpx ; width: 14% ;}
 .del {
   font-size: 28rpx ; 
   background: #1678FF ; 
@@ -75,9 +75,9 @@
 }
 .show{  
   display: block;
-}
+} */
 /* 选择器 */
-.top-class{
+/* .top-class{
   height: 90rpx!important;
 }
 .top-class view{
@@ -92,4 +92,155 @@
 } 
 .van-ellipsis{
   font-size: 32rpx!important;
+} */
+
+.add-outer{
+  padding: 0rpx 30rpx;
+  box-sizing: border-box;
+}
+.one-info-top{
+  padding: 30rpx 0rpx;
+  box-sizing: border-box;
+  border-bottom: 3rpx solid #E1E1E1;
+}
+.one-info-top-title{
+  font-size: 30rpx;
+  color: #666666;
+  padding-bottom: 20rpx;
+  box-sizing: border-box;
+}
+.one-info-top-chepai{
+  display: flex;
+  justify-content: space-between;
+}
+.one-info-top-left{
+  display: flex;
+}
+.out-radio-slot{
+  font-size: 28rpx;
+  height: 40rpx;
+}
+.one-info-province{
+  font-size: 28rpx;
+  color: #1678FF;
+  line-height: 40rpx;
+  padding: 0rpx 3rpx;
+  box-sizing: border-box;
+  border: 2rpx solid #1678FF;
+  margin-right: 10rpx;
+  border-radius: 6rpx;
+}
+.one-info-top-left input{
+  border: 1rpx solid #E1E1E1;
+  height: 40rpx;
+  font-size: 26rpx;
+  color: #232323;
+  padding-left: 9rpx;
+  box-sizing: border-box;
+}
+.one-info-outer{
+  padding: 30rpx 0rpx;
+  box-sizing: border-box;
+  border-bottom: 3rpx solid #E1E1E1;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 3rpx solid #E1E1E1;
+  position: relative;
+}
+.one-info-outer:last-child{
+  border: none;
+}
+.one-info-left{
+  font-size: 30rpx;
+  color: #666666;
+}
+.one-top-info-right{
+  display: flex;
+  font-size: 28rpx;
+  color: #999999;
+}
+.one-top-info-right .iconfont{
+  display: flex;
+  align-items: center;
+}
+.one-info-right{
+  font-size: 28rpx;
+  color: #999999;
+  text-align: right;
+}
+/* btn */
+.btn-bottom{
+  width: calc(100% - 90rpx);
+  font-size: 32rpx;
+  line-height: 88rpx;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 20rpx;
+  left: 45rpx;
+}
+.btn-one{
+  width: 100%;
+  background-color: #187AFF;
+  border-radius: 88rpx;
+  text-align: center;
+}
+.btn-del,.btn-save{
+  width: 324.3rpx;
+  border-radius: 88rpx;
+  text-align: center;
+}
+.btn-del{
+  background-color: #999999;
+}
+.btn-save{
+  background-color: #187AFF;
+}
+.city { 
+  background: #eeeeee ; 
+  position: fixed ; 
+  bottom: 0 ; 
+  z-index: 20 ; 
+  display: block ; 
+  padding : 20rpx 0 10rpx 0 ;
+  left: 0rpx;
+  right: 0rpx
+}
+.cityItem { 
+  width: 10% ; 
+  height : 70rpx ; 
+  line-height: 70rpx ; 
+  background: #fff ; 
+  margin : 15rpx 1.25% ; 
+  float: left; 
+  box-shadow:0 2px 4px 0 rgba(123,123,123,0.50); 
+  border-radius: 6px; 
+  font-size: 36rpx ; 
+  text-align: center ;
+}
+.hide{
+  display: none;
+}
+/* 车辆颜色 */
+.choose_color{
+  position: absolute;
+  right: 0rpx;
+  top: 103rpx;
+  width: 250rpx;
+  height: 306rpx;
+  border-radius: 4rpx;
+  background-color: white;
+  box-shadow: 0rpx 0rpx 10rpx rgba(0,0,0,0.3);
+  z-index: 999;
+  font-size: 22rpx;
+  color: #232323;
+  text-align: center;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.one_color{
+  padding: 20rpx 0rpx;
+  box-sizing: border-box;
+  border-bottom: 2rpx solid #E1E1E1;
 }

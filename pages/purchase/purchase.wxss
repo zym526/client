@@ -290,3 +290,10 @@ page{
   border-radius: 88rpx;
   margin-bottom: 40rpx;
 }
+.closePopup{
+  position: absolute;
+  top: 0rpx;
+  right: 20rpx;
+  line-height: 70rpx;
+  font-size: 32rpx;
+}

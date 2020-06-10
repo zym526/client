@@ -1,8 +1,19 @@
 <view class="setting_outer">
-  <view class="setting_one_outer" bindtap="toForget"> 
-    <view class="setting_one_text">修改支付密码</view>
-    <view class="iconfont icon-youjiantou"></view>
+  <view class="setting_three_outer">
+    <view class="setting_one_outer" bindtap="toCarAll"> 
+      <view class="setting_one_text">车辆管理</view>
+      <view class="iconfont icon-youjiantou"></view>
+    </view>
+    <view class="setting_one_outer" bindtap="toAddressAll"> 
+      <view class="setting_one_text">地址管理</view>
+      <view class="iconfont icon-youjiantou"></view>
+    </view>
+    <view class="setting_one_outer" bindtap="toForget"> 
+      <view class="setting_one_text">修改支付密码</view>
+      <view class="iconfont icon-youjiantou"></view>
+    </view>
   </view>
   <view class="btn" bindtap="goUp">退出登录</view>
   <van-dialog id="van-dialog" confirm-button-color="#FF6600"/>
 </view>
+<view class="banbenhao">版本号：1.2.1</view>

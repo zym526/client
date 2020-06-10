@@ -26,7 +26,7 @@ Page({
         })
       },
       fail(error){
-        console.log(error)
+        // console.log(error)
       }
     })
   },
@@ -51,7 +51,7 @@ Page({
         vid:that.data.vipId
       },
       success(res){
-        console.log(res)
+        // console.log(res)
         // 发起支付请求
         if(res.data.message==='Successful'){
           wx.requestPayment({
@@ -61,9 +61,9 @@ Page({
             signType: res.data.data.signType,
             paySign: res.data.data.paySign,
             success: function (resage) {
-              console.log(resage)
+              // console.log(resage)
               if (resage.errMsg == "requestPayment:ok") {
-                console.log("支付成功")
+                // console.log("支付成功")
                 // 发起回调
                 wx.request({
                   url: app.globalData.url + "wxcallbackforvip",
@@ -73,10 +73,10 @@ Page({
                     order_sn: res.data.data.order_sn
                   },
                   success(res){
-                    console.log(res)
+                    // console.log(res)
                   },
                   fail(error){
-                    console.log(error)
+                    // console.log(error)
                   },
                 })
                 wx.switchTab({
@@ -109,7 +109,7 @@ Page({
         }
       },
       fail(error){
-        console.log(error)
+        // console.log(error)
       }
     })
   },

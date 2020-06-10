@@ -4,12 +4,14 @@
 <!-- 地图顶部搜索 -->
 <view class="input">
   <input type="text" bindinput="bindKeyInput" value='{{address}}' bindtap="listenerPhoneInput" />
+  <!-- 删除的按钮 -->
   <view class="del {{del?'show':'hide'}}" bindtap='del'>
-    <view class="iconfont icon-quxiao" style="font-size:25rpx"></view>
+    <view class="iconfont icon-quxiao" style="font-size:25rpx;line-height:66rpx"></view>
   </view>
+  <!-- 搜索的按钮 -->
   <view class="img" bindtap='search'>
     <view class="imgBox">
-      <view class="iconfont icon-sousuo" style="font-size:40rpx;position:absolute;top: -10rpx;left:15rpx"></view>
+      <view class="iconfont icon-sousuo" style="font-size:36rpx;line-height:40rpx"></view>
     </view> 
   </view>
 </view>
@@ -18,7 +20,7 @@
   <view wx:for="{{sugData}}" wx:key="i" wx:for-item="item" bindtap='getLon' data-lng="{{item.location.lng}}" data-lat="{{item.location.lat}}" data-name='{{item.name}}'>{{item.name}}</view>
 </view>
 <!-- <view class="" wx:for="{{list}}" wx:key="i">{{item.addr}}</view> -->
-<view class="myMap {{showMap?'show':'hide'}}">
+<view class="myMap show">
   <view class="map_container">
     <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" show-location="true" markers="{{markers}}" bindmarkertap="makertap" bindregionchange="regionchange"></map>
   </view>
@@ -26,7 +28,7 @@
 
 <view class="boxesZwf"></view>
 <view class="boxes">
-  <view class="cover {{showView?'show':'hide'}}"></view>
+  <!-- <view class="cover {{showView?'show':'hide'}}"></view> -->
   <view class="station">{{offOn}}</view>
   <view class="botmAddress">
     <view class="addressImg">
@@ -34,7 +36,7 @@
     </view>
     <view class="addressText">{{address}}</view>
   </view>
-  <view class="nig" bindtap='getLon' wx:for="{{pois}}" wx:key="u" bindtap='getLon' data-lng="{{item.point.x}}" data-lat="{{item.point.y}}" data-name='{{item.name}}'>
+  <view class="nig" wx:for="{{pois}}" wx:key="u" bindtap='getLon' data-lng="{{item.point.x}}" data-lat="{{item.point.y}}" data-name='{{item.name}}'>
     <view class="tit">附近</view>
     <!-- <view class="adres">{{item.name}}</view>   -->
     <view class="adres">{{item.name}}</view>
@@ -44,3 +46,13 @@
 <view class="btn" bindtap='trueAddress'>确认位置</view>
 
 <!--C2MtfEeUcDRo4qM6bk6XCLMGVFM4cCr1  -->
+<view class="now-address" hidden="{{isShowAddress}}">
+  <view class="now-address-top {{topOrBottom=='top'?'nowAddress':''}}" bindtap="addressDangqain">
+    <view class="iconfont icon-dizhi3" style="color: #FF6600;font-size: 48rpx;"></view>
+    <text>当前</text>
+  </view>
+  <view class="now-address-bottom  {{topOrBottom=='bottom'?'nowAddress':''}}" bindtap="addressMoren">
+    <view class="iconfont icon-dizhi3" style="color: #FF6600;font-size: 48rpx;"></view>
+    <text>默认</text>
+  </view>
+</view>

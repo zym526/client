@@ -79,8 +79,8 @@
     <view class="box-right {{obj.order_state == 0?'headerType-red':obj.order_state == 1||obj.order_state == 10||obj.order_state == 11?'headerType-org':obj.order_state == 2?'headerType-blue':'headerType-gry'}}"><text>-￥{{obj.times_card_name}}</text></view>
   </view>
   <view class="box">
-    <view class="box-left" wx:if="{{obj.order_state != 3}}">待付金额</view>
-    <view class="box-left" wx:if="{{obj.order_state == 3}}">已付金额</view>
+    <view class="box-left" wx:if="{{obj.order_state == 0}}">待付金额</view>
+    <view class="box-left" wx:if="{{obj.order_state != 0}}">已付金额</view>
     <view class="box-right {{obj.order_state == 0?'headerType-red':obj.order_state == 1||obj.order_state == 10||obj.order_state == 11?'headerType-org':obj.order_state == 2?'headerType-blue':'headerType-gry'}}"><text>￥{{obj.real_price}}</text></view>
   </view>
   <view class="tipMessage {{showView ? 'showTrue' : 'showFalse'}}"></view>

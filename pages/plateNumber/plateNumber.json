@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "navigationBarBackgroundColor": "#1678FF",
+  "navigationBarTextStyle":"white",
+  "navigationBarTitleText": "品牌车型"
 }

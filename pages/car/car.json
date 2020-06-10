@@ -1,5 +1,6 @@
 {
   "component": true,
   "usingComponents": {},
-    "navigationBarTitleText": "添加车辆"
+  "navigationBarBackgroundColor": "#1678FF",
+  "navigationBarTextStyle":"white"
 }

@@ -1,32 +1,40 @@
 <view class="outer-com">
-  <view class="com-title">填写车辆信息</view>
-  <view class="com-text">
+  <view class="com-title" catchtap="closeColor">填写车辆信息</view>
+  <view class="com-text" catchtap="closeColor">
     <view class="iconfont icon-jinggao" style="font-size:22rpx;line-height:32rpx"></view>
     <text>为了给您提供更好的服务，请如实填写车辆信息</text>
   </view>
-  <view class="com-car-title">车牌号</view>
-  <view class="com-car-outer">
+  <view class="com-car-title" catchtap="closeColor">车牌号</view>
+  <view class="com-car-outer" catchtap="closeColor">
     <view class="outer-car-chepai">
       <view class="com-car-city" bindtap='openCar'>{{province}}</view>
       <!-- <input class="com-car-number" placeholder="请输入您的车牌号"  value='{{city}}' name="city" disabled='disabled' bindtap='openCarNumber'/> -->
-      <input class="com-car-number" placeholder="请输入您的车牌号"  value='{{city}}' name="city" oninput="cityChange" maxlength="{{carLength}}" type="text"/>
+      <input class="com-car-number" placeholder="请输入您的车牌号"  value='{{city}}' name="city" bindtap="marginTop" bindblur="marginTopNo" oninput="cityChange" maxlength="{{carLength}}" type="text"/>
     </view>
-    <van-radio-group value="{{ radio }}" bind:change="onChange">
+    <van-radio use-icon-slot value="{{ radio }}" name="1" bind:change="onChange" custom-class="out-radio-slot">
+      新能源
+      <image slot="icon" src="{{ radio === '1' ? icon.active : icon.noActive }}" mode="widthFix" style="width:28rpx;height:28rpx;vertical-align: 2rpx;" />
+    </van-radio>
+    <!-- <van-radio-group value="{{ radio }}" bind:change="onChange"> 
       <van-radio name="1" icon-size="28rpx" style="height:40rpx;font-size:28rpx;line-height:40rpx">新能源</van-radio>
-    </van-radio-group>
+    </van-radio-group> -->
   </view>
   <!-- 品牌车型 -->
-  <view class="com-car-pinpai">
-    <view class="com-left-title">品牌车型</view>
-    <view class="com-right-change" bindtap="toPlateNum">
-      <text>{{carPlate}}</text>
-      <van-icon name="arrow" size="28rpx" color="#666666" style="vertical-align: -5rpx;"/>
+  <view class="com-car-pinpai" bindtap="toPlateNum">
+    <view class="outer-com-car-two">
+      <view class="com-left-title">品牌车型：</view>
+      <view class="com-right-change">
+        <text>{{carType}}</text>
+      </view>
     </view>
+    <van-icon name="arrow" size="28rpx" color="#666666" style="vertical-align: -5rpx;"/>
   </view>
   <view class="com-car-color">
-    <view>车身颜色</view>
-    <view class="com-car-input-color">
-      <input placeholder="请输入您的车身颜色" value="{{carColor}}" name="carColor" bindtap="opColor" oninput="colorChange" bindblur="blurColor"/>
+    <view class="outer-com-car-two">
+      <view catchtap="closeColor">车身颜色：</view>
+      <view class="com-car-input-color">
+        <input placeholder="请输入您的车身颜色" value="{{carColor}}" name="carColor" bindtap="opColor" oninput="colorChange" bindblur="blurColor"/>
+      </view>
     </view>
     <view class="one-color-list" hidden="{{isHiddenColor}}">
       <view bindtap="colorQue" wx:for="{{chooseColor}}" wx:key="index" data-item="{{item}}">{{item}}</view>
@@ -36,4 +44,5 @@
   <view class="com-car-three">
     <view class="com-car-text {{id===item.id?'com-car-text-bg':'com-car-text-gry'}}" wx:for="{{carType}}" wx:key="index" bindtap="changeType" data-id="{{item.id}}">{{item.type}}</view>
   </view> -->
+  <view class="add-car-submit" bindtap="finish">提交</view>
 </view>

@@ -8,6 +8,18 @@ Page({
    */
   data: {
   },
+  // 车辆管理
+  toCarAll(){
+    wx.navigateTo({
+      url: '/pages/carList/carList?type=0',
+    })
+  },
+  // 地址管理
+  toAddressAll(){
+    wx.navigateTo({
+      url: '/pages/addressList/addressList',
+    })
+  },
   // 修改密码
   toForget(){
     wx.navigateTo({

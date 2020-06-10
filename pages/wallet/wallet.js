@@ -16,6 +16,7 @@ Page({
     firstValue: '',
     secondValue: '',
     isCenter:true,
+    payName:1,//充值方式
   },
   // 跳转钱包明细
   toParticulars(){
@@ -36,7 +37,7 @@ Page({
         uid:wx.getStorageSync('uid')
       },
       success(res){
-        console.log(res)
+        // console.log(res)
         if(res.data.code===200){
           that.setData({
             bala:res.data.data.bala
@@ -44,7 +45,7 @@ Page({
         }
       },
       fail(error){
-        console.log(error)
+        // console.log(error)
       }
     })
   },
@@ -53,7 +54,57 @@ Page({
   onClose() {
     this.setData({ show: false });
   },
-
+  
+  // 切换充值方式
+  changePay(e){
+    var that=this
+    var name=e.currentTarget.dataset.name
+    that.setData({
+      payName:name
+    })
+  },
+  // 卡号
+  carNumber(e){
+    this.setData({
+      carNumber:e.detail.value
+    })
+  },
+  // 密码
+  carPassword(e){
+    this.setData({
+      carPassword:e.detail.value
+    })
+  },
+  // 充值卡充值
+  payCar(){
+    var that=this
+    if(!that.data.carNumber||!that.data.carPassword){
+      app.showToast("充值卡号或密码不能为空")
+    }else{
+      wx.request({
+        url: app.globalData.url+"cord_pay",
+        header:{ "token": wx.getStorageSync('token') },
+        method: "POST",
+        data: {
+          uid: wx.getStorageSync('uid'),
+          account: that.data.carNumber,
+          code: that.data.carPassword
+        },
+        success(res){
+          if(res.data.code == 200){
+            app.showToast('充值成功')
+            // 获取余额
+            that.getBala()
+          }else{
+            app.showToast(res.data.msg)
+          }
+        },
+        fail(err){
+          app.showToast(err.data.msg)
+        },
+      })
+    }
+  },
   // 充值
   topUp(e){
     var that=this
@@ -67,7 +118,7 @@ Page({
         uid: wx.getStorageSync('uid')
       },
       success(res){
-        console.log(res)
+        // console.log(res)
         // 未设置
         if(res.data.code===200){
           that.setData({ show: true });
@@ -101,7 +152,7 @@ Page({
                 paySign: data.paySign,
                 success(res) {
                   wx.hideLoading()
-                  console.log(res)
+                  // console.log(res)
                   if (res.errMsg == "requestPayment:ok") {
                     // 发起回调
                     wx.request({
@@ -114,12 +165,12 @@ Page({
                         uid:wx.getStorageSync('uid')
                       },
                       success(res){
-                        console.log(res)
+                        // console.log(res)
                         // 获取余额
                         that.getBala()
                       },
                       fail(error){
-                        console.log(error)
+                        // console.log(error)
                       },
                     })
                   } else {
@@ -143,14 +194,14 @@ Page({
               })
             },
             fail(error){
-              console.log(error)
+              // console.log(error)
               wx.hideLoading()
             }
           })
         }
       },
       fail(error){
-        console.log(error)
+        // console.log(error)
       }
     })
   },
@@ -168,7 +219,7 @@ Page({
         wsid: wx.getStorageSync('wsid')
       },
       success(res){
-        console.log(res)
+        // console.log(res)
         if(res.data.code===200){
           // 如果返回数据为0则无充值中心
           if(res.data.data.length===0){
@@ -178,7 +229,7 @@ Page({
           }else{
             res.data.data.forEach(item=>{
               item.price=parseInt(item.price)
-              item.text="送"+item.integral+"平台积分"
+              item.text="送"+item.integral+"商城积分"
               if(item.coplist.length!=0){
                 item.coplist.forEach(one=>{
                   if(one.type=="无门槛"){
@@ -200,7 +251,7 @@ Page({
         }
       },
       fail(error){
-        console.log(error)
+        // console.log(error)
       }
     })
   },
@@ -319,8 +370,9 @@ Page({
             password:that.data.secondValue
           },
           success(res){
-            console.log(res)
+            // console.log(res)
             if(res.data.code===200){
+              app.showToast("密码设置成功")
               that.onClose()
             }else{
               wx.showToast({
@@ -337,7 +389,7 @@ Page({
             }
           },
           fail(error){
-            console.log(error)
+            // console.log(error)
           }
         })
       }

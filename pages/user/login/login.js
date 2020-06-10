@@ -42,10 +42,10 @@ Page({
     getPhoneNumber (e) {
         var that=this
         if(that.data.checked){
-            console.log(e)
-            console.log(e.detail.errMsg)
-            console.log(e.detail.iv)
-            console.log(e.detail.encryptedData)
+            // console.log(e)
+            // console.log(e.detail.errMsg)
+            // console.log(e.detail.iv)
+            // console.log(e.detail.encryptedData)
             // 调用接口
             wx.request({
                 url: app.globalData.url+'getphone',
@@ -57,7 +57,7 @@ Page({
                     openid:wx.getStorageSync('openId')
                 },
                 success(res){
-                    console.log(res),
+                    // console.log(res),
                     // 将获取到的手机号存储起来
                     wx.setStorageSync('chooseUser_phone', res.data.data)
                     wx.navigateBack({
@@ -89,7 +89,7 @@ Page({
         if(that.data.checked){
             wx.showLoading({title: '登录中，请稍候', icon: 'loading', duration: 10000});
             let that = this;
-            console.log(e)
+            // console.log(e)
             if (e.detail.iv) {
                 that.addUserToken();
             } else {
@@ -122,6 +122,9 @@ Page({
                                 data: res.encryptedData,
                                 iv: res.iv
                             })
+                            wx.setStorageSync('iv', res.iv)
+                            wx.setStorageSync('encryptedData', res.encryptedData)
+                            
 
                             wx.request({
                                 url: app.globalData.url+'mp_login',
@@ -134,8 +137,8 @@ Page({
                                     lat: wx.getStorageSync('lat')
                                 },
                                 success: function (res) {
-                                    console.log("login_info")
-                                    console.log(res)
+                                    // console.log("login_info")
+                                    // console.log(res)
                                     that.setData({
                                         "session_key":res.data.data.session_key
                                     })
@@ -145,12 +148,12 @@ Page({
                                         header: {"token": res.data.data.token},
                                         success: function (res) {
                                             wx.setStorageSync('aShow', false)
-                                            console.log("person_info")
-                                            console.log(res.data.data)
+                                            // console.log("person_info")
+                                            // console.log(res.data.data)
                                             that.setData({
                                                 user_phone: res.data.data.phone
                                             })
-                                            console.log(res.data.data.phone)
+                                            // console.log(res.data.data.phone)
                                             wx.setStorageSync("chooseUser_phone", res.data.data.phone)
                                             wx.setStorageSync("chooseUserName", res.data.data.username);
                                             wx.setStorageSync("chooseSex", res.data.data.sex);
@@ -159,7 +162,7 @@ Page({
 
                                             //从这里判断，用户是否绑定了手机号
                                             var is_bind = false
-                                            console.log(wx.getStorageSync("chooseUser_phone"))
+                                            // console.log(wx.getStorageSync("chooseUser_phone"))
                                             // console.log(wx.getStorageSync("chooseUser_phone").length)
                                             // console.log(wx.getStorageSync("chooseUser_phone").length == 11)
                                             if (wx.getStorageSync("chooseUser_phone")!==null&&wx.getStorageSync("chooseUser_phone").length == 11) {
@@ -169,13 +172,13 @@ Page({
                                             }
                                             if (is_bind) {
                                                 //返回上一级关闭当前页面
-                                                console.log("绑定了手机号");
+                                                // console.log("绑定了手机号");
                                                 wx.navigateBack({
                                                     delta: 1
                                                 })
                                             } else {
                                                 //跳转到绑定手机号的页面
-                                                console.log("没有绑定手机号");
+                                                // console.log("没有绑定手机号");
                                                 // wx.redirectTo({url: "/pages/user/bind_phone/bind_phone"})
                                                 // 更改按钮
                                                 if(that.data.textBtn===1){

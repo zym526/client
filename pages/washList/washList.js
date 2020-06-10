@@ -48,7 +48,8 @@ Page({
             category: options.category
         });
         // 请求tab
-        that.get_service()
+        // that.get_service()
+        that.getPermission()
         // 获取系统信息
         wx.getSystemInfo({
             success: function (res) {
@@ -168,12 +169,21 @@ Page({
         this.setData({
             all: event.currentTarget.dataset.all
         })
-        // wx.setStorageSync("dataAll", JSON.stringify(this.data.all))//将当前点击数据存储在缓存中
-        // wx.setStorageSync("category", this.data.all.category)
-        wx.setStorageSync('fuwuId', this.data.all.id)//将该服务id存储在缓存中
+        // console.log(this.data.all)
+        wx.removeStorageSync('defaultCar')
+        app.globalData.defaultCar=""
+        app.globalData.defaultAddress=""
+        app.globalData.userChooseTime=""
+        app.globalData.radio=this.data.all.id
+        app.globalData.youhuiId=""
+        app.globalData.youhuiType=""
+        app.globalData.getInputValue=""
+        app.globalData.washList=1
+        app.globalData.washTitle=this.data.all.name
+        // wx.setStorageSync('fuwuId', this.data.all.id)//将该服务id存储在缓存中
         // 跳转页面
         wx.navigateTo({
-            url: '../goodsDetail/goodsDetail?all=' + JSON.stringify(this.data.all),
+            url: '../goodsDetail/goodsDetail' ,
         })
     },
     toDetailAll(event){
@@ -181,7 +191,7 @@ Page({
         this.setData({
             all: event.currentTarget.dataset.all
         })
-        wx.setStorageSync('fuwuId', this.data.all.id)//将该服务id存储在缓存中
+        // wx.setStorageSync('fuwuId', this.data.all.id)//将该服务id存储在缓存中
         // 跳转页面
         wx.navigateTo({
             url: '../detailPage/detailPage?all=' + JSON.stringify(this.data.all),
@@ -222,44 +232,44 @@ Page({
     },
 
     // 进入求情tab
-    get_service: function () {
-        var that = this;
+    // get_service: function () {
+    //     var that = this;
         // 如果有经纬度并且有wsid时请求数据
-        if(app.globalData.lat&&app.globalData.lon){
-            if(app.globalData.wsid!=""&&app.globalData.wsid){
+        // if(app.globalData.lat&&app.globalData.lon){
+        //     if(app.globalData.wsid!=""&&app.globalData.wsid){
                 // 请求tab列表
-                wx.request({
-                    url: app.globalData.url+'service_category_types',
-                    dataType: "json",
-                    data: {
-                        category: that.data.category,
-                        lon: getApp().globalData.lon,
-                        lat: getApp().globalData.lat,
-                        wsid: getApp().globalData.wsid
-                    },
-                    success: function (res) {
-                        console.log("获取tab",res)
-                        that.setData({
-                            firstId: res.data.data[that.data.currentTab].id,//导航id
-                            titleList: res.data.data//导航列表
-                        })
-                        that.loadCity(getApp().globalData.lon, getApp().globalData.lat)
-                    }
+                // wx.request({
+                //     url: app.globalData.url+'service_category_types',
+                //     dataType: "json",
+                //     data: {
+                //         category: that.data.category,
+                //         lon: getApp().globalData.lon,
+                //         lat: getApp().globalData.lat,
+                //         wsid: getApp().globalData.wsid
+                //     },
+                //     success: function (res) {
+                //         console.log("获取tab",res)
+                //         that.setData({
+                //             firstId: res.data.data[that.data.currentTab].id,//导航id
+                //             titleList: res.data.data//导航列表
+                //         })
+                //         that.loadCity(getApp().globalData.lon, getApp().globalData.lat)
+                //     }
 
-                });
-            }else{
-                console.log("没有wsid")
-                that.setData({
-                    textEmpty:"您所在的位置没有代理商运营哦",
-                    showNull: true,
-                })
-            }  
+                // });
+            // }else{
+            //     console.log("没有wsid")
+            //     that.setData({
+            //         textEmpty:"您所在的位置没有代理商运营哦",
+            //         showNull: true,
+            //     })
+            // }  
         // 如果没有经纬度则做请求
-        }else{
-            that.getPermission()
-        }
+        // }else{
+            // that.getPermission()
+        // }
         
-    },
+    // },
 
     // 进入我的订单
     goOrderList: function () {
@@ -286,15 +296,62 @@ Page({
                 longitude: longitude
             },
             success: function (res) {
-                console.log(res)
+                // console.log(res)
                 var wsid = res.data.data.wsid;
                 var wash_station = res.data.data.station
                 // 将wsid存储在app中并存储在缓存中
                 getApp().globalData.wsid = wsid
                 wx.setStorageSync("wsid", wsid);
-                that.get_service()
+                // that.get_service()
+                // 发起头部请求
+                wx.request({
+                    url: app.globalData.url+'service_category_types',
+                    dataType: "json",
+                    data: {
+                        category: that.data.category,
+                        lon: longitude,
+                        lat: latitude,
+                        wsid: getApp().globalData.wsid
+                    },
+                    success: function (res) {
+                        // console.log("获取tab",res)
+                        that.setData({
+                            firstId: res.data.data[that.data.currentTab].id,//导航id
+                            titleList: res.data.data//导航列表
+                        })
+                        that.loadCity(longitude, latitude)
+                    }
+
+                });
             }
         })
+    },
+    //根据当前经纬度转百度地图获取精准定位，并存储经纬度和地址名
+    loadCity2: function (longitude, latitude) {
+        var that = this;
+
+        // 通过后台转换地址
+        var string = "" + longitude + "," + latitude + ""
+        wx.request({
+            url: app.globalData.url+'get_location',
+            data: { location: string, lat: latitude, lon: longitude },
+            success: function (res) {
+            // console.log(res.data.data);
+            var address = JSON.parse(JSON.stringify(res.data.data))
+            // var address2=JSON.parse(JSON.stringify(res.data.data))
+            that.setData({
+                addressIndex:address.regeocode.formatted_address
+            })
+            // 将经纬度和地址信息存储在缓存中
+            wx.setStorageSync("addressText",that.data.addressIndex)
+            }
+        })
+        // };
+
+        // BMap.regeocoding({
+        //   fail: fail,
+        //   success: success
+        // });
     },
     // 打开权限获取当前地理位置
     openMap: function () {
@@ -302,7 +359,7 @@ Page({
         // 微信获取用户当前权限
         wx.getSetting({
         success(res) {
-            console.log("map_success:",res)
+            // console.log("map_success:",res)
             //scope.userLocation是返回的是否打开位置权限，true为打开
             if (!res.authSetting['scope.userLocation']) {
             // 微信获取用户地理位置
@@ -319,6 +376,7 @@ Page({
                 wx.setStorageSync("lon", longitude);
                 wx.setStorageSync("bd_lat", latitude);
                 wx.setStorageSync("bd_lng", longitude);
+                that.loadCity2(longitude, latitude)
                 that.get_wsid(longitude, latitude);
                 },
             });
@@ -338,7 +396,7 @@ Page({
                     wx.getLocation({
                     type: 'gcj02',
                     success: function (res) {
-                        console.log(res)
+                        // console.log(res)
                         var longitude = res.longitude;
                         var latitude = res.latitude;
                         // 将经纬度存储在app的globalData中
@@ -349,6 +407,7 @@ Page({
                         wx.setStorageSync("lon", longitude);
                         wx.setStorageSync("bd_lat", latitude);
                         wx.setStorageSync("bd_lng", longitude);
+                        that.loadCity2(longitude, latitude)
                         that.get_wsid(longitude, latitude);
                     },
                     });
@@ -372,6 +431,7 @@ Page({
                 wx.setStorageSync("lon", longitude);
                 wx.setStorageSync("bd_lat", latitude);
                 wx.setStorageSync("bd_lng", longitude);
+                that.loadCity2(longitude, latitude)
                 that.get_wsid(longitude, latitude);
                 },
             });
@@ -409,7 +469,7 @@ Page({
                             //授权成功之后
                             that.openMap();
                             } else {
-                            console.log("授权取消！")
+                            // console.log("授权取消！")
                             }
                         }
                         })
@@ -425,7 +485,7 @@ Page({
                 }
             },
             fail: function (res) {
-                console.log("窗口失败")
+                // console.log("窗口失败")
             }
             })
         }

@@ -1,5 +1,7 @@
 {
   "component": true,
   "usingComponents": {},
-    "navigationBarTitleText": "车辆信息"
+  "navigationBarTitleText": "车辆管理",
+  "navigationBarBackgroundColor": "#1678FF",
+  "navigationBarTextStyle":"white"
 }

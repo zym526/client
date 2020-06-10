@@ -231,7 +231,6 @@ class BMapWX {
                 method: 'GET',
                 success(data) {
                     let res = data["data"];
-                    console.log(res,data)
                     if (res["status"] === 0) {
                         let poiObj = res["result"];
                         // outputRes 包含两个对象，
@@ -253,7 +252,6 @@ class BMapWX {
                             width: otherparam["width"],
                             height: otherparam["height"]
                         }
-                        console.log(outputRes)
                         otherparam.success(outputRes);
                     } else {
                         otherparam.fail({

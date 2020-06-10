@@ -121,7 +121,7 @@ Page({
         }
       },
       fail(error){
-        console.log(error)
+        // console.log(error)
       }
     })
   },
@@ -139,7 +139,7 @@ Page({
             phone: that.data.phone
           },
           success(res){
-            console.log(res)
+            // console.log(res)
             if(res.data.code===200){
               that.setData({
                 lock:false
@@ -154,7 +154,7 @@ Page({
             }
           },
           fail(error){
-            console.log(error)
+            // console.log(error)
           },
         })
       }
@@ -221,11 +221,11 @@ Page({
       ak:'NnxYM3KVSX3yAwArHsaxldeHPuUSeQ9B'
     });
     var fail = function (data) {
-      console.log(data)
-      console.log("获取城市失败")
+      // console.log(data)
+      // console.log("获取城市失败")
     };
     var success = function (data) {
-      console.log("获取城市信息成功",data)
+      // console.log("获取城市信息成功",data)
       var address_info = data.originalData.result.addressComponent//位置信息对象
       that.setData({
         address:address_info.city+address_info.district
@@ -243,7 +243,7 @@ Page({
     // 微信获取用户当前权限
     wx.getSetting({
       success(res) {
-        console.log("map_success:",res)
+        // console.log("map_success:",res)
         //scope.userLocation是返回的是否打开位置权限，true为打开
         if (!res.authSetting['scope.userLocation']) {
           // 微信获取用户地理位置
@@ -272,7 +272,7 @@ Page({
                 wx.getLocation({
                   type: 'gcj02',
                   success: function (res) {
-                    console.log(res)
+                    // console.log(res)
                     var longitude = res.longitude;
                     var latitude = res.latitude;
 
@@ -326,7 +326,7 @@ Page({
                           //授权成功之后
                           that.openMap();
                         } else {
-                          console.log("授权取消！")
+                          // console.log("授权取消！")
                         }
                       }
                     })
@@ -342,7 +342,7 @@ Page({
             }
           },
           fail: function (res) {
-            console.log("窗口失败")
+            // console.log("窗口失败")
           }
         })
       }

@@ -37,7 +37,7 @@ Page({
           pages:pages
         },
         success(res){
-          console.log(res)
+          // console.log(res)
           // 如果请求第一页并且数据返回为空则显示无数据页面
           if(res.data.data.length==0&&pages==1){
             that.setData({
@@ -68,7 +68,7 @@ Page({
           }
         },
         fail(error){
-          console.log(error)
+          // console.log(error)
         }
       })
     }   

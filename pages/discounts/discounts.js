@@ -40,7 +40,6 @@ Page({
    */
   onLoad: function (options) {
     var that=this
-    console.log(options)
     that.setData({
       text:options.newText
     })
@@ -69,7 +68,6 @@ Page({
     //       }
     //     },
     //     fail(error){
-    //       console.log(error)
     //     }
     //   }) 
     // }else{
@@ -86,7 +84,6 @@ Page({
           wsid:wx.getStorageSync('wsid')
         },
         success(res){
-          console.log(res)
           var timecard=res.data.data.timecard
           var coupon=res.data.data.coupon
           // state中1为可用，-1为过期，2为已使用
@@ -126,7 +123,6 @@ Page({
               })
             }
           })
-          console.log(coupon,that.data.usableCoupon,that.data.disabledCoupon)
         },
         fail(error){
           wx.showToast({

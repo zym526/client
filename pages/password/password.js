@@ -28,7 +28,7 @@ Page({
   },
   passwordNewTwo(e){
     var that=this
-    console.log(e)
+    // console.log(e)
     that.setData({
       passwordTwo:e.detail.value
     })
@@ -47,7 +47,7 @@ Page({
           phone: wx.getStorageSync('chooseUser_phone')
         },
         success(res){
-          console.log(res)
+          // console.log(res)
           if(res.data.code===200){
             that.setData({
               lock:false
@@ -62,7 +62,7 @@ Page({
           }
         },
         fail(error){
-          console.log(error)
+          // console.log(error)
         },
       })
     }
@@ -84,7 +84,7 @@ Page({
         text:min+"秒后重新发送",
         countdown:min
       })
-      console.log(that.data.countdown,that.data.text)
+      // console.log(that.data.countdown,that.data.text)
     }
     setTimeout(function() {that.settime() },1000);//设置定时任务，1000毫秒为1秒
   },
@@ -160,7 +160,7 @@ Page({
         }
       },
       fail(error){
-        console.log(error)
+        // console.log(error)
       }
     })
   },

@@ -43,7 +43,7 @@ Page({
         uid: wx.getStorageSync('uid')
       },
       success(res) {
-        console.log(res)
+        // console.log(res)
         if (res.data.code === 200) {
           that.setData({
             integral: parseInt(res.data.data.integral)
@@ -51,7 +51,7 @@ Page({
         }
       },
       fail(error) {
-        console.log(error)
+        // console.log(error)
       }
     })
   },

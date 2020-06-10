@@ -24,7 +24,9 @@ Page({
     car2:"",
     car3:"",
     showNull:false,
+    carType:"请选择您的品牌车型",
   },
+  // 点击展开
   cartoon(e){
     var that=this
     // 当前下标
@@ -44,7 +46,7 @@ Page({
         desc:[]
       })
     }  
-    console.log(that.data.top)
+    // console.log(that.data.top)
   },
   // 打开弹出层，选择支付方式
   getPayWay(e){
@@ -103,7 +105,7 @@ Page({
         }
       },
       fail(error){
-        console.log(error)
+        // console.log(error)
       },
     })
   },
@@ -139,11 +141,11 @@ Page({
           ak:'NnxYM3KVSX3yAwArHsaxldeHPuUSeQ9B'
         });
         var fail = function (data) {
-          console.log(data)
-          console.log("获取城市失败")
+          // console.log(data)
+          // console.log("获取城市失败")
         };
         var success = function (data) {
-          console.log("获取城市信息成功",data)
+          // console.log("获取城市信息成功",data)
           var province=data.originalData.result.addressComponent.province//省份
           var city=data.originalData.result.addressComponent.city//市
           province=province.replace("省","")
@@ -181,17 +183,17 @@ Page({
   openCarNumber(e){
     var that=this
     that.setData({
-      carView: e.detail.carView,
+      // carView: e.detail.carView,
       showView: e.detail.showView
     })
   },
   // 获取car的id
-  changeType(e){
-    var that=this
-    that.setData({
-      id:e.detail
-    })
-  },
+  // changeType(e){
+  //   var that=this
+  //   that.setData({
+  //     id:e.detail
+  //   })
+  // },
   // 城市选择
   changeCar: function (e) {
     let that = this;
@@ -206,83 +208,83 @@ Page({
     })
   },
   // 输入车牌号
-  chooseCar(e){
-    let that = this;
-    if(that.data.city.length<6){
-      if (e.currentTarget.dataset.id) {
-        that.setData({
-          city: that.data.city + e.currentTarget.dataset.id
-        })
-      }
-    }
-  },
+  // chooseCar(e){
+  //   let that = this;
+  //   if(that.data.city.length<6){
+  //     if (e.currentTarget.dataset.id) {
+  //       that.setData({
+  //         city: that.data.city + e.currentTarget.dataset.id
+  //       })
+  //     }
+  //   }
+  // },
   // 车牌删除
-  delCar(e){
-    let that = this ;
-    if(that.data.city.length > 0){
-        that.setData({
-            city : that.data.city.substring(0,that.data.city.length - 1)
-        })
-    }
-  },
+  // delCar(e){
+  //   let that = this ;
+  //   if(that.data.city.length > 0){
+  //       that.setData({
+  //           city : that.data.city.substring(0,that.data.city.length - 1)
+  //       })
+  //   }
+  // },
   // 车牌确定
-  btnCar: function () {
-    var that = this;
-    that.setData({
-      carView: false,
-    })
+  // btnCar: function () {
+  //   var that = this;
+  //   that.setData({
+  //     carView: false,
+  //   })
     //判断车牌信息
-    if (!that.isLicensePlate(that.data.province + that.data.city)) {
-      console.log("车牌不正确");
-      wx.showToast({
-        title: '请输入正确车牌号',
-        icon: 'none',
-        duration: 2000
-      })
-    }
-  },
+  //   if (!that.isLicensePlate(that.data.province + that.data.city)) {
+  //     // console.log("车牌不正确");
+  //     wx.showToast({
+  //       title: '请输入正确车牌号',
+  //       icon: 'none',
+  //       duration: 2000
+  //     })
+  //   }
+  // },
   // 正则验证车牌,验证通过返回true,不通过返回false
   isLicensePlate(str) {
     return /^(([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领黔滇台][A-Z](([0-9]{5}[DF])|([DF]([A-HJ-NP-Z0-9])[0-9]{4})))|([京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领][A-Z][A-HJ-NP-Z0-9]{4}[A-HJ-NP-Z0-9挂学警港澳使领]))$/.test(str);
   },
   // 添加数据
-  finish: function (e) {
-    let that = this;
-    //判断车牌信息
-    if (!that.isLicensePlate(that.data.province + that.data.city)) {
-      console.log("车牌不正确");
-      wx.showToast({
-        title: '请输入正确车牌号',
-        icon: 'none',
-        duration: 2000
-      })
-    } else {
-      var car_number = that.data.province + that.data.city
-      const stringCar = that.data.province + that.data.city
-      let myToken = wx.getStorageSync("token");
-      wx.setStorageSync('car_number', car_number)
-        wx.request({
-          url: app.globalData.url + 'add_car',
-          header: { "token": myToken },
-          data: { brand: '', car_number: car_number, category_car:that.data.id,car_color:'',id:"" },
-          success: function (res) {
-            console.log(123,res)
-            wx.setStorageSync("myCar_id", res.data.data.id)
-            wx.showToast({
-              title: '车辆添加成功',
-              icon: 'none',
-              duration: 2000
-            })
-            // 隐藏确认框,添加矿,显示支付选择
-            that.setData({
-              isAddCarShow:false,
-              addCarShow:false,
-              show:false
-            })
-          }
-        })
-    }
-  },
+  // finish: function (e) {
+  //   let that = this;
+  //   //判断车牌信息
+  //   if (!that.isLicensePlate(that.data.province + that.data.city)) {
+  //     // console.log("车牌不正确");
+  //     wx.showToast({
+  //       title: '请输入正确车牌号',
+  //       icon: 'none',
+  //       duration: 2000
+  //     })
+  //   } else {
+  //     var car_number = that.data.province + that.data.city
+  //     const stringCar = that.data.province + that.data.city
+  //     let myToken = wx.getStorageSync("token");
+  //     wx.setStorageSync('car_number', car_number)
+  //       wx.request({
+  //         url: app.globalData.url + 'add_car',
+  //         header: { "token": myToken },
+  //         data: { brand: '', car_number: car_number, category_car:that.data.id,car_color:'',id:"" },
+  //         success: function (res) {
+  //           // console.log(123,res)
+  //           wx.setStorageSync("myCar_id", res.data.data.id)
+  //           wx.showToast({
+  //             title: '车辆添加成功',
+  //             icon: 'none',
+  //             duration: 2000
+  //           })
+  //           // 隐藏确认框,添加矿,显示支付选择
+  //           that.setData({
+  //             isAddCarShow:false,
+  //             addCarShow:false,
+  //             show:false
+  //           })
+  //         }
+  //       })
+  //   }
+  // },
   // 判断余额是否足够支付
   purchasePay(idCar){
     var that=this
@@ -291,7 +293,7 @@ Page({
       header: { "token": wx.getStorageSync('token') },
       data: { uid:wx.getStorageSync('uid'), wsid:wx.getStorageSync('wsid'), type:1, id:idCar },
       success(res){
-        console.log(res)
+        // console.log(res)
         // 可以购买
         if(res.data.code==200){
           that.setData({
@@ -312,7 +314,7 @@ Page({
         }
       },
       fail(error){
-        console.log(error)
+        // console.log(error)
       }
     })
   },
@@ -352,7 +354,7 @@ Page({
         })
       },
       fail(err){
-        console.log(err)
+        // console.log(err)
       },
     })
   },
@@ -372,7 +374,7 @@ Page({
         card_id: that.data.item.id
       },
       success(res){
-        console.log(res)
+        // console.log(res)
         let data=res.data.data
         // 存储订单号
         that.setData({
@@ -388,7 +390,7 @@ Page({
           success(res) {
             wx.hideLoading()
             that.onClose()
-            console.log(res)
+            // console.log(res)
             if (res.errMsg == "requestPayment:ok") {
               wx.showToast({
                 title: "购买成功",
@@ -406,13 +408,13 @@ Page({
                   uid:wx.getStorageSync('uid')
                 },
                 success(res){
-                  console.log(res)
+                  // console.log(res)
                   wx.redirectTo({
                     url: '/pages/discounts/discounts?newText=服务卡',
                   })
                 },
                 fail(error){
-                  console.log(error)
+                  // console.log(error)
                 },
               })
             } else {
@@ -436,7 +438,7 @@ Page({
         })
       },
       fail(error){
-        console.log(error)
+        // console.log(error)
         wx.hideLoading()
       }
     })
@@ -465,8 +467,49 @@ Page({
   onShow: function () {
     var that=this
     this.passwordBox = this.selectComponent('#addCarPopup')
+    // 判断缓存中是否有车型
+    if(wx.getStorageSync('carType')&&wx.getStorageSync('carType')!=""){
+      var carType=wx.getStorageSync('carType')
+      var car_category
+      switch (carType.levelname) {
+            case "中型车":
+            case "中大型车":
+            case "大型车":
+            case "小型车":
+            case "微卡":
+            case "微型车":
+            case "紧凑型车":
+            case "跑车":
+                car_category = 0;
+                carType.levelname="轿车"
+                break;
+            case "中型SUV":
+            case "中大型SUV":
+            case "大型SUV":
+            case "小型SUV":
+            case "微面":
+            case "紧凑型SUV":
+                car_category = 1;
+                carType.levelname="SUV"
+                break;
+            case "MPV":
+            case "低端皮卡": 
+            case "紧凑型MPV":
+            case "轻客":
+            case "高端皮卡":
+                car_category = 2;
+                carType.levelname="MPV"
+                break;
+      }
+      that.setData({
+        carType:carType.brand_name+'-'+carType.levelname,
+        car_category:car_category,
+        idCarType:carType.id,
+        bid:carType.brandid
+      })
+    }
     this.setData({
-      carNumber: app.globalData.carNumber,
+      // carNumber: app.globalData.carNumber,
       cityList: app.globalData.cityList
     })
     that.panduan()
@@ -521,7 +564,7 @@ Page({
             }
           },
           fail(error){
-            console.log(error)
+            // console.log(error)
           }
         })
       }else{
@@ -590,7 +633,7 @@ Page({
                 longitude: longitude
             },
             success: function (res) {
-                console.log(res)
+                // console.log(res)
                 var wsid = res.data.data.wsid;
                 var wash_station = res.data.data.station
                 // 将wsid存储在app中并存储在缓存中
@@ -606,7 +649,7 @@ Page({
         // 微信获取用户当前权限
         wx.getSetting({
         success(res) {
-            console.log("map_success:",res)
+            // console.log("map_success:",res)
             //scope.userLocation是返回的是否打开位置权限，true为打开
             if (!res.authSetting['scope.userLocation']) {
             // 微信获取用户地理位置
@@ -642,7 +685,7 @@ Page({
                     wx.getLocation({
                     type: 'gcj02',
                     success: function (res) {
-                        console.log(res)
+                        // console.log(res)
                         var longitude = res.longitude;
                         var latitude = res.latitude;
                         // 将经纬度存储在app的globalData中
@@ -713,7 +756,7 @@ Page({
                             //授权成功之后
                             that.openMap();
                             } else {
-                            console.log("授权取消！")
+                            // console.log("授权取消！")
                             }
                         }
                         })
@@ -729,7 +772,7 @@ Page({
                 }
             },
             fail: function (res) {
-                console.log("窗口失败")
+                // console.log("窗口失败")
             }
             })
         }

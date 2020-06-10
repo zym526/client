@@ -1,0 +1,63 @@
+.add-outer{
+  padding: 0rpx 31rpx;
+  box-sizing: border-box;
+}
+.one-info-outer{
+  padding: 30rpx 0rpx;
+  box-sizing: border-box;
+  border-bottom: 3rpx solid #E1E1E1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.one-info-left{
+  font-size: 30rpx;
+  color: #666666;
+  width: 200rpx;
+}
+.one-top-info-right .iconfont{
+  display: flex;
+  align-items: center;
+}
+.one-top-info-right{
+  display: flex;
+  justify-content: flex-end;
+  font-size: 30rpx;
+  color: #666666;
+  width: calc(100% - 200rpx);
+}
+.one-info-right{
+  width: calc(100% - 200rpx);
+  font-size: 30rpx;
+  color: #666666;
+  text-align: right;
+}
+/* btn */
+.btn-bottom{
+  width: calc(100% - 90rpx);
+  font-size: 32rpx;
+  line-height: 88rpx;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 20rpx;
+  left: 45rpx;
+}
+.btn-one{
+  width: 100%;
+  background-color: #187AFF;
+  border-radius: 88rpx;
+  text-align: center;
+}
+.btn-del,.btn-save{
+  width: 324.3rpx;
+  border-radius: 88rpx;
+  text-align: center;
+}
+.btn-del{
+  background-color: #999999;
+}
+.btn-save{
+  background-color: #187AFF;
+}

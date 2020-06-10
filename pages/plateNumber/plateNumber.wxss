@@ -1,1 +1,25 @@
-/* pages/plateNumber/plateNumber.wxss */
+page{
+  background-color: #F0F2F5;
+}
+.popup-outer{
+  text-align: center;
+  padding: 30rpx 0rpx;
+  box-sizing: border-box;
+}
+.popup-outer image{
+  width: 100rpx;
+  height: auto;
+}
+.one-text-car{
+  width: calc(100% - 40rpx);
+  margin-left: 20rpx;
+  font-size: 28rpx;
+  color: #232323;
+  line-height: 80rpx;
+  border-bottom: 3rpx solid #E1E1E1;
+  text-align: center;
+}
+.van-cell__left-icon-wrap,.cell-index--van-cell__left-icon{
+  width: 29px!important;
+  height: 29px!important;
+}

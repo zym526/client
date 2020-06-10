@@ -1,15 +1,23 @@
 page{
   background-color: #F0F2F5;
 }
+.setting_three_outer{
+  background-color: white;
+  padding: 0rpx 20rpx;
+  box-sizing: border-box;
+}
 .setting_one_outer{
   width: 100%;
-  padding: 30rpx 20rpx;
+  padding: 30rpx 0rpx;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   font-size: 30rpx;
   color: #666666;
-  background-color: white;
+  border-bottom: 3rpx solid #E1E1E1;
+}
+.setting_one_outer:last-child{
+  border-bottom: none;
 }
 .btn{
   width: 100%;
@@ -20,4 +28,13 @@ page{
   line-height: 89rpx;
   background-color: white;
   margin-top: 19rpx;
+}
+.banbenhao{
+  position: fixed;
+  bottom: 60rpx;
+  text-align: center;
+  left: 0rpx;
+  right: 0rpx;
+  font-size: 26rpx;
+  color: #999999;
 }

@@ -24,7 +24,7 @@ Page({
   },
   passwordNewTwo(e){
     var that=this
-    console.log(e)
+    // console.log(e)
     that.setData({
       passwordTwo:e.detail.value
     })
@@ -97,7 +97,7 @@ Page({
         newpassword: that.data.password
       },
       success(res){
-        console.log(res)
+        // console.log(res)
         if(res.data.code===200){
           wx.showToast({
             title: "密码修改成功",
@@ -118,7 +118,7 @@ Page({
         }
       },
       fail(error){
-        console.log(error)
+        // console.log(error)
       },
     })
   },

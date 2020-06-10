@@ -1,2 +1,20 @@
-<!--pages/plateNumber/plateNumber.wxml-->
-<text>pages/plateNumber/plateNumber.wxml</text>
+<!-- 列表页面 -->
+<van-index-bar highlight-color="#FF6600" sticky="{{false}}">
+  <view wx:for="{{allData}}" wx:for-index="outer" wx:key="outer">
+    <van-index-anchor index="{{outer}}"/>
+    <van-cell wx:for="{{item}}" wx:for-index="inside" wx:key="inside" wx:for-item="text" title="{{text.brand_name}}" use-slot="true" icon="{{text.brand_logo}}" bindtap="showPopup" data-item="{{text}}"/>
+    <!-- <van-cell title="文本" /> -->
+  </view>
+</van-index-bar>
+<!-- 弹出层 -->
+<van-popup
+  show="{{ show }}"
+  position="right"
+  custom-style="height: 100%;width: 50%"
+  bind:close="showPopup"
+>
+  <view class="popup-outer">
+    <image src="{{imageOnly}}" mode="widthFix"></image>
+  </view>
+  <view class="one-text-car" wx:for="{{insideData}}" wx:key="index" bindtap="toBlack" data-item="{{item}}">{{item.brand_name}}</view>
+</van-popup>

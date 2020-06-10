@@ -94,6 +94,7 @@ page{
 .list_line_bottom_two{
   background-color: white;
   padding: 30rpx 40rpx;
+  font-size: 28rpx;
 }
 /* 员工登录 */
 .staff_outer{

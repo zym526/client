@@ -19,12 +19,14 @@ Page({
   // 选择优惠券
   onChange(event) {
     var that=this
-    console.log(event)
     this.setData({
       radio: event.detail,
     });
+    // 将服务卡id存储
+    app.globalData.youhuiId=that.data.radio
+    app.globalData.youhuiType=that.data.type
     wx.redirectTo({
-      url: '/pages/goodsDetail/goodsDetail?remark='+that.data.getInputValue+"&youhuiId="+that.data.radio+"&type="+that.data.type+"&recently=1",
+      url: '/pages/goodsDetail/goodsDetail',
     })
   },
   // 返回订单页面
@@ -41,8 +43,8 @@ Page({
   onLoad: function (options) {
     var that=this
     that.setData({
-      getInputValue:app.globalData.getInputValue,
       type:options.type,//1为服务卡，2为优惠券
+      fuwuId:options.fuwuId//服务id
     })
   },
 
@@ -76,10 +78,9 @@ Page({
         data: {
           uid: wx.getStorageSync('uid'),
           wsid:wx.getStorageSync('wsid'),
-          sid:wx.getStorageSync('fuwuId')
+          sid: app.globalData.radio
         },
         success(res){
-          console.log(res)
           var timecard=res.data.data.use
           // state中1为可用，-1为过期，2为已使用
           timecard.forEach(item=>{
@@ -123,10 +124,9 @@ Page({
         data: {
           uid: wx.getStorageSync('uid'),
           wsid:wx.getStorageSync('wsid'),
-          sid:wx.getStorageSync('fuwuId')
+          sid: app.globalData.radio
         },
         success(res){
-          console.log(res)
           var coupon=res.data.data
           // state中1为可用，-1为过期，2为已使用
           coupon.forEach(item=>{

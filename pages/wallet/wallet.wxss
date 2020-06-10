@@ -1,5 +1,5 @@
 page{
-  background-color: #F0F0F0;
+  background-color: white;
 }
 .wallet_top{
   width: 100%;
@@ -37,11 +37,44 @@ page{
 .wallet_top_right .icon-youjiantou{
   font-size: 35rpx;
 }
+.type-pay{
+  display: flex;
+  background-color: white;
+  align-items: center;
+  position: relative;
+}
+.type-pay view{
+  width: 50%;
+  font-size: 28rpx;
+  line-height: 88rpx;
+  text-align: center;
+  border-bottom: 3rpx solid #F0F0F0;
+}
+.zhongjian{
+  position: absolute;
+  display: inline-block;
+  width: 3rpx;
+  height: 34rpx;
+  background-color: #F0F0F0;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+.active-type-pay{
+  border-bottom: 4rpx solid #1678FF!important;
+  color: #1678FF;
+  font-size:32rpx!important;
+}
+
 /* 充值中心 */
+.wallet_outer{
+  padding-bottom: 50rpx;
+  /* background-color: white; */
+}
 .wallet_center{
   width: calc(100% - 40rpx);
   margin-left: 20rpx;
-  margin-top: 20rpx;
+  padding-top: 20rpx;
 }
 .wallet_center_title{
   color: #999999;
@@ -102,6 +135,29 @@ page{
   color: white;
   background: #FF6600;
   border-radius: 10rpx;
+}
+.only-wallet-car{
+  padding-top: 50rpx;
+}
+.wallet_car{
+  width: calc(100% - 198rpx);
+  margin-left: 99rpx;
+  height: 80rpx;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background-color: #E6E6E6;
+  margin-bottom: 50rpx;
+}
+.car_btn{
+  width: calc(100% - 60rpx);
+  margin-left: 30rpx;
+  font-size: 32rpx;
+  line-height: 88rpx;
+  color: white;
+  background-color: #1678FF;
+  border-radius: 88rpx;
+  text-align: center;
 }
 /* 充值 */
 .wallent_bottom_outer{
