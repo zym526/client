@@ -26,8 +26,8 @@ Component({
     carLength:6,//车牌长度
     isHiddenColor:true,//颜色选择
     icon:{
-      active:"../../img/yesActive.png",
-      noActive:"../../img/noActive.png"
+      active:"../../img/noActive.png",
+      noActive:"../../img/nullSelected.png"
     }
   },
   ready(){

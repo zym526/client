@@ -134,9 +134,9 @@ App({
     },
     globalData: {
         userInfo: null,
-        // url:"https://wash.xypvip.cn/",
+        url:"https://wash.xypvip.cn/",
         // url:"http://192.168.10.62:83/",
-        url: "https://test.xinyixi.net/",
+        // url: "https://test.xinyixi.net/",
         lat:null,
         lon:null,
         wsid:null,

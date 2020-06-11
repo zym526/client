@@ -43,7 +43,7 @@
       <view class="right_text_car">
         <view class="text_car_one">汽车清洗</view>
         <view class="text_car_two">行业的领军者</view>
-        <view class="iconfont icon-youjiantou-tianchong" style="color:#1678FF"></view>
+        <view class="iconfont icon-you" style="color:#1678FF;font-weight:bold;"></view>
       </view>
       <image src="/img/blueCar.png" mode="widthFix"></image>
     </view>
@@ -51,7 +51,7 @@
       <view class="right_right_text_car">
         <view class="text_car_one">汽车养护</view>
         <view class="text_car_two">服务的先驱者</view>
-        <view class="iconfont icon-youjiantou-tianchong" style="color:#FF6600"></view>
+        <view class="iconfont icon-you" style="color:#FF6600;font-weight:bold;"></view>
       </view>
       <image src="/img/redCar.png" mode="widthFix"></image>
     </view>
@@ -72,9 +72,16 @@
     <view class="subscribe_center">
       <!-- 没有车辆 -->
       <view class="no-car" hidden="{{defaultCar?true:false}}" bindtap="addMyCar">
-        <view class="iconfont icon-tianjia" style="font-size:80rpx;margin-right:21rpx;color:#FF6600"></view>
-        <view class="subscribe_center_right">
-          <view>添加我的爱车信息</view>
+        <view class="subscribe_center_left">
+          <!-- <view class="iconfont icon-tianjia" style="font-size:80rpx;margin-right:21rpx;color:#FF6600"></view> -->
+          <image src="../../img/addImg.png" mode="widthFix" style="width:78rpx;height:auto;margin-right:21rpx"></image>
+          <view class="subscribe_center_right">
+            <view>添加我的爱车信息</view>
+          </view>
+        </view>
+        <view class="subscribe_center_right_outer">
+          <image src="../../img/index-Car.png" mode="widthFix"/>
+          <view class="iconfont icon-you" style="color:rgba(0,0,0,0);font-size:26rpx"></view>
         </view>
       </view>
       <!-- 有车辆 -->
@@ -93,7 +100,8 @@
       </view>
     </view>
     <view class="address_center {{nowAddressTextLeft=='默认位置：'?'blur_address_center':''}}" bindtap="changeAddress">
-      <text>{{nowAddressTextLeft}}<text>{{addressIndex2}}</text></text>
+      <text class="leftAddress">{{nowAddressTextLeft}}</text>
+      <text class="rightAddress">{{addressIndex2}}</text>
       <view class="iconfont icon-you" style="font-size:26rpx;color:#999999"></view>
     </view> 
     <!-- 订单/洗车/现在预约 -->

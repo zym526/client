@@ -93,7 +93,7 @@
 }
 .car_left_text{
   font-size: 28rpx;
-  color: #232323;
+  color: #666666;
 }
 .car_left_text_two{
   font-size: 26rpx;
@@ -105,7 +105,7 @@
   align-items: center;
 }
 /* 地址 */
-.address_outer_bg,.time_left_bg{
+.address_outer_bg,.time_left_bg,.car_left_default{
   width: 78rpx;
   height: 78rpx;
   border-radius: 78rpx;
@@ -114,6 +114,9 @@
   align-items: center;
   justify-content: center;
   margin-right: 19rpx;
+}
+.car_left_default{
+  background-color: rgba(186, 186, 186, 0.3);
 }
 .address_right{
   width: calc(100% - 97rpx);
@@ -137,7 +140,7 @@
 }
 .time-right{
   font-size: 28rpx;
-  color: #232323;
+  color: #666666;
 }
 .time-right-top{
   display: flex;
@@ -181,6 +184,10 @@
   font-size: 30rpx;
 }
 /* 服务价格 */
+.fuwu-left{
+  font-size: 30rpx;
+  color: #666666;
+}
 .fuwu-jiage,.youhuiquan,.fuwuka,.sec{
   padding: 30rpx 0rpx;
   display: flex;
@@ -243,7 +250,7 @@
   position: fixed;
   bottom: 30rpx;
   z-index: 5;
-  box-shadow: 0rpx 0rpx 15rpx rgba(0,0,0,0.3);
+  box-shadow: 0rpx 0rpx 15rpx rgba(0,0,0,0.15);
 }
 .pay_outer view:first-child{
   width: calc(100% - 249rpx);

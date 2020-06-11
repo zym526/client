@@ -162,18 +162,25 @@ page{
 .no-car{
   width: 100%;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.subscribe_center_left{
+  display: flex;
   align-items: center;
 }
 .subscribe_center_right view{
   font-size: 35rpx;
+  color: #666666;
 }
 .yes-car{
   width: 100%;
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 .yes-car-left{
-  width: calc(100% - 239rpx);
+  width: calc(100% - 32rpx);
   display: flex;
   align-items: center;
 }
@@ -183,6 +190,7 @@ page{
   margin-right: 20rpx;
 }
 .yes-car-left-text{
+  width: calc(100% - 100rpx);
   font-size: 40rpx;
 }
 .yes-car-info{
@@ -190,12 +198,21 @@ page{
   color: #666666;
 }
 .yes-car-right{
+  position: absolute;
+  right: 0rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.subscribe_center_right_outer{
   display: flex;
   width: 239rpx;
   align-items: center;
   justify-content: flex-end;
 }
-.yes-car-right image{
+.yes-car-right image,.subscribe_center_right_outer image{
   width: 188rpx;
   height: auto;
   margin-right: 10rpx;
@@ -209,8 +226,15 @@ page{
   font-size: 28rpx;
   color: #FF6600;
 }
-.address_center text text{
-  color: #232323!important;
+.address_center text{
+  display: inline-block;
+}
+.leftAddress{
+  width: 150rpx;
+}
+.rightAddress{
+  width: calc(100% - 150rpx);
+  color: #232323;
 }
 .blur_address_center{
   color: #1678FF;
@@ -449,7 +473,6 @@ page{
   height: auto;
 }
 .close-bottom{
-  border: 1px solid red;
   display: inline-block;
   width: 60rpx;
   height: 60rpx;

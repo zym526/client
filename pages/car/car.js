@@ -38,8 +38,8 @@ Page({
             { name: "新" }, { name: "台" }, { name: "港" }, { name: "澳" }
         ],
         icon:{
-            active:"../../img/yesActive.png",
-            noActive:"../../img/noActive.png"
+            active:"../../img/noActive.png",
+            noActive:"../../img/nullSelected.png"
         }
     },
     onLoad: function (options) {

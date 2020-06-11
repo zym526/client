@@ -2,7 +2,10 @@
         <!-- 车子 -->
         <view class="car_outer" bindtap="toCarList">
             <view class="car_left">
-                <image src="{{defaultCar.brand_logo}}" mode="widthFix"/>
+                <image src="{{defaultCar.brand_logo}}" mode="widthFix" hidden="{{selectCar=='点击选择车辆信息'}}"/>
+                <view class="car_left_default" hidden="{{selectCar!='点击选择车辆信息'}}">
+                    <view class="iconfont icon-fangxiangpan" style="font-size:70rpx;color:#999999"></view>
+                </view>
                 <view class="car_left_text">
                     <view hidden="{{defaultCar}}">{{selectCar}}</view>
                     <view class="car_left_text_one" hidden="{{!defaultCar}}">{{defaultCar.car_number}}</view>
