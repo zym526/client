@@ -7,8 +7,8 @@ Page({
         iv: '',
         data: '',
         textBtn:1,
-        checked: false,//协议勾选
-        color:"#999999",//btn颜色
+        checked: true,//协议勾选
+        color:"#00CC33",//btn颜色
     },
     onLoad: function () {
         if (app.globalData.userInfo) {
@@ -172,13 +172,13 @@ Page({
                                             }
                                             if (is_bind) {
                                                 //返回上一级关闭当前页面
-                                                // console.log("绑定了手机号");
+                                                console.log("绑定了手机号");
                                                 wx.navigateBack({
                                                     delta: 1
                                                 })
                                             } else {
                                                 //跳转到绑定手机号的页面
-                                                // console.log("没有绑定手机号");
+                                                console.log("没有绑定手机号");
                                                 // wx.redirectTo({url: "/pages/user/bind_phone/bind_phone"})
                                                 // 更改按钮
                                                 if(that.data.textBtn===1){

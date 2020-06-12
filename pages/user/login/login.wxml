@@ -12,6 +12,6 @@
     </button>
     <!-- 授权 -->
     <view class="bottomXieyi">
-        <van-checkbox  icon-size="26rpx" value="{{ checked }}" bind:change="onChange" checked-color="#1678FF">已阅读并同意<text style="color:#1678FF">《法律声明及隐私政策》</text></van-checkbox>
+        <van-checkbox  icon-size="32rpx" value="{{ checked }}" bind:change="onChange" checked-color="#1678FF">已阅读并同意<text style="color:#1678FF">《法律声明及隐私政策》</text></van-checkbox>
     </view>
 </view>

@@ -206,7 +206,7 @@ Page({
     // 车牌输入
     cityChange(e){
         this.setData({
-            car:e.detail.value
+            car:e.detail.value.toUpperCase()
         })
     },
     // 是否为新能源
@@ -268,8 +268,8 @@ Page({
         that.setData({
             car:that.data.car.toUpperCase()
         })
-        if(!app.isLicensePlate(that.data.province+that.data.car)){
-            app.showToast("车牌验证失败")
+        if((that.data.province+that.data.car).length!=7&&(that.data.province+that.data.car).length!=8){
+            app.showToast("车牌长度不对")
             return
         }else if(that.data.carType=="请选择您的品牌车型"||that.data.carType==""){
             app.showToast("请选择您的品牌车型")

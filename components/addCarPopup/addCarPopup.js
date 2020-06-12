@@ -70,10 +70,10 @@ Component({
       }
     },
     // 获取车牌输入框内容
-    cityChange(event){
+    cityChange(event){ 
       var that=this
       that.setData({
-        city:event.detail.value
+        city:event.detail.value.toUpperCase()
       })
     },
     // 跳转车型选择
@@ -126,10 +126,9 @@ Component({
       var that=this
       that.setData({
         isHiddenColor:true,
-        city:that.data.city.toUpperCase()
       })
-      if(!app.isLicensePlate(that.data.province+that.data.city)){
-        app.showToast("车牌验证失败")
+      if((that.data.province+that.data.city).length!=7&&(that.data.province+that.data.city).length!=8){
+        app.showToast("车牌长度不对")
         return
       }else if(that.data.carType=="请选择您的品牌车型"||that.data.carType==""){
         app.showToast("请选择您的品牌车型")
