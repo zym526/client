@@ -96,7 +96,6 @@ Page({
       var today = new Date();//获取当前时间
       var targetday_milliseconds = today.getTime() + 1000 * 60 * 60 * 24 * day;//现在的时间往后加1天到7天
       today.setTime(targetday_milliseconds); //注意，这行是关键代码，向 1970/01/01 添加 1到7天的 毫秒
-
       var tYear = today.getFullYear();
       var tMonth = today.getMonth();
       var tDate = today.getDate();//获取这七天的年月日
@@ -230,7 +229,7 @@ Page({
           lastDays = that.data.chooseDate;
           lastDays = lastDays.substring(lastDays.length - 4, lastDays.length - 2)
           lastDays = parseInt(lastDays);
-          endHours = that.data.chooseTime.substring(9, 11);
+          endHours = that.data.chooseTime.substring(6, 8);
           if (days == lastDays) {
               if (endHours > hours) {
                   that.setData({
@@ -263,7 +262,7 @@ Page({
               app.globalData.userChooseTime=that.data.userChooseTime
           }
       } else {
-          endHours = that.data.begin_Hour[0].substring(9, 11);
+          endHours = that.data.begin_Hour[0].substring(6, 8);
           lastDays = that.data.begin_month[0];
           lastDays = lastDays.substring(lastDays.length - 4, lastDays.length - 2)
           lastDays = parseInt(lastDays);
@@ -1150,7 +1149,7 @@ Page({
                 wx.request({
                   url: app.globalData.url + 'check_balance',
                   header: { "token": wx.getStorageSync('token') },
-                  data: { uid: wx.getStorageSync('uid'), wsid: wx.getStorageSync('wsid'), type: 1, id: that.data.radio },
+                  data: { uid: wx.getStorageSync('uid'), wsid: wx.getStorageSync('wsid'), type: 0, id: that.data.radio },
                   success(res) {
                     // console.log(res)
                     // 可以购买

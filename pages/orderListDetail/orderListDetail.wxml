@@ -86,8 +86,8 @@
   <view class="tipMessage {{showView ? 'showTrue' : 'showFalse'}}"></view>
   <view class="zwf"></view>
   <view class="btn btn-red" wx:if="{{obj.order_state == 0}}" data-order="{{obj.order_number}}" bindtap='payNow'>立即支付</view>
-  <view class="btn btn-org" wx:if="{{obj.order_state == 10}}" data-order="{{obj.order_number}}" bindtap='begin'>开始服务</view>
-  <view class="btn btn-org" wx:if="{{obj.order_state == 11}}" data-order="{{obj.order_number}}" bindtap='endFw'>确认完成</view>
+  <!-- <view class="btn btn-org" wx:if="{{obj.order_state == 10}}" data-order="{{obj.order_number}}" bindtap='begin'>开始服务</view> -->
+  <!-- <view class="btn btn-org" wx:if="{{obj.order_state == 11}}" data-order="{{obj.order_number}}" bindtap='endFw'>确认完成</view> -->
   <view class="btn btn-org" wx:if="{{obj.order_state == 1}}" data-order="{{obj.order_number}}" bindtap='cen'>联系客服</view>
   <!-- <view class="btn" wx:if="{{obj.order_state == 2}}" data-order="{{obj.order_number}}" bindtap='evaNow'>立即评价</view> -->
 

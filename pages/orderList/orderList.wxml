@@ -25,9 +25,8 @@
           <view class="orderStatus {{items.order_state == -3?'hui-text':''}}" wx:if="{{items.order_state == -3}}"><text class="yuan-dian {{items.order_state == -3?'hui-bg':''}}"/>已取消</view>
           <view class="orderStatus {{items.order_state == 0?'red-text':''}}" wx:if="{{items.order_state == 0}}"><text class="yuan-dian {{items.order_state == 0?'red-bg':''}}"/>待付款</view>
           <view class="orderStatus {{items.order_state == 1?'origin-text':''}}" wx:if="{{items.order_state == 1}}"><text class="yuan-dian {{items.order_state == 1?'origin-bg':''}}"/>待服务</view>
-          <view class="orderStatus {{items.order_state == 10?'origin-text':''}}" wx:if="{{items.order_state == 10}}"><text class="yuan-dian {{items.order_state == 10?'origin-bg':''}}"/>待服务</view>
+          <view class="orderStatus {{items.order_state == 10?'origin-text':''}}" wx:if="{{items.order_state == 10}}"><text class="yuan-dian {{items.order_state == 10?'origin-bg':''}}"/>服务中</view>
           <view class="orderStatus {{items.order_state == 11?'origin-text':''}}" wx:if="{{items.order_state == 11}}"><text class="yuan-dian {{items.order_state == 11?'origin-bg':''}}"/>服务中</view>
-          <!-- <view class="orderStatus" wx:if="{{items.order_state == 2}}">待评价</view> -->
           <view class="orderStatus {{items.order_state == 2?'blue-text':''}}" wx:if="{{items.order_state == 2}}"><text class="yuan-dian {{items.order_state == 2?'blue-bg':''}}"/>已完成</view>
         </view>
         <!-- 订单服务项目，服务时间，服务地点 -->
@@ -57,7 +56,7 @@
           <!-- 已接单待上门服务 -->
           <view class="btn" wx:if="{{items.order_state == 10}}">
             <view class="cen" bindtap='goDetail' data-obj='{{items}}'>查看订单</view>
-            <view class="begin origin-bg" data-order="{{items.order_number}}" bindtap="begin">开始服务</view>
+            <!-- <view class="begin origin-bg" data-order="{{items.order_number}}" bindtap="begin">开始服务</view> -->
           </view>
           <!-- 开始服务，等待结束 -->
           <view class="btn" wx:if="{{items.order_state == 11}}">

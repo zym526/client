@@ -26,7 +26,7 @@ Page({
             { name: "待付款", tabImg: 'qianbao-dd',status:0},
             { name: "待服务", tabImg: 'daifuwu-dd' ,status:1},
             // { name: "待评价", tabImg: '../../img/dpn.png', status: 2 },
-            { name: "已完成", tabImg: 'wancheng-dd' ,status:3},
+            { name: "已完成", tabImg: 'wancheng-dd' ,status:2},
         ],
         displayBlock: false,
         hasOnShow:false,
@@ -96,7 +96,7 @@ Page({
                 url: app.globalData.url+'bespeak_order_list',
                 dataType: "json",
                 header: { "token": myToken },
-                data: { order_state: state, lat: that.data.lat, lon: that.data.lon,page:page },
+                data: { uid:wx.getStorageSync('uid'),order_state: state, lat: that.data.lat, lon: that.data.lon,page:page },
                 success: function (res) {
                   // console.log(res)
                     // 如果页码为1，返回数据为0则无数据不再请求

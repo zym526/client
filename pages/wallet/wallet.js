@@ -62,6 +62,23 @@ Page({
     that.setData({
       payName:name
     })
+    wx.request({
+      url: app.globalData.url+"checkpassword",
+      header:{ "token": wx.getStorageSync('token') },
+      method: "POST",
+      data: {
+        uid: wx.getStorageSync('uid')
+      },
+      success(res){
+        // console.log(res)
+        // 未设置
+        if(res.data.code===200){
+          that.setData({ show: true });
+        // 已设置
+        }else{
+        
+        }}
+      })
   },
   // 卡号
   carNumber(e){
@@ -124,10 +141,6 @@ Page({
           that.setData({ show: true });
         // 已设置
         }else{
-          wx.showLoading({
-            title: "正在加载",
-            mask: true
-          })
           // 请求充值
           wx.request({
             url: app.globalData.url+"balaorder",
@@ -165,12 +178,11 @@ Page({
                         uid:wx.getStorageSync('uid')
                       },
                       success(res){
-                        // console.log(res)
                         // 获取余额
                         that.getBala()
                       },
                       fail(error){
-                        // console.log(error)
+                        
                       },
                     })
                   } else {
@@ -270,6 +282,23 @@ Page({
     var that=this
     this.passwordBox = this.selectComponent('#passwordBox')
     that.getBala()
+    wx.request({
+      url: app.globalData.url+"checkpassword",
+      header:{ "token": wx.getStorageSync('token') },
+      method: "POST",
+      data: {
+        uid: wx.getStorageSync('uid')
+      },
+      success(res){
+        // console.log(res)
+        // 未设置
+        if(res.data.code===200){
+          that.setData({ show: true });
+        // 已设置
+        }else{
+        
+        }}
+      })
   },
 
   /**

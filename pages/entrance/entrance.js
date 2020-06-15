@@ -302,7 +302,6 @@ Page({
               icon: 'none',
               duration: 2000
             })
-            // that.getToken()
           }
           if(res.data.code===200){
             that.setData({
@@ -314,11 +313,6 @@ Page({
               duration: 3000,
               icon: 'none'
             })
-            // var time=setTimeout(function(){
-            //   wx.navigateTo({
-            //     url: '/pages/discounts/discounts?nweText=优惠券',
-            //   })
-            // },3000)
           }else{
             wx.showToast({
               title: res.data.msg,
@@ -565,6 +559,26 @@ Page({
             title: res.data.msg,
             duration: 3000,
             icon: 'none'
+          })
+          wx.request({
+            url: app.globalData.url+"couponlist",
+            method: "GET",
+            data:{
+              wsid:wx.getStorageSync('wsid')
+            },
+            success: function (res) {
+              var data=res.data.data
+              data.forEach(item=>{
+                if(item.type=="无门槛"){
+                  item.text="送"+item.price+"元无门槛优惠券"
+                }else if(item.type=="免洗"){
+                  item.text="送您一张免洗券"
+                }
+              })
+              that.setData({
+                banner:data
+              })
+            }
           })
         }
       }
