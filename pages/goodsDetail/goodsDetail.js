@@ -1086,8 +1086,8 @@ Page({
                               couponid: that.data.optionsType == 2 ? that.data.youhuiId : '',
                             },
                             success(res) {
-                              // console.log(res)
-                              if (res.errMsg === "request:ok") {
+                              console.log(res)
+                              if (res.data.code == 200) {
                                 var data = res.data.data;
                                 wx.showLoading({
                                   title: "正在加载",
@@ -1125,15 +1125,12 @@ Page({
                                   },
                                 })
                               } else {
-                                wx.showToast({
-                                  title: "下单失败",
-                                  icon: 'none',
-                                  duration: 2000
-                                })
+                                app.showToast(res.data.msg)
                               }
                             },
                             fail(error) {
                               // console.log(error)
+                              app.showToast(err.data.msg)
                             },
                           })
                         } else if (res.cancel) {
@@ -1240,7 +1237,7 @@ Page({
         },
         success(res) {
           // console.log(res)
-          if (res.errMsg === "request:ok") {
+          if (res.data.code == 200) {
             var data = res.data.data;
             wx.showLoading({
               title: "正在加载",
@@ -1307,15 +1304,12 @@ Page({
               }
             })
           } else {
-            wx.showToast({
-              title: "下单失败",
-              icon: 'none',
-              duration: 2000
-            })
+            app.showToast(res.data.msg)
           }
         },
         fail(error) {
           // console.log(error)
+          app.showToast(err.data.msg)
         },
       })
     },
@@ -1367,7 +1361,7 @@ Page({
         },
         success(res) {
           // console.log(res)
-          if (res.errMsg === "request:ok") {
+          if (res.data.code == 200) {
             var data = res.data.data;
             wx.showLoading({
               title: "正在加载",
@@ -1407,14 +1401,11 @@ Page({
               },
             })
           } else {
-            wx.showToast({
-              title: "下单失败",
-              icon: 'none',
-              duration: 2000
-            })
+            app.showToast(res.data.msg)
           }
         },
         fail(error) {
+          app.showToast(err.data.msg)
           // console.log(error)
         },
       })
