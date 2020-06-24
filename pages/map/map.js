@@ -28,7 +28,7 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
-    console.log(options.topOrBottom)
+    console.log(options.topOrBottom,options)
     // 如果type为1则显示，否则隐藏则有默认位置，显示当前和默认按钮
     if(options.type==1){
       that.setData({
@@ -374,9 +374,9 @@ Page({
       wx.setStorageSync('lat', wx.getStorageSync('bd_lat'))
       wx.setStorageSync('lon', wx.getStorageSync('bd_lng'))
       // 返回上一页的时候判断缓存中lat和bd_lat，lon和bd_lng是否相同，不管何时都使用lat和lon
-      if(that.data.type==1){
+      // if(that.data.type==1){
         app.globalData.nowIndex=1
-      }
+      // }
       wx.navigateBack({
         delta: 1
       })

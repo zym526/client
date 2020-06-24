@@ -14,4 +14,7 @@
     <view class="bottomXieyi">
         <van-checkbox  icon-size="32rpx" value="{{ checked }}" bind:change="onChange" checked-color="#1678FF">已阅读并同意<text style="color:#1678FF">《法律声明及隐私政策》</text></van-checkbox>
     </view>
+    <view class="no-login" bindtap="toIndex">
+        暂不登录
+    </view>
 </view>

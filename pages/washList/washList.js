@@ -38,6 +38,7 @@ Page({
         userInfos: false,
         huakuai:false,//滑块函数触发
         textEmpty:"",//空白页提示信息
+        isShow:true,//本地暂无站点
     },
 
     onLoad: function (options) {
@@ -297,6 +298,12 @@ Page({
             },
             success: function (res) {
                 // console.log(res)
+                if(res.data.code==2){
+                    app.showToast(res.data.msg)
+                    that.setData({
+                        isShow:false
+                    })
+                }
                 var wsid = res.data.data.wsid;
                 var wash_station = res.data.data.station
                 // 将wsid存储在app中并存储在缓存中
@@ -317,11 +324,11 @@ Page({
                         // console.log("获取tab",res)
                         that.setData({
                             firstId: res.data.data[that.data.currentTab].id,//导航id
-                            titleList: res.data.data//导航列表
+                            titleList: res.data.data,//导航列表
+                            isShow:true
                         })
                         that.loadCity(longitude, latitude)
                     }
-
                 });
             }
         })

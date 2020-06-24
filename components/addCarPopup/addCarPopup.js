@@ -127,10 +127,11 @@ Component({
       that.setData({
         isHiddenColor:true,
       })
-      if((that.data.province+that.data.city).length!=7&&(that.data.province+that.data.city).length!=8){
-        app.showToast("车牌长度不对")
-        return
-      }else if(that.data.carType=="请选择您的品牌车型"||that.data.carType==""){
+      // if((that.data.province+that.data.city).length<7){
+      //   app.showToast("车牌信息错误")
+      //   return
+      // }else 
+      if(that.data.carType=="请选择您的品牌车型"||that.data.carType==""){
         app.showToast("请选择您的品牌车型")
         return
       }else if(that.data.carColor==""||!that.data.carColor){

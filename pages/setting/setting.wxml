@@ -16,4 +16,4 @@
   <view class="btn" bindtap="goUp">退出登录</view>
   <van-dialog id="van-dialog" confirm-button-color="#FF6600"/>
 </view>
-<view class="banbenhao">版本号：1.2.6</view>
+<view class="banbenhao">版本号：1.2.8</view>

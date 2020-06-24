@@ -228,6 +228,10 @@ Page({
             })
         }
     },
-
-
+    // 暂不登录
+    toIndex(){
+        wx.switchTab({
+          url: '/pages/entrance/entrance',
+        })
+    }
 })

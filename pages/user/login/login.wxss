@@ -12,5 +12,16 @@ page{
     justify-content: center;
     font-size: 32rpx;
 }
+.no-login{
+    font-size: 32rpx; 
+    background: #FF6600;
+    color:white; 
+    height: 80rpx;
+    width: calc(100% - 60rpx); 
+    text-align: center; 
+    line-height: 80rpx;
+    border-radius: 80rpx;
+    margin-top: 20rpx;
+}
 
 

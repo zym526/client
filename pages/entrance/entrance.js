@@ -813,6 +813,7 @@ Page({
       })
     }
     // 如果从地图或者车辆列表过来则获取缓存中的车辆信息和位置    
+    console.log(app.globalData.nowIndex,app.globalData.nowIndex2)
     if(app.globalData.nowIndex==1||app.globalData.nowIndex2==1){
       console.log(app.globalData.nowIndex2,app.globalData.nowIndex)
       // 处理车辆信息进行拼接

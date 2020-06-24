@@ -104,3 +104,11 @@ border-radius: 6px ; position: absolute ; top : 161rpx ; right: 25rpx ; font-siz
 .userTip{font-size: 30rpx ; color : #666 ; margin : 35rpx 0 ;}
 .userText { padding-bottom :35rpx ;}
 .cover{position: fixed ; top : 0 ; height: 100% ; width: 100% ; z-index: 9998 ; background: #333 ; opacity: 0.25 ;}
+/* 本地暂无站点 */
+.noEmpty{
+  position: fixed;
+  left: 50%;
+  top:100rpx;
+  transform: translateX(-50%);
+  text-align: center;
+}
