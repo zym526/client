@@ -17,7 +17,7 @@
             <view class="discount_left_text {{item.couponprice==0?'qitaColor2':'qitaColor'}}">
               <view class="discount_left_text_top {{item.couponprice==0?'discount_left_text_color':'discount_left_text_color1'}}">{{item.couponprice==0?'体验券':'抵用券'}}</view>
               <view class="discount_left_text_bottom">
-                <text>{{item.couponprice==0?'体验':item.couponprice}}</text>{{item.couponprice==0?'':'元'}}
+                <text>{{item.couponprice==0?'体验':item.cid==2027?item.price:item.couponprice}}</text>{{item.couponprice==0?'':'元'}}
               </view>
             </view>
             <view class="discount_right_text">

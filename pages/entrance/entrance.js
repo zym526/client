@@ -17,7 +17,8 @@ Page({
     onlyTC:true,//地区性弹窗
     map:"",
     carType:"请选择您的品牌车型",
-    nowAddressTextLeft:"默认位置："
+    nowAddressTextLeft:"默认位置：",
+    randomShow:true,//领取成功
   },
   // 跳转login页面
   toLogin(){
@@ -80,7 +81,8 @@ Page({
     var that=this
     if(index==="23"){
       that.setData({
-        discountShow:true
+        discountShow:true,
+        randomShow:true,
       })      
       wx.navigateTo({
         url: '../washList/washList?currentTab=0&category=1',
@@ -252,7 +254,8 @@ Page({
   toLookYhq(){
     var that=this
     that.setData({
-      discountShow:true
+      discountShow:true,
+      randomShow:true,
     })
     wx.navigateTo({
       url: '/pages/discounts/discounts?nweText=服务卡',
@@ -304,9 +307,16 @@ Page({
             })
           }
           if(res.data.code===200){
-            that.setData({
-              discountShow:false
-            })
+            if(cid==2027){
+              that.setData({
+                randomShow:false,
+                random:res.data.data
+              })
+            }else{
+              that.setData({
+                discountShow:false
+              })
+            }
             that.getPageData()
             wx.showToast({
               title: res.data.msg,
@@ -339,7 +349,8 @@ Page({
   closeYhq(){
     var that=this
     that.setData({
-      discountShow:true
+      discountShow:true,
+      randomShow:true,
     })
   },
   // ？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？

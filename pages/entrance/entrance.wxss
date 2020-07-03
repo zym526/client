@@ -297,7 +297,7 @@ page{
   height: auto;
 }
 /* 优惠券 */
-.discounts_outer{
+.discounts_outer,.random_outer{
   position: fixed;
   z-index: 999;
   left: 0rpx;
@@ -310,6 +310,9 @@ page{
   position: relative;
   margin-top: 15%;
 }
+.random_outer .outer_bian{
+  margin-top: 20%;
+}
 .discounts_inside{
   width: 80%;
   background-color: white;
@@ -317,6 +320,31 @@ page{
   border-radius: 20rpx;
   text-align: center;
   padding: 40rpx 0rpx 50rpx;
+  position: relative;
+}
+.discounts_inside .random-text{
+  font-size: 80rpx;
+  font-weight: bolder;
+  color: #7C4810;
+  position: absolute;
+  left: calc(45% + 5rpx);
+  top: 240rpx;
+}
+.inside-text{
+  font-size: 26rpx;
+  color: #666;
+}
+.inside-text text{
+  color: #FA6649;
+}
+.packetTop{
+  position: absolute;
+  left: 50%;
+  top: -86rpx;
+  transform: translateX(-50%);
+}
+.redPacket{
+  margin-top: 84rpx!important;
 }
 .discounts_inside_title{
   font-size: 46rpx;
@@ -354,6 +382,15 @@ page{
   left: 50%;
   bottom: -90rpx;
   transform: translateX(-50%);
+}
+.cross_random{
+  border-radius: 60rpx;
+  background:-moz-linear-gradient(left,#FDEDA0 25%,#E3CC5A);
+  background:-webkit-linear-gradient(left,#FDEDA0 25%,#E3CC5A);
+  background:-o-linear-gradient(left,#FDEDA0 25%,#E3CC5A);
+  background:-ms-linear-gradient(left,#FDEDA0 25%,#E3CC5A);
+  background:linear-gradient(left,#FDEDA0 25%,#E3CC5A);
+  color: #79460C!important;
 }
 /* 下优惠券banner */
 .outer_swiper{

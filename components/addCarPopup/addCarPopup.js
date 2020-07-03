@@ -127,10 +127,6 @@ Component({
       that.setData({
         isHiddenColor:true,
       })
-      // if((that.data.province+that.data.city).length<7){
-      //   app.showToast("车牌信息错误")
-      //   return
-      // }else 
       if(that.data.carType=="请选择您的品牌车型"||that.data.carType==""){
         app.showToast("请选择您的品牌车型")
         return

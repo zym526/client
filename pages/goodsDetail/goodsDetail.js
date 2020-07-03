@@ -423,18 +423,20 @@ Page({
                                     optionsType: 2
                                   })
                                   that.data.youhui.forEach(item => {
-                                    // console.log(item)
+                                    console.log(item)
                                     if (item.id == app.globalData.youhuiId) {
                                       if (item.couponprice == 0) {
                                         that.setData({
                                           price: item.title,
                                         })
                                       } else {
+                                        console.log(item)
                                         that.setData({
-                                          price: '-￥' + item.couponprice,
-                                          dealWith: (that.data.city_price - item.couponprice)<0?0:that.Subtr(that.data.city_price,item.couponprice),
-                                          dealWith2: item.couponprice
+                                          price: '-￥' + (item.cid==2027?Number(item.price):item.couponprice),
+                                          dealWith: (that.data.city_price - item.cid==2027?Number(item.price):item.couponprice)<0?0:that.Subtr(that.data.city_price,item.cid==2027?Number(item.price):item.couponprice),
+                                          dealWith2: item.cid==2027?Number(item.price):item.couponprice
                                         })
+                                        console.log(that.data.price,that.data.dealWith,that.data.dealWith2,Number(item.price))
                                       }
                                     }
                                   })

@@ -158,6 +158,22 @@
       </view>
     </view>
   </view>
+  <!-- 随机优惠券 -->
+  <view class="random_outer" hidden="{{randomShow}}">
+    <view class="outer_bian">
+      <view class="discounts_inside">
+        <image src="/img/packetTop.png" mode="widthFix" class="packetTop"></image>
+        <image src="/img/redPacket.png" mode="widthFix" class="redPacket"></image>
+        <text class="random-text">{{random}}</text>
+        <view class="inside-text">您的专属福利</view>
+        <view class="inside-text">恭喜您获得<text>一张优惠券</text></view>
+        <button class="cross_random" bindtap="toWashList" data-index="23">立即使用</button>
+      </view>
+      <view class="cross_outer" bindtap="closeYhq">
+        <van-icon name="cross" size="50rpx" color="white"/>
+      </view>
+    </view>
+  </view>
 </view>
 
 <!-- 添加车辆信息 -->
